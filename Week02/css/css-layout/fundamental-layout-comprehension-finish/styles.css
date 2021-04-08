@@ -17,15 +17,23 @@ img {
   max-width: 980px;
 }
 
-.grid {
+main {
+  max-width: 1200px;
+  min-width: 800px;
   margin: 0 auto;
-  padding: 0 20px;
-  max-width: 980px;
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  grid-gap: 20px;
+  display: flex;
 }
 
+main article {
+  flex: 500px 1;
+  margin-right: 40px;
+  padding: 10px;
+}
+
+main aside {
+  padding-top: 10px;
+  flex: 225px 0;
+}
 nav {
   background-color: #000;
   padding: 0.5em;
@@ -34,26 +42,34 @@ nav {
 }
 
 nav ul {
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
+  max-width: 1200px;
   list-style: none;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+}
+
+nav ul li {
+  margin-right: 20px;
 }
 
 nav a {
   color: #fff;
   text-decoration: none;
-  padding: 0.5em 1em;
 }
 
 .photos {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-gap: 1px;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.photos li {
+  flex: 100px 0;
+  margin: 5px;
 }
 
 .feature {
