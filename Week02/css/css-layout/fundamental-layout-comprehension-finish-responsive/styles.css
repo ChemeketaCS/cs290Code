@@ -1,0 +1,108 @@
+body {
+  background-color: #fff;
+  color: #333;
+  margin: 0;
+  font: 1.2em / 1.2 Arial, Helvetica, sans-serif;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.logo {
+  font-size: 200%;
+  padding: 50px 20px;
+  margin: 0 auto;
+  max-width: 980px;
+}
+
+main {
+  margin: 0 auto;
+}
+
+main article {
+  flex: 500px 1;
+  margin-right: 40px;
+  padding: 10px;
+}
+
+main aside {
+  padding: 10px;
+  flex: 225px 0;
+}
+
+nav {
+  background-color: #000;
+  padding: 0.5em;
+  padding-bottom: 0;
+  top: 0;
+  position: sticky;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+nav ul li {
+  margin-right: 20px;
+  margin-bottom: 0.5em;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.photos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.photos li {
+  flex: 100px 0;
+  margin-bottom: 10px;
+}
+
+.feature {
+  width: 200px;
+  float: left;
+  margin: 0 20px 20px 0;
+}
+
+@media (min-width: 800px) {
+  /* only apply these rules if screen width >= 800 */
+
+  nav ul {
+    margin: 0 auto;
+    max-width: 1200px;
+    min-width: 800px;
+  }
+
+  main {
+    max-width: 1200px;
+    min-width: 800px;
+    margin: 0 auto;
+    display: flex;
+  }
+
+  main article {
+    flex: 500px 1;
+    margin-right: 40px;
+    padding: 0.5em;
+  }
+
+  main aside {
+    padding: 0.5em;
+    flex: 225px 0;
+  }
+}
