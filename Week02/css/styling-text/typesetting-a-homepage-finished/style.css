@@ -10,8 +10,53 @@ body {
   max-width: 1400px;
 }
 
-/* Layout */
+/* Flex Based 1 */
+/* 
+.container {
+  display: flex;
+}
 
+section {
+  flex: 50%;
+  background-color: red;
+}
+
+aside {
+  flex: 30%;
+  background-color: green;
+}
+
+nav {
+  flex: 20%;
+  background-color: blue;
+} */
+
+/* Flex based 2 */
+
+.container {
+  display: flex;
+}
+
+section {
+  flex: 350px;
+  flex-grow: 1;
+  background-color: red;
+}
+
+aside {
+  flex: 350px;
+  flex-grow: 0;
+  background-color: green;
+}
+
+nav {
+  flex: 200px;
+  flex-grow: 0;
+  background-color: blue;
+}
+
+/* Float Layout */
+/* 
 section {
   float: left;
   width: 50%;
@@ -29,7 +74,34 @@ nav {
 
 footer {
   clear: both;
+} */
+
+/* Position Based Layout */
+/* 
+.container {
+  position: relative;
 }
+
+section {
+  width: 50%;
+  background-color: red;
+}
+
+aside {
+  position: absolute;
+  width: 30%;
+  top: 0;
+  left: 50%;
+  background-color: green;
+}
+
+nav {
+  position: absolute;
+  width: 20%;
+  top: 0;
+  right: 0;
+  background-color: blue;
+} */
 
 header,
 section,
