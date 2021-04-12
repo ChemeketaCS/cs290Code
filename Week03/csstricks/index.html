@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CSS Tricks</title>
+    <!-- CSS only -->
+
+    <style>
+      body {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .hidden {
+        visibility: hidden;
+      }
+      .no-display {
+        display: none;
+      }
+
+      .colorbox {
+        background-color: #ccc;
+        overflow: auto;
+      }
+
+      .thing1 {
+        background-color: #ddf;
+        box-sizing: border-box;
+        height: 40px;
+        width: 60px;
+        border: 1px solid black;
+        padding: 5px;
+        margin: 5px;
+      }
+
+      .thing2 {
+        background-color: #ddf;
+        box-sizing: content-box;
+        height: 40px;
+        width: 60px;
+        border: 1px solid black;
+        padding: 5px;
+        margin: 5px;
+      }
+
+      .container {
+        width: 100%;
+        padding: 1em;
+      }
+
+      @media screen and (min-width: 768px) {
+        .container {
+          width: 40%;
+          margin: 0 auto;
+          border: 1px solid black;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <p>
+      This layout should change for phone screens. Removing the meta viewport
+      tag from the head should break things so you only see the "big page"
+      version on phones.
+    </p>
+    <div class="container">
+      <h2>Visibility Hidden vs Display None</h2>
+      <p>This list has 5 items. Can you find them?</p>
+      <ul>
+        <li>Item</li>
+        <li class="hidden">You can't see me, but I take up space</li>
+        <li>Item</li>
+        <li class="no-display">I take up no space</li>
+        <li>Item</li>
+      </ul>
+    </div>
+    <div class="container">
+      <h2>Different box-sizings</h2>
+      <p>
+        The two blue boxes below use different box-sizing values. Both are set
+        to a width of 60px.
+      </p>
+      <p>
+        Thing 1 is border-box. Its width and height control the final size. The
+        thing 1 box's padding(5 on each side) and border(1 on each side) are
+        subtracted from the 60 pixels it occupies. So the blue content area is
+        48pixels wide.
+      </p>
+      <div class="colorbox">
+        <div class="thing1">Thing 1</div>
+      </div>
+      <p>
+        Thing 2 is content-box. Its width and height control the size of just
+        the content. The thing 1 box's padding(5 on each side) and border(1 on
+        each side) are added from the 60 pixels it wants. So the total space it
+        occupies is 72px.
+      </p>
+      <div class="colorbox">
+        <div class="thing2">Thing 2</div>
+      </div>
+    </div>
+  </body>
+</html>
