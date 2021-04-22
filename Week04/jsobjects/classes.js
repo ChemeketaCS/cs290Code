@@ -65,3 +65,26 @@ let hulk = new SuperHero(
 
 hulk.greeting();
 hulk.brag();
+
+//-------------------------------------
+
+class Instructor {
+  constructor(subject, college) {
+    // subject and grade are specific to Teacher
+    this._subject = subject;
+    this.college = college;
+  }
+
+  get subject() {
+    return this._subject;
+  }
+
+  set subject(newSubject) {
+    if (String(newSubject).trim() !== "") this._subject = newSubject;
+  }
+}
+
+let scholer = new Instructor("CS", "Chemeketa");
+scholer.subject = "Computer Science";
+console.log(scholer.subject);
+console.log(scholer);
