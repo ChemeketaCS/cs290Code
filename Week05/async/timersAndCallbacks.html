@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>timers and callbacks example</title>
+    <style></style>
+  </head>
+  <body>
+    <button id="go">Go</button>
+    <p>Open the console to see the results...</p>
+    <script>
+      function doStuff() {
+        console.log("Starting doStuff");
+
+        setTimeout(function () {
+          console.log("Done with first job");
+          setTimeout(function () {
+            console.log("Done with second job");
+            setTimeout(function () {
+              console.log("Done with third job");
+            }, 2000);
+          }, 2000);
+        }, 2000);
+
+        console.log("Ending doStuff");
+      }
+
+      let fillBtn = document.querySelector("#go");
+      fillBtn.addEventListener("click", doStuff);
+
+      console.log("Starting a long job");
+      setTimeout(function () {
+        console.log("Callback is executing");
+      }, 2000);
+      console.log("Done with loading all js");
+
+      setInterval(function () {
+        console.log("tick...");
+      }, 1000);
+    </script>
+  </body>
+</html>

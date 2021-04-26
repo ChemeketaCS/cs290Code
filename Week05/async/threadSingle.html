@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>single thread example</title>
+    <style></style>
+  </head>
+  <body>
+    <p>You won't see me until the JS is done running!!!</p>
+    <script>
+      function expensiveJob(name) {
+        let myDate;
+        for (let i = 0; i < 4000000; i++) {
+          let date = new Date();
+          myDate = date;
+        }
+
+        console.log(name + " finished at " + myDate);
+      }
+      expensiveJob("Job 1");
+      expensiveJob("Job 2");
+      expensiveJob("Job 3");
+      expensiveJob("Job 4");
+      expensiveJob("Job 5");
+      expensiveJob("Job 6");
+      expensiveJob("Job 7");
+      expensiveJob("Job 8");
+    </script>
+  </body>
+</html>

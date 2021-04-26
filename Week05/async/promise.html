@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>promise example</title>
+    <style></style>
+  </head>
+  <body>
+    <button id="go">Go</button>
+    <p>Open the console to see the results...</p>
+    <script>
+      function later(delay, value) {
+        return new Promise((resolve) => setTimeout(resolve, delay, value));
+      }
+
+      function doStuff() {
+        console.log("Starting doStuff");
+        later(1000, "Later 1")
+          .then((response) => {
+            console.log(response);
+            return later(1000, "Later 2");
+          })
+          .then((response) => {
+            console.log(response);
+            return later(1000, "Later 3");
+          })
+          .then((response) => {
+            console.log(response);
+            return later(1000, "Later 4");
+          })
+          .then((response) => {
+            console.log(response);
+            throw "Fake error";
+          })
+          .catch((error) => {
+            console.log("We had an issue " + error);
+          });
+
+        console.log("Ending doStuff");
+      }
+
+      let fillBtn = document.querySelector("#go");
+      fillBtn.addEventListener("click", doStuff);
+    </script>
+  </body>
+</html>

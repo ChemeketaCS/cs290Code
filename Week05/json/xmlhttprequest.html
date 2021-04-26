@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>XMLHTTPRequest sample</title>
+    <style></style>
+  </head>
+  <body>
+    <button id="go">Go</button>
+    <p>Open the console to see the results...</p>
+    <script>
+      function doStuff() {
+        const doAsyncronous = true;
+        let requestURL =
+          "https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json";
+        let request = new XMLHttpRequest();
+        //request.responseType = "json";
+        request.open("GET", requestURL, doAsyncronous);
+        request.onload = function () {
+          if (request.readyState === 4) {
+            if (request.status === 200) {
+              console.log("Here is the data...");
+              const superHeroes = request.response;
+              console.log(superHeroes);
+            } else {
+              console.log("We had a problem...");
+              console.error(request.status);
+            }
+          }
+        };
+        request.onerror = function (e) {
+          console.log("ooops - you had a problem " + e);
+        };
+        request.send();
+
+        console.log("Done running doStuff");
+      }
+
+      let fillBtn = document.querySelector("#go");
+      fillBtn.addEventListener("click", doStuff);
+    </script>
+  </body>
+</html>

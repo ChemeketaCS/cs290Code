@@ -26,6 +26,14 @@ for (let prop in person1) {
 }
 
 console.log("---------------------------");
+//make an object starting with an empty one
+const otherPerson = {};
+//otherPerson.name.first = "Bob";   //can't do this... there is no person2.name
+otherPerson.name = {}; //now name is an empty object
+otherPerson.name.first = "Bob";
+otherPerson.age = 26;
+
+console.log("---------------------------");
 console.log("Using as an associative array");
 const items = ["Apple", "Banana", "Pear", "Apple", "Apple", "Orange", "Pear"];
 const itemCounts = {};

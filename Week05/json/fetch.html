@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>fetch sample</title>
+    <style></style>
+  </head>
+  <body>
+    <button id="go">Go</button>
+    <p>Open the console to see the results...</p>
+    <script>
+      function nameSort(a, b) {
+        let nameA = a.name.toLowerCase(),
+          nameB = b.name.toLowerCase();
+        if (nameA < nameB)
+          //sort string ascending
+          return -1;
+        if (nameA > nameB) return 1;
+        return 0;
+      }
+
+      function doStuff() {
+        fetch("https://api.punkapi.com/v2/beers?per_page=20&yeast=05")
+          .then(function (response) {
+            if (response.status == 200) {
+              return response.json();
+            } else throw response.status + " " + response.statusText;
+          })
+          .then(function (json) {
+            let recipes = json;
+            recipes.sort(nameSort);
+            console.log(recipes);
+          })
+          .catch(function (err) {
+            console.log("Fetch problem: " + err.message);
+          });
+
+        console.log("Done running doStuff");
+      }
+
+      let fillBtn = document.querySelector("#go");
+      fillBtn.addEventListener("click", doStuff);
+    </script>
+  </body>
+</html>
