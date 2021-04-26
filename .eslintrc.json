@@ -10,7 +10,7 @@
         "es2021": true
     },
     "rules": {
-        "indent": ["error", 2],
-        "eqeqeq": ["error", "always"]
+        //"indent": ["error", 2, { "SwitchCase": 1 }],   //Might want this if not letting prettier clean things up
+        "eqeqeq": ["error", "always"],
     }
 }
