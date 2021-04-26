@@ -29,13 +29,21 @@
       fillBtn.addEventListener("click", doStuff);
 
       console.log("Starting a long job");
-      setTimeout(function () {
-        console.log("Callback is executing");
-      }, 2000);
+      setTimeout(
+        function (input) {
+          console.log("Callback is executing with " + input);
+        },
+        2000,
+        "This information"
+      );
       console.log("Done with loading all js");
 
-      setInterval(function () {
+      const maxTicks = 10;
+      let ticks = 0;
+      let intervalID = setInterval(function () {
         console.log("tick...");
+        ticks++;
+        if (ticks == maxTicks) clearTimeout(intervalID);
       }, 1000);
     </script>
   </body>

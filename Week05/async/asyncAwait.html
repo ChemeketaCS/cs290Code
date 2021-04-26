@@ -9,20 +9,24 @@
     <button id="go">Go</button>
     <p>Open the console to see the results...</p>
     <script>
+      function timeout(ms, name) {
+        return new Promise((resolve) => setTimeout(resolve, ms, name));
+      }
+
       async function slowThing(name) {
-        for (let i = 0; i < 5000000; i++) {
-          let date = new Date();
-        }
-        return name + " is done";
+        let result = await timeout(1000, name);
+        return "Done with " + result;
       }
 
       async function doStuff() {
-        let result1 = await slowThing("Thing 1");
+        let result1 = await slowThing("Stuff 1");
         console.log(result1);
-        let result2 = await slowThing("Thing 2");
+        let result2 = await slowThing("Stuff 2");
         console.log(result2);
-        let result3 = await slowThing("Thing 3");
+        let result3 = await slowThing("Stuff 3");
         console.log(result3);
+
+        console.log("Done doing doStuff");
       }
 
       let fillBtn = document.querySelector("#go");

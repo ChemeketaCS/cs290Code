@@ -15,7 +15,8 @@
 
       function doStuff() {
         console.log("Starting doStuff");
-        later(1000, "Later 1")
+        let myPromise = later(1000, "Later 1");
+        myPromise
           .then((response) => {
             console.log(response);
             return later(1000, "Later 2");
@@ -34,13 +35,34 @@
           })
           .catch((error) => {
             console.log("We had an issue " + error);
+          })
+          .finally(() => {
+            console.log("Done with promise chain");
           });
 
         console.log("Ending doStuff");
       }
 
+      async function doStuffParallel() {
+        let result1 = later(1000, "Parallel Stuff 1");
+        let result2 = later(1000, "Parallel Stuff 2");
+        let result3 = later(1000, "Parallel Stuff 3");
+
+        Promise.all([result1, result2, result3]).then((values) => {
+          console.log(values);
+        });
+
+        console.log("Done doing doStuffParallel");
+      }
+
+      function doThings() {
+        doStuff();
+        doStuffParallel();
+        console.log("Done with things");
+      }
+
       let fillBtn = document.querySelector("#go");
-      fillBtn.addEventListener("click", doStuff);
+      fillBtn.addEventListener("click", doThings);
     </script>
   </body>
 </html>
