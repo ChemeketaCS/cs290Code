@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Simple DOM example</title>
+  </head>
+  <body>
+    <section>
+      <img
+        class="fancy"
+        src="dinosaur.jpg"
+        alt="A red Tyrannosaurus Rex: A two legged dinosaur standing upright like a human, with small arms, and a large head with lots of sharp teeth."
+      />
+      <p class="red large">
+        Here we will add a link to the
+        <a href="https://www.mozilla.org/">Mozilla homepage</a>
+      </p>
+      <p id="second" onclick="makeBold(this)">
+        And a link to <a class="fancy" href="https://www.google.com/">google</a>
+      </p>
+
+      <script>
+        //find first <p> tag
+        const p1 = document.querySelector("p");
+        p1.onclick = function () {
+          this.style.color = "red";
+        };
+
+        //replaces previous onclick
+        p1.onclick = function () {
+          this.style.color = "blue";
+        };
+
+        p1.onmouseover = function () {
+          this.style.backgroundColor = "yellow";
+        };
+
+        p1.onmouseout = function () {
+          this.style.backgroundColor = "inherit";
+        };
+
+        //add a second event listenet
+        p1.addEventListener("click", function () {
+          this.style.fontSize = "125%";
+        });
+
+        function makeBold(item) {
+          console.log(item);
+          item.style.fontWeight = "bold";
+        }
+
+        const links = document.querySelectorAll("a");
+        links.forEach((link) => {
+          link.addEventListener("click", function (event) {
+            console.log("hahahaha");
+            console.log("You clicked at x location " + event.pageX);
+            event.preventDefault();
+          });
+        });
+      </script>
+    </section>
+  </body>
+</html>

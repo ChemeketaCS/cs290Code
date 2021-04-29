@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--
+    Code provided for use in private assignment repositories in CS290. This may not be
+    publicly posted without permission.
+-->
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beer Recipe Finder</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css"
+    />
+    <style>
+      input {
+        margin-right: 20px;
+      }
+
+      .card-header {
+      }
+
+      .card-body {
+        background-color: #f8f7f6;
+      }
+
+      .card-header h2 {
+        font-size: 1.5em;
+      }
+
+      .card-body h3 {
+        font-size: 1.2em;
+      }
+
+      .section {
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="container">
+      <h1 class="text-center">Beer Recipe Finder</h1>
+      <div class="section">
+        <p>Enter a yeast to find matching recipes.</p>
+      </div>
+      <div class="section">
+        <label for="yeast">Yeast name:</label>
+
+        <input type="text" id="yeast" value="1056" />
+
+        <button class="btn btn-primary" id="searchBtn">Search</button>
+      </div>
+      <div
+        id="recipes"
+        class="section row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"
+      ></div>
+    </main>
+    <script src="beerReader.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

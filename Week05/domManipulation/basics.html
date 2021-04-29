@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Simple DOM example</title>
+  </head>
+  <body>
+      <section>
+        <img class="fancy" src="dinosaur.jpg" alt="A red Tyrannosaurus Rex: A two legged dinosaur standing upright like a human, with small arms, and a large head with lots of sharp teeth.">
+        <p class="red large">Here we will add a link to the <a href="https://www.mozilla.org/">Mozilla homepage</a></p>
+        <p id="second">And a link to <a class="fancy" href="https://www.google.com/">google</a></p>
+
+        <script>
+          //find first <p> tag
+          const p1 = document.querySelector('p');
+
+          console.log(p1);
+          console.log(p1.innerText);
+          console.log(p1.innerHTML);
+          console.log(p1.id);
+          console.log(p1.children);
+          console.log(p1.childNodes);
+
+          console.log(p1.className);
+          console.log(p1.classList);
+
+          p1.style.fontSize = "3em";
+          
+          p1.className = "red large";
+
+          p1.classList.remove("red");
+          p1.classList.add("green");
+
+          console.log(p1.classList);
+
+          //find all <p> tags
+          const paras = document.querySelectorAll('p');
+
+          console.log(paras);
+
+          const secondP = paras[1];
+          const linksInSecondP = secondP.querySelectorAll('a');
+          console.log(linksInSecondP);
+          linksInSecondP[0].href = "microsoft.com";
+
+          // //remove some things
+          // const dinoImg = document.querySelector('img');
+          // dinoImg.remove();
+          // p1.innerHTML = "";
+
+
+          //addd a list
+          p1.innerHTML = "This is all <b>new!!!</b>";
+          let newContent = "<ul>";
+          for(let i = 0; i < 5; i++) {
+            newContent += `<li>Item ${i}</li>`;
+          }
+          newContent += "</ul>";
+
+          p1.innerHTML += newContent;
+
+          
+          //add another list
+          const body = document.querySelector('body');
+          const newList = document.createElement('ul');
+          newList.classList.add('cool');
+          for(let i = 0; i < 5; i++) {
+            const listItem = document.createElement('li');
+            listItem.append(document.createTextNode(`List item ${i}`));
+            newList.append(listItem);
+          }
+          body.append(newList);
+
+
+
+        </script>
+
+      </section>
+  </body>
+</html>

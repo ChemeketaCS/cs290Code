@@ -4,6 +4,11 @@ let superSquad = {
   formed: 2016,
   secretBase: "Super tower",
   active: true,
+  activateTeam: function () {
+    for (let m of this.members) {
+      console.log("Activating " + m.name);
+    }
+  },
   members: [
     {
       name: "Molecule Man",
@@ -36,8 +41,15 @@ let superSquad = {
   ],
 };
 
-//Turn it into a string
-let squadString = JSON.stringify(superSquad);
+//call a function
+superSquad.activateTeam();
+
+//This would be a circular reference
+//superSquad.members[0].team = superSquadID;
+
+//Turn superSquad into a string with 2 spaces as indent
+let squadString = JSON.stringify(superSquad, " ", 2);
+
 console.log(squadString);
 //console.log(squadString.squadName); //This no longer makes sense - it is just a string
 
