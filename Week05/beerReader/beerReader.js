@@ -3,7 +3,8 @@ const searchBtn = document.querySelector("#searchBtn");
 searchBtn.addEventListener("click", loadYeasts);
 
 function loadYeasts() {
-  const yeastName = document.querySelector("#yeast");
+  const yeastNameTextField = document.querySelector("#yeast");
+  const yeastName = yeastNameTextField.value;
   const recipesList = document.querySelector("#recipes");
 
   //Newer way to clear existing recipes
@@ -13,14 +14,8 @@ function loadYeasts() {
   // for (let c of recipesList.children) {
   //     c.remove();
   // }
-  let a = 0;
-  let x = 0;
-  switch (a) {
-    case 1:
-      x = 10;
-  }
 
-  fetch("https://api.punkapi.com/v2/beers?per_page=20&yeast=" + yeastName.value)
+  fetch("https://api.punkapi.com/v2/beers?per_page=20&yeast=" + yeastName)
     .then((response) => {
       if (!response.ok) console.error("Issue with request:", response);
 
