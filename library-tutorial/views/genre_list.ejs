@@ -1,0 +1,16 @@
+<%- include('layout-header'); -%>
+
+<h1>
+    <%= title %>
+</h1>
+<% if(list_genres.length == 0) { %>
+  <p>We haven't classified the genres for now. Please check-in later.</p>
+<% } else { %>
+  <ul>
+      <% list_genres.forEach(function(genre) { %>
+        <li><a href='<%- genre.url _%>'><%= genre.name %></a></li>
+      <% }); %>
+  </ul>
+<% } %>
+
+<%- include('layout-footer'); -%>

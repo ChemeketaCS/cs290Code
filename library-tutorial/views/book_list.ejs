@@ -1,0 +1,22 @@
+<%- include('layout-header'); -%>
+
+<h1>
+    <%= title %>
+</h1>
+<% if(book_list.length == 0) { %>
+  <p>There are no books.</p>
+<% } else { %>
+  <ul>
+      <%  
+        //This sorting moved to the controller. It is generally best to keep messier logic in the controller instead of the view.
+        //book_list.sort(function(a, b) {
+        //  let textA = a.title.toUpperCase(); let textB = b.title.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        //});
+        book_list.forEach(function(book) { 
+      %>
+        <li><a href='<%- book.url _%>'><%= book.title %></a> (<%= book.author.name %>)</li>
+      <% }); %>
+  </ul>
+<% } %>
+
+<%- include('layout-footer'); -%>

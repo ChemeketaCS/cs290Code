@@ -1,0 +1,48 @@
+<%- include('layout-header'); -%>
+
+<h1>
+    Title: <%= book.title %>
+</h1>
+
+<p><strong>Author: </strong><a href='<%- book.author.url %>'><%= book.author.name %></a></p>
+<p><strong>Summary:</strong> <%= book.summary %></p>
+<p><strong>ISBN:</strong> <%= book.isbn %></p>
+<p><strong>Summary:</strong> <%= book.author.name %></p>
+<p><strong>Genre(s):</strong>
+  <% book.genre.forEach(function(genre, index) { %>
+    <a href='<%- genre.url %>'><%= genre.name %></a><%= index === book.genre.length - 1 ? '' : ', ' %>
+  <% }) %>
+</p>
+
+<hr>
+
+<h2>Copies</h2>
+
+<% if(!book_instances) { %>
+  <p>There are no copies of this book in the library.</p>
+<% } else { %>
+  <%
+    book_instances.forEach(function(instance) {  
+      status_class = 'text-warning';
+      if(instance.status === 'Available')
+        status_class = 'text-success';
+      else if(instance.status === 'Maintenance')
+        status_class = 'text-danger'; 
+  %>
+      <p class='<%= status_class %>'><%= instance.status %></p>
+      <% if(instance.status !== 'Available') { %>
+        <p><strong>Due Back: </strong><%= instance.due_back %></p>
+      <% } %>
+      <p><strong>Imprint: </strong><%= instance.imprint %></p>
+      <p><strong>Instance Id: </strong><a href='<%- instance.url %>'><%= instance._id %></a></p>
+
+  <% }) //foreach %>
+<% } //else %>
+
+<hr>
+
+<p><a href='<%- book.url + "/delete"%>'>Delete book</a></p>
+
+<p><a href='<%- book.url + "/update"%>'>Update book</a></p>
+
+<%- include('layout-footer'); -%>

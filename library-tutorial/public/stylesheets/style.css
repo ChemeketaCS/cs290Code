@@ -1,0 +1,19 @@
+.sidebar-nav {
+  margin-top: 20px;
+  padding: 0;
+  list-style: none;
+}
+
+form {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+main {
+  margin-top: 1em;
+}
+
+a,
+a:visited {
+  color: #3740ff;
+}

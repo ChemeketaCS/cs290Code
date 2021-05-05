@@ -1,0 +1,28 @@
+<%- include('layout-header'); -%>
+
+<h1>
+    <%= genre.name %>
+</h1>
+
+<hr>
+
+<h2>Books</h2>
+
+<% if(genre_books.length == 0) { %>
+  <p>This genre has no books.</p>
+<% } else { %>
+  <dl>
+    <% genre_books.forEach(function(book) { %>
+      <dt><a href='<%- book.url _%>'><%= book.title %></a></dt>
+      <dd><%= book.summary %></dd>
+    <% }); %>
+  </dl>
+<% } %>
+
+<hr>
+
+<p><a href='<%- genre.url + "/delete"%>'>Delete genre</a></p>
+
+<p><a href='<%- genre.url + "/update"%>'>Update genre</a></p>
+
+<%- include('layout-footer'); -%>
