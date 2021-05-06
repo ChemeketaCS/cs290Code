@@ -1,0 +1,30 @@
+<%- include("super-common-header.ejs", {title:squadName}) %>
+
+<h1><%- squadName %></h1>
+<hr>
+<b>Home town: </b><%- homeTown %>
+<hr>
+<h2>The Team</h2>
+<!-- Could do sorting here... but yuck
+<%
+  members.sort((a,b) => {
+    if (a.name < b.name) return -1;
+    if (a.name > b.name) return 1;
+    return 0;
+  });
+%> 
+-->
+<ul>
+  <% for(let hero of members) {
+    console.log(hero);  
+    -%>
+    <li>
+    <!-- Pass in an object with hero and powers properties -->
+    <a href="/hero/<%- hero.name %>"><%- hero.name %></a>
+    <!-- Pass in the hero object which has those properties -->
+    <!-- <%- include('superheroSingle.ejs', hero) %> -->
+    </li>
+  <% } %>
+</ul>
+</body>
+</html>

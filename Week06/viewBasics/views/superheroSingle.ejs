@@ -1,5 +1,7 @@
+<%- include("super-common-header.ejs", {title:name}) %>
+
 <div class="hero">
-  <h3>Name: <%- name %></h3>
+  <h1>Name: <%- name %></h1>
   Powers:
   <ul>
     <% for (let p of powers) { %>
@@ -7,3 +9,8 @@
     <% } %>
   </ul>
 </div>
+<hr>
+<a href="/">Back to the squad</a>
+
+</body>
+</html>

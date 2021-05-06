@@ -55,12 +55,35 @@ app.get("/", async (req, res) => {
   });
 
   //Manually render the view and send it
-  //let page = await ejs.render("views/superherosTemplate.ejs", superSquad);
+  //let page = await ejs.render("views/superheros.ejs", superSquad);
   //res.send(page);
 
   //Automatically render and send the view
   //Assumed view is in views/ folder
-  res.render("superherosTemplate.ejs", superSquad);
+
+  res.render("superheros.ejs", superSquad);
+});
+
+app.get("/hero/:name", async (req, res, next) => {
+  const heroName = req.params.name;
+  console.log(heroName);
+  let index = -1;
+  superSquad.members.forEach((value, i) => {
+    if (value.name === heroName) {
+      index = i;
+    }
+  });
+
+  let hero = superSquad.members[index];
+  console.log(hero);
+
+  if (index != -1) res.render("superheroSingle.ejs", hero);
+  else next();
+});
+
+app.get("*", async (req, res) => {
+  res.status = 404;
+  res.send("No such file");
 });
 
 app.listen(port, () => {
