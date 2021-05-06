@@ -1,0 +1,2 @@
+# Tell prettier to not reformat .ejs file
+*.ejs

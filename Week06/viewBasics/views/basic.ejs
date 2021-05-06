@@ -1,0 +1,32 @@
+
+<p>
+    Scriptlet <% name %>
+</p>
+<p>
+    Basic insertion <%- name %>
+</p>
+<p>
+    HTML Escape <%= name %>
+</p>
+<p>
+    Whitespace slurping <%- name _%>                   
+</p>
+<p>
+    Newline trim <%- name -%>
+</p>
+
+Age???
+<% if (typeof(age) !== 'undefined') { -%>
+It is: <%- age -%>
+<%  } else { -%>
+Not provided
+<%  }  %>
+
+Age???
+<%- typeof(age) !== 'undefined' ? `It is ${age}` : "Not provided" %>
+
+<% for(let i = 1; i <= 10; i++) { %>
+    i:  <%- i -%>
+<%  } %>
+
+<%- include('basic-include.ejs', {message: `${name} says goodbye!`}); -%>

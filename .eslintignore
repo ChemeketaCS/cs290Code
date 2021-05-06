@@ -1,0 +1,2 @@
+# Tell eslint to ignore ejs files in any directory
+**/*.ejs

@@ -11,6 +11,6 @@
     },
     "rules": {
         //"indent": ["error", 2, { "SwitchCase": 1 }],   //Might want this if not letting prettier clean things up
-        "eqeqeq": ["error", "always"],
+        "eqeqeq": ["error", "always"]
     }
 }
