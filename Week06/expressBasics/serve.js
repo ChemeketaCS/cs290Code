@@ -23,12 +23,23 @@ app.get("/secret.html", (req, res) => {
   res.send(res.body); //send the body we built
 });
 
-app.get("/products/secret", (req, res) => {
-  res.send("A secret product");
-});
+// app.get("/products/secret", (req, res) => {
+//   res.send("A secret product");
+// });
 
 var productsRouter = require("./routes/products");
 app.use("/products", productsRouter);
+
+app.get("/users/:id", (req, res) => {
+  let userID = req.params.id; //:id automatically becomes this
+  res.send("You asked for user " + userID);
+});
+
+app.get("/department/:dept/user/:id", (req, res) => {
+  let department = req.params.dept; //:dept automatically becomes this
+  let userID = req.params.id; //:id automatically becomes this
+  res.send("You asked for user " + userID + " from " + department);
+});
 
 //If all else fails, try the public dir to serve a static file
 app.use(express.static("public"));
