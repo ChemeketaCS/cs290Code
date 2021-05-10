@@ -64,52 +64,74 @@ mongoose.connect(credentials.connection_string, {
 });
 
 //Load our models
-const Hero = require("./models/hero");
-const Team = require("./models/team");
+const Hero = require("./models/hero.js");
+const Team = require("./models/team.js");
+
+//Basic version of loading/reloading records - not actually called
+//Just provided for illustration
+//Async function so we can use await to synchronize steps
+async function sampleSimpleLoad() {
+  //Get rid of existing teams
+  await Team.deleteMany();
+
+  //Make JS object using model and some hard coded data
+  const teamRecord1 = new Team({
+    squadName: "Super hero squad",
+    homeTown: "Metro City",
+    formed: Date.parse("1995-01-20"),
+    active: true,
+  });
+  //Tell it to save itself to database
+  await teamRecord1.save();
+
+  //Now do another record
+  const teamRecord2 = new Team({
+    squadName: "Just us league",
+    homeTown: "Midtown",
+    formed: Date.parse("2003-08-03"),
+    active: true,
+  });
+  await teamRecord2.save();
+}
 
 //Async function so we can use await to synchronize steps
 async function loadAllRecords() {
   //Delete all existing records
-  await Team.deleteMany({});
-  await Hero.deleteMany({});
+  await Team.deleteMany();
+  await Hero.deleteMany();
 
   //Will use this to store a list of all our teams
   const teamRecords = [];
 
   //Take the teams we have data for and use them to make records with out schema
-  teamList.forEach(async function (teamItem) {
+  for (let teamItem of teamList) {
     //Make a Team from Schema
     const teamRecord = new Team(teamItem);
     //Add it to a list for connecting with heros
     teamRecords.push(teamRecord);
     //Save it to mongodb
     await teamRecord.save();
-  });
+  }
 
-  //List to store promises for heros so we can start saving them
-  // simultaneously and then wait for all to finish
-  let heroPromises = [];
+  console.log("Done loading teams");
 
-  //upload all the heroes from heroesList
-  heroesList.forEach(async function (heroItem, index) {
+  //Process all the heroes from heroesList
+  for (let i = 0; i < heroesList.length; i++) {
     //Make a Hero from Schema
-    const heroRecord = new Hero(heroItem);
+    const heroRecord = new Hero(heroesList[i]);
 
     //Assign the first three to team[0], rest to team[1]
-    if (index < 3) {
+    if (i < 3) {
       heroRecord.team = teamRecords[0];
     } else {
       heroRecord.team = teamRecords[1];
     }
 
-    //Save it to mongodb - don't wait, instead
-    //add the promise to a list
-    let savePromise = heroRecord.save();
-    heroPromises.push(savePromise);
-  });
+    //Save it to mongodb
+    await heroRecord.save();
+  }
 
-  //wait for all the hero promises to resolve
-  await Promise.all(heroPromises);
+  console.log("Done loading heroes");
 
   console.log("Done loading data");
 

@@ -9,8 +9,8 @@ mongoose.connect(credentials.connection_string, {
 });
 
 //Load our models
-const Hero = require("./models/hero");
-const Team = require("./models/team");
+const Hero = require("./models/hero.js");
+const Team = require("./models/team.js");
 
 //Async function so we can use await to synchronize steps
 async function testHero() {
