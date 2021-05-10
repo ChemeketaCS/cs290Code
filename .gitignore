@@ -1,3 +1,5 @@
 .vscode/
 node_modules/
-library-tutorial/dbCredentials.js
+
+#Ignore any file named dbCredentials
+dbCredentials.js

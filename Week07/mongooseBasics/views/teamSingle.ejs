@@ -1,0 +1,18 @@
+<%- include("super-common-header.ejs", {title:team.squadName}) %>
+
+    <h1><%- team.squadName %></h1>
+    <p>Home Town: <%- team.homeTown %></p>
+    <p>Formed: <%- team.formed_short %></p>
+    <p>Members:
+      <ul>
+        <% for (let m of members) { %>
+          <li><a href="<%- m.url %>"><%- m.name %></a></li>
+        <% } %>
+      </ul>
+    </p>
+
+    <hr>
+    <a href="/teams/delete/<%- team._id %>">Delete this team</a>
+
+  </body>
+</html>

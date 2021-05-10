@@ -1,0 +1,12 @@
+<%- include("super-common-header.ejs", {title:"All Heroes"}) %>
+
+    <h1>Heroes</h1>
+
+    <ul>
+    <% for (let hero of heroList) { %>
+      <li><a href="<%- hero.url %>"><%- hero.name %></a></li>
+    <% } %>
+    </ul>
+
+  </body>
+</html>

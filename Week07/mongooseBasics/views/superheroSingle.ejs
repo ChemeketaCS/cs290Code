@@ -1,0 +1,21 @@
+<%- include("super-common-header.ejs", {title:name}) %>
+
+    <div class="hero">
+      <h1>Name: <%- name %></h1>
+      <p>Identity: <%- secretIdentity %></p>
+      Powers:
+      <ul>
+        <% for (let p of powers) { %>
+          <li><%- p %></li>
+        <% } %>
+      </ul>
+      <% if(team) { %>
+      <p>Team: <a href="<%- team.url %>"><%- team.squadName %></a></p>
+      <% } %>
+    </div>
+
+    <hr>
+    <a href="/hero/delete/<%- _id %>">Delete this hero</a>
+
+  </body>
+</html>
