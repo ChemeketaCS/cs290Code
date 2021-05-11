@@ -92,6 +92,7 @@ async function sampleSimpleLoad() {
     active: true,
   });
   await teamRecord2.save();
+  mongoose.connection.close();
 }
 
 //Async function so we can use await to synchronize steps

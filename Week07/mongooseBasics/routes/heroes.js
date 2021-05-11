@@ -15,7 +15,7 @@ router.get("/byname/:name", async function (req, res) {
   let namePatternToMatch = new RegExp(req.params.name, "i");
   let heroList = await Hero.find()
     .where("name")
-    .equals(namePatternToMatch)
+    .regex(namePatternToMatch)
     .sort("name")
     .exec();
 
