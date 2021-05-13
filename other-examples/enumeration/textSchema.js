@@ -7,7 +7,7 @@ const ColorEnum = require("./colorEnum.js");
 //Build up an array of the options - that is what Schema needs
 const colorOptions = [];
 for (let c in ColorEnum) {
-  color_options.push(ColorEnum[c]);
+  colorOptions.push(ColorEnum[c]);
 }
 
 var TextSchema = new Schema({
