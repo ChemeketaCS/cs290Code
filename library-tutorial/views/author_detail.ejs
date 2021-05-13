@@ -1,0 +1,33 @@
+<%- include('layout-header'); -%>
+
+<h1>
+  Title: <%= author.name %>
+</h1>
+
+<p><em><%= author.lifespan %></em></p>
+
+<div>
+  <h2>Books</h2>
+    <% if(author_books.length > 0) { %>
+      <dl>
+      <% author_books.forEach(function(book) { %>
+        <dt>
+          <a href='<%- book.url %>'><%= book.title %></a>
+        </dt>
+        <dd>
+          <%= book.summary %>
+        </dd>
+      <%  }) %>
+      </dl>
+    <% } else { %>
+        <p>Author has no books</p>
+    <% } %>
+</div>
+
+<hr>
+
+<p><a href='<%- author.url + "/delete"%>'>Delete author</a></p>
+
+<p><a href='<%- author.url + "/update"%>'>Update author</a></p>
+
+<%- include('layout-footer'); -%>

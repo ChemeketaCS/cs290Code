@@ -1,0 +1,30 @@
+<%- include('layout-header'); -%>
+
+<h1>
+    <%= title %>
+</h1>
+<% if(bookinstance_list.length == 0) { %>
+  <p>There are no book copies in this library.</p>
+<% } else { %>
+  <ul>
+    <%  
+      for(let instance of bookinstance_list) { 
+        let statusClass = 'text-warning';
+        if(instance.status==='Maintenance') 
+          statusClass = 'text-danger';
+        else if(instance.status==='Available') 
+          statusClass = 'text-success';
+    %>
+      <li>
+        <a href='<%- instance.url _%>'><%= instance.book.title %></a> 
+        : (<%= instance.imprint %>) 
+        - <span class="<%- statusClass %>"><%= instance.status %></span>
+        <% if(instance.status!='Available') { %>
+          (Due: <%- instance.due_back_formatted %>)
+        <% } %>
+      </li>
+    <% } %>
+  </ul>
+<% } %>
+
+<%- include('layout-footer'); -%>
