@@ -16,7 +16,7 @@ TeamSchema.virtual("url").get(function () {
 TeamSchema.virtual("formed_short").get(function () {
   const d = this.formed;
   //js uses 0 indexed months and 1 indexed days
-  let dateString = d.getMonth() + 1 + "/" + d.getDay() + "/" + d.getFullYear();
+  let dateString = d.getMonth() + 1 + "/" + d.getDate() + "/" + d.getFullYear();
   return dateString;
 });
 
