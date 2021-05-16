@@ -1,9 +1,11 @@
 <%- include('layout-header'); -%>
 
-<h1>
-    ID: <%= bookinstance._id %>
-</h1>
+<p><strong>Do you really want to delete this BookInstance?</strong></p>
+<hr>
 
+<p>
+  <strong>ID:</strong> <%= bookinstance._id %>
+</p>
 <p><strong>Title: </strong><a href='<%- bookinstance.book.url %>'><%= bookinstance.book.title %></a></p>
 <p><strong>Imprint: </strong><%= bookinstance.imprint %></p>
 <%
@@ -20,8 +22,13 @@ else if(bookinstance.status==='Available')
 
 <hr>
 
-<p><a href='<%- bookinstance.url + "/delete"%>'>Delete BookInstance</a></p>
+<form method='POST'>
+  <div class='form-group'>
+    <input class='form-control' type='hidden' name='id' value='<%- bookinstance._id %>'>
+    <button class='btn btn-danger' type='submit'>Delete</button>
+  </div>
+</form>
 
-<p><a href='<%- bookinstance.url + "/update"%>'>Update BookInstance</a></p>
+<a href='<%- bookinstance.url %>'><div class='btn btn-outline-dark'>No, Return to Instance</div></a>
 
 <%- include('layout-footer'); -%>

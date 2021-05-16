@@ -1,0 +1,30 @@
+
+<%- include('layout-header'); -%>
+
+<h1>
+  Delete Author: <%= author.name %>
+</h1>
+
+<hr>
+
+<% if(author_books.length != 0) { %>
+  <div class='alert alert-warning'>Delete the following books before attempting to delete this author.</div>
+  <h2>Books</h2>
+  <ul>
+    <% author_books.forEach(function(book) { %>
+      <li><a href='<%- book.url _%>'><%= book.title %></a></li>
+    <% }); %>
+  </ul>
+<% } else { %>
+  <p>Do your really want to delete this Author?</p>
+  <form method='POST' action=''>
+    <div class='form-group'>
+      <input type='hidden' name='id' required='true', value='<%= author.id %>'>
+      <button class='btn btn-danger' type='submit'>Delete</button>
+    </div>
+  </form>
+  
+  <a href='<%- author.url %>'><div class='btn btn-outline-dark'>No, Return to Author</div></a>
+<% } %>
+
+<%- include('layout-footer'); -%>

@@ -19,9 +19,11 @@
   <form method='POST' action=''>
     <div class='form-group'>
       <input type='hidden' name='id' required='true', value='<%= genre.id %>'>
-      <button class='btn btn-primary' type='submit'>Delete</button>
+      <button class='btn btn-danger' type='submit'>Delete</button>
     </div>
   </form>
+  
+  <a href='<%- genre.url %>'><div class='btn btn-outline-dark'>No, Return to Genre</div></a>
 <% } %>
 
 <%- include('layout-footer'); -%>

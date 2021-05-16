@@ -1,0 +1,48 @@
+<%- include('layout-header'); -%>
+
+<h1>
+    <%= title %>
+</h1>
+
+<form method='POST' action=''>
+
+  <div class='form-group'>
+    <label for='book'>Book name: </label>
+    <select id='book' placeholder='Select Book' name='book' required>
+      <% for(let b of book_list) { %>
+        <option value='<%- b._id %>' <%- locals.selected_book && selected_book==b._id.toString() ? 'selected' : '' %> ><%= b.title %></option>
+      <% } %>
+    </select>
+  </div>
+
+  <div class='form-group'>
+    <label for='due_back'>Date when available: </label>
+    <input type='date' id='due_back' name='due_back' required 
+    value='<%- locals.bookinstance ? bookinstance.due_back_yyyy_mm_dd : '' %>'>
+  </div>
+
+  <div class='form-group'>
+    <label for='status'>Status: </label>
+    <select id='status' placeholder='Select Status' name='status' required>
+      <option value='Maintenance' <%- locals.bookinstance && bookinstance.status=='Maintenance' ? 'selected' : '' %> >Maintenance</option>
+      <option value='Available' <%- locals.bookinstance && bookinstance.status=='Available' ? 'selected' : '' %> >Available</option>
+      <option value='Loaned' <%- locals.bookinstance && bookinstance.status=='Loaned' ? 'selected' : '' %> >Loaned</option>
+      <option value='Reserved' <%- locals.bookinstance && bookinstance.status=='Reserved' ? 'selected' : '' %> >Reserved</option>
+    </select>
+  </div>
+
+  <button class='btn btn-primary' type='submit'>Submit</button>
+</form>
+
+<% if(locals.errors) { %>
+  <div class='alert alert-danger'>
+    <ul>
+      <% errors.forEach(function(error) { %>
+        <li><%= error.msg %></li>
+      <% }); %>
+    </ul>
+  </div>
+<% } %>
+
+<%- include('layout-footer'); -%>
+        
