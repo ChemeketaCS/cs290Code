@@ -1,0 +1,40 @@
+<%- include("super-common-header.ejs", {title:title }) %>
+
+
+<% if(locals.errors) { %>
+  <div class='alert alert-danger'>
+    <ul class='mb-0'>
+      <% errors.forEach(function(error) { %>
+        <li><%= error %></li>
+      <% }); %>
+    </ul>
+  </div>
+<% } %>
+
+<%# Set action to return to the update route regardless of if we got here from create or update routes %>
+<form method='POST' action='/teams/update/<%- team._id %>'>
+  <input type="hidden" name="id" value="<%- team._id %>">
+  <div class='mb-3'>
+    <label for='squadName' class='form-label'>Team name <em>(Required)</em></label>
+    <input type='text' class='form-control' name='squadName' 
+      value='<%- team.squadName %>' required>
+  </div>
+  <div class='mb-3'>
+    <label for='homeTown' class='form-label'>Hometown <em>(Required)</em></label>
+    <input type='text' class='form-control' name='homeTown' 
+    value='<%- team.homeTown %>' required minlength="3">
+  </div>
+  <div class='mb-4'>
+    <label for='formed' class='form-label'>Date formed</label>
+    <input type='date' class='form-control' name='formed'
+     value='<%- team.formed_html %>' required max="<%- new Date().toISOString().split("T")[0] //ugly, but gets today %>">
+  </div>
+  <div class='mb-3 form-check'>
+    <input class='form-check-input' type='checkbox' name='active' <%- team.active !== undefined ? "checked" : "" %>>
+    <label for='active' class='form-check-label'>Active</label>
+  </div>
+  <button class='btn btn-primary my-3' type='submit'>Submit</button>
+</form>
+
+<%- include("super-common-footer.ejs") %>
+

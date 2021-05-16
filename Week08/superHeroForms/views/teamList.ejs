@@ -1,0 +1,18 @@
+<%- include("super-common-header.ejs", {title:"All Heroes"}) %>
+
+<h1>Teams</h1>
+
+<ul>
+<% for (let team of teamList) { %>
+  <li><a href="<%- team.url %>"><%= team.squadName %></a><br>
+    <i>Formed in: <%- team.formed_short %></i>
+  </li>
+<% } %>
+</ul>
+
+<hr>
+
+<a href="/teams/create/">Create a team</a>
+
+
+<%- include("super-common-footer.ejs")%>
