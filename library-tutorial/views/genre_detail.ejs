@@ -1,4 +1,4 @@
-<%- include('layout-header'); -%>
+<%- include("layout-header"); -%>
 
 <h1>
     <%= genre.name %>
@@ -13,7 +13,7 @@
 <% } else { %>
   <dl>
     <% genre_books.forEach(function(book) { %>
-      <dt><a href='<%- book.url _%>'><%= book.title %></a></dt>
+      <dt><a href="<%- book.url _%>"><%= book.title %></a></dt>
       <dd><%= book.summary %></dd>
     <% }); %>
   </dl>
@@ -21,8 +21,8 @@
 
 <hr>
 
-<p><a href='<%- genre.url + "/delete"%>'>Delete genre</a></p>
+<p><a href="<%- genre.url + '/delete'%>">Delete genre</a></p>
 
-<p><a href='<%- genre.url + "/update"%>'>Update genre</a></p>
+<p><a href="<%- genre.url + '/update'%>">Update genre</a></p>
 
-<%- include('layout-footer'); -%>
+<%- include("layout-footer"); -%>

@@ -1,38 +1,38 @@
-<%- include('layout-header'); -%>
+<%- include("layout-header"); -%>
 
 <h1>
     <%= title %>
 </h1>
 
-<form method='POST' action=''>
-  <div class='form-group'>
-    <label for='first_name'>First name: </label>
-    <input type='text' class='form-control'  name='first_name' id='first_name' required value='<%- locals.author ? author.first_name : "" %>' >
+<form method="POST" action="">
+  <div class="form-group">
+    <label for="first_name">First name: </label>
+    <input type="text" class="form-control"  name="first_name" id="first_name" required value="<%- locals.author ? author.first_name : '' %>" >
   </div>
 
-  <div class='form-group'>
-    <label for='family_name'>Family name: </label>
-    <input type='text' class='form-control' name='family_name' id='family_name' required value='<%- locals.author ? author.family_name : "" %>' >
+  <div class="form-group">
+    <label for="family_name">Family name: </label>
+    <input type="text" class="form-control" name="family_name" id="family_name" required value="<%- locals.author ? author.family_name : '' %>" >
   </div>
 
-  <div class='form-group'>
-    <label for='date_of_birth'>Date of birth: </label>
-    <input type='date' id='date_of_birth' name='date_of_birth' required 
-    value='<%- locals.author ? author.date_of_birth_yyyy_mm_dd : '' %>'>
+  <div class="form-group">
+    <label for="date_of_birth">Date of birth: </label>
+    <input type="date" id="date_of_birth" name="date_of_birth" required 
+    value="<%- locals.author ? author.date_of_birth_yyyy_mm_dd : '' %>">
   </div>
 
-  <div class='form-group'>
-    <label for='date_of_death'>Date of death: </label>
-    <input type='date' id='date_of_death' name='date_of_death' required 
-    value='<%- locals.author ? author.date_of_death_yyyy_mm_dd : '' %>'>
+  <div class="form-group">
+    <label for="date_of_death">Date of death: </label>
+    <input type="date" id="date_of_death" name="date_of_death" required 
+    value="<%- locals.author ? author.date_of_death_yyyy_mm_dd : '' %>">
   </div>
   
 
-  <button class='btn btn-primary' type='submit'>Submit</button>
+  <button class="btn btn-primary" type="submit">Submit</button>
 </form>
 
 <% if(locals.errors) { %>
-  <div class='alert alert-danger'>
+  <div class="alert alert-danger">
     <ul>
       <% errors.forEach(function(error) { %>
         <li><%= error.msg %></li>
@@ -41,4 +41,4 @@
   </div>
 <% } %>
 
-<%- include('layout-footer'); -%>
+<%- include("layout-footer"); -%>

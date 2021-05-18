@@ -1,4 +1,4 @@
-<%- include('layout-header'); -%>
+<%- include("layout-header"); -%>
 
 <h1>
   Delete Genre: <%= genre.name %>
@@ -7,23 +7,23 @@
 <hr>
 
 <% if(genre_books.length != 0) { %>
-  <div class='alert alert-warning'>Delete the following books before attempting to delete this genre.</div>
+  <div class="alert alert-warning">Delete the following books before attempting to delete this genre.</div>
   <h2>Books</h2>
   <ul>
     <% genre_books.forEach(function(book) { %>
-      <li><a href='<%- book.url _%>'><%= book.title %></a></li>
+      <li><a href="<%- book.url _%>"><%= book.title %></a></li>
     <% }); %>
   </ul>
 <% } else { %>
   <p>Do your really want to delete this Genre?</p>
-  <form method='POST' action=''>
-    <div class='form-group'>
-      <input type='hidden' name='id' required='true', value='<%= genre.id %>'>
-      <button class='btn btn-danger' type='submit'>Delete</button>
+  <form method="POST" action="">
+    <div class="form-group">
+      <input type="hidden" name="id" required="true", value="<%= genre.id %>">
+      <button class="btn btn-danger" type="submit">Delete</button>
     </div>
   </form>
   
-  <a href='<%- genre.url %>'><div class='btn btn-outline-dark'>No, Return to Genre</div></a>
+  <a href="<%- genre.url %>"><div class="btn btn-outline-dark">No, Return to Genre</div></a>
 <% } %>
 
-<%- include('layout-footer'); -%>
+<%- include("layout-footer"); -%>

@@ -1,20 +1,20 @@
-<%- include('layout-header'); -%>
+<%- include("layout-header"); -%>
 
 <h1>
     <%= title %>
 </h1>
 
-<form method='POST' action=''>
-  <div class='form-group'>
-    <label for='name'>Genre name: </label>
+<form method="POST" action="">
+  <div class="form-group">
+    <label for="name">Genre name: </label>
 
-    <input type='text' class='form-control' placeholder='Fantasy, Poetry, etc...' name='name' id='name' required='true' value='<%- locals.genre ? genre.name : "" %>' >
+    <input type="text" class="form-control" placeholder="Fantasy, Poetry, etc..." name="name" id="name" required="true" value="<%- locals.genre ? genre.name : '' %>" >
   </div>
-  <button class='btn btn-primary' type='submit'>Submit</button>
+  <button class="btn btn-primary" type="submit">Submit</button>
 </form>
 
 <% if(locals.errors) { %>
-  <div class='alert alert-danger'>
+  <div class="alert alert-danger">
     <ul>
       <% errors.forEach(function(error) { %>
         <li><%= error.msg %></li>
@@ -23,4 +23,4 @@
   </div>
 <% } %>
 
-<%- include('layout-footer'); -%>
+<%- include("layout-footer"); -%>

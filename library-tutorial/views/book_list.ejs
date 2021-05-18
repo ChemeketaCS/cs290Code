@@ -1,4 +1,4 @@
-<%- include('layout-header'); -%>
+<%- include("layout-header"); -%>
 
 <h1>
     <%= title %>
@@ -10,9 +10,9 @@
       <%  
         book_list.forEach(function(book) { 
       %>
-        <li><a href='<%- book.url _%>'><%= book.title %></a> (<%= book.author.name %>)</li>
+        <li><a href="<%- book.url _%>"><%= book.title %></a> (<%= book.author.name %>)</li>
       <% }); %>
   </ul>
 <% } %>
 
-<%- include('layout-footer'); -%>
+<%- include("layout-footer"); -%>

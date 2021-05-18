@@ -1,4 +1,4 @@
-<%- include('layout-header'); -%>
+<%- include("layout-header"); -%>
 
 <h1>
     <%= title %>
@@ -10,9 +10,9 @@
       <%  
         for(let author of author_list) { 
       %>
-        <li><a href='<%- author.url _%>'><%= author.name %></a> | (<%= author.lifespan %>)</li>
+        <li><a href="<%- author.url _%>"><%= author.name %></a> | (<%= author.lifespan %>)</li>
       <% } %>
   </ul>
 <% } %>
 
-<%- include('layout-footer'); -%>
+<%- include("layout-footer"); -%>

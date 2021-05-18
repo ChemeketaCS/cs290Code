@@ -1,4 +1,4 @@
-<%- include('layout-header'); -%>
+<%- include("layout-header"); -%>
 
 <p><strong>Do you really want to delete this BookInstance?</strong></p>
 <hr>
@@ -6,29 +6,29 @@
 <p>
   <strong>ID:</strong> <%= bookinstance._id %>
 </p>
-<p><strong>Title: </strong><a href='<%- bookinstance.book.url %>'><%= bookinstance.book.title %></a></p>
+<p><strong>Title: </strong><a href="<%- bookinstance.book.url %>"><%= bookinstance.book.title %></a></p>
 <p><strong>Imprint: </strong><%= bookinstance.imprint %></p>
 <%
-let statusClass = 'text-warning';
-if(bookinstance.status==='Maintenance') 
-  statusClass = 'text-danger';  
-else if(bookinstance.status==='Available')
-  statusClass = 'text-success';
+let statusClass = "text-warning";
+if(bookinstance.status==="Maintenance") 
+  statusClass = "text-danger";  
+else if(bookinstance.status==="Available")
+  statusClass = "text-success";
 %>
 <p><strong>Status: <span class="<%- statusClass %>"><%= bookinstance.status %></span></strong></p>
-<% if(bookinstance.status!='Available') { %>
+<% if(bookinstance.status!="Available") { %>
 <p><strong>Due back: </strong><%- bookinstance.due_back_formatted %></p>
 <% } %>
 
 <hr>
 
-<form method='POST'>
-  <div class='form-group'>
-    <input class='form-control' type='hidden' name='id' value='<%- bookinstance._id %>'>
-    <button class='btn btn-danger' type='submit'>Delete</button>
+<form method="POST">
+  <div class="form-group">
+    <input class="form-control" type="hidden" name="id" value="<%- bookinstance._id %>">
+    <button class="btn btn-danger" type="submit">Delete</button>
   </div>
 </form>
 
-<a href='<%- bookinstance.url %>'><div class='btn btn-outline-dark'>No, Return to Instance</div></a>
+<a href="<%- bookinstance.url %>"><div class="btn btn-outline-dark">No, Return to Instance</div></a>
 
-<%- include('layout-footer'); -%>
+<%- include("layout-footer"); -%>

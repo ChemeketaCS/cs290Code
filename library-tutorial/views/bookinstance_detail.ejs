@@ -1,27 +1,27 @@
-<%- include('layout-header'); -%>
+<%- include("layout-header"); -%>
 
 <h1>
     ID: <%= bookinstance._id %>
 </h1>
 
-<p><strong>Title: </strong><a href='<%- bookinstance.book.url %>'><%= bookinstance.book.title %></a></p>
+<p><strong>Title: </strong><a href="<%- bookinstance.book.url %>"><%= bookinstance.book.title %></a></p>
 <p><strong>Imprint: </strong><%= bookinstance.imprint %></p>
 <%
-let statusClass = 'text-warning';
-if(bookinstance.status==='Maintenance') 
-  statusClass = 'text-danger';  
-else if(bookinstance.status==='Available')
-  statusClass = 'text-success';
+let statusClass = "text-warning";
+if(bookinstance.status==="Maintenance") 
+  statusClass = "text-danger";  
+else if(bookinstance.status==="Available")
+  statusClass = "text-success";
 %>
 <p><strong>Status: <span class="<%- statusClass %>"><%= bookinstance.status %></span></strong></p>
-<% if(bookinstance.status!='Available') { %>
+<% if(bookinstance.status!="Available") { %>
 <p><strong>Due back: </strong><%- bookinstance.due_back_formatted %></p>
 <% } %>
 
 <hr>
 
-<p><a href='<%- bookinstance.url + "/delete"%>'>Delete BookInstance</a></p>
+<p><a href="<%- bookinstance.url + '/delete'%>">Delete BookInstance</a></p>
 
-<p><a href='<%- bookinstance.url + "/update"%>'>Update BookInstance</a></p>
+<p><a href="<%- bookinstance.url + '/update'%>">Update BookInstance</a></p>
 
-<%- include('layout-footer'); -%>
+<%- include("layout-footer"); -%>

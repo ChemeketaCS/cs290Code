@@ -1,4 +1,4 @@
-<%- include('layout-header'); -%>
+<%- include("layout-header"); -%>
 
 <h1>
     <%= title %>
@@ -9,17 +9,17 @@
   <ul>
     <%  
       for(let instance of bookinstance_list) { 
-        let statusClass = 'text-warning';
-        if(instance.status==='Maintenance') 
-          statusClass = 'text-danger';
-        else if(instance.status==='Available') 
-          statusClass = 'text-success';
+        let statusClass = "text-warning";
+        if(instance.status==="Maintenance") 
+          statusClass = "text-danger";
+        else if(instance.status==="Available") 
+          statusClass = "text-success";
     %>
       <li>
-        <a href='<%- instance.url _%>'><%= instance.book.title %></a> 
+        <a href="<%- instance.url _%>"><%= instance.book.title %></a> 
         : (<%= instance.imprint %>) 
         - <span class="<%- statusClass %>"><%= instance.status %></span>
-        <% if(instance.status!='Available') { %>
+        <% if(instance.status!="Available") { %>
           (Due: <%- instance.due_back_formatted %>)
         <% } %>
       </li>
@@ -27,4 +27,4 @@
   </ul>
 <% } %>
 
-<%- include('layout-footer'); -%>
+<%- include("layout-footer"); -%>

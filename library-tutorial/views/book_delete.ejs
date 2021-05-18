@@ -1,27 +1,27 @@
-<%- include('layout-header'); -%>
+<%- include("layout-header"); -%>
 
 <h1>
     Delete: <%= book.title %>
 </h1>
 
-<p><strong>Author: </strong><a href='<%- book.author.url %>'><%= book.author.name %></a></p>
+<p><strong>Author: </strong><a href="<%- book.author.url %>"><%= book.author.name %></a></p>
 <p><strong>Summary:</strong> <%= book.summary %></p>
 
 <% if(book_instances.length === 0) { %>
   <p>Do you really want to delete this Book?</p>
   
-  <form method='POST' action=''>
-      <div class='form-group'>
-        <input type='hidden' name='id' required='true', value='<%= book.id %>'>
-        <button class='btn btn-primary' type='submit'>Delete</button>
+  <form method="POST" action="">
+      <div class="form-group">
+        <input type="hidden" name="id" required="true", value="<%= book.id %>">
+        <button class="btn btn-primary" type="submit">Delete</button>
       </div>
     </form>
 
 <% } else { %>
   <p><strong>Delete the following copies before attempting to delete this Book.</strong></p>
   <% book_instances.forEach(function(instance) {   %>
-      <p><strong>Instance Id: </strong><a href='<%- instance.url %>'><%= instance._id %></a></p>
+      <p><strong>Instance Id: </strong><a href="<%- instance.url %>"><%= instance._id %></a></p>
   <% }) //foreach %>
 <% } //else %>
 
-<%- include('layout-footer'); -%>
+<%- include("layout-footer"); -%>

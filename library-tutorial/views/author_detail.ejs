@@ -1,4 +1,4 @@
-<%- include('layout-header'); -%>
+<%- include("layout-header"); -%>
 
 <h1>
   Title: <%= author.name %>
@@ -12,7 +12,7 @@
       <dl>
       <% author_books.forEach(function(book) { %>
         <dt>
-          <a href='<%- book.url %>'><%= book.title %></a>
+          <a href="<%- book.url %>"><%= book.title %></a>
         </dt>
         <dd>
           <%= book.summary %>
@@ -26,8 +26,8 @@
 
 <hr>
 
-<p><a href='<%- author.url + "/delete"%>'>Delete author</a></p>
+<p><a href="<%- author.url + '/delete'%>">Delete author</a></p>
 
-<p><a href='<%- author.url + "/update"%>'>Update author</a></p>
+<p><a href="<%- author.url + '/update'%>">Update author</a></p>
 
-<%- include('layout-footer'); -%>
+<%- include("layout-footer"); -%>
