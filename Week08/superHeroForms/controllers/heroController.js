@@ -113,8 +113,8 @@ exports.update_post = async function (req, res, next) {
     }
 
     //Replace existing data
-    hero.squadName = req.body.name;
-    hero.identity = req.body.identity;
+    hero.name = req.body.name;
+    hero.secretIdentity = req.body.secretIdentity;
     hero.age = req.body.age;
     //If team is not empty, use that value, otherwise clear it out
     hero.team = req.body.team !== "" ? req.body.team : undefined;
@@ -147,6 +147,7 @@ exports.update_post = async function (req, res, next) {
       })
       .catch((err) => {
         //Problem, show the form with error messages
+        console.log(err.message);
         res.render("superheroForm.ejs", {
           title: `Update ${hero.name}`,
           hero: hero,
