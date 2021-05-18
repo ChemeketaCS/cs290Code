@@ -65,11 +65,15 @@ router.post("/update/:id", async function (req, res, next) {
       _id: req.body.id,
     });
 
+  console.log(req.body);
+
   //Replace existing data
   team.squadName = req.body.squadName;
   team.homeTown = req.body.homeTown;
-  team.formed = routeHelper.dateParser(req.body.formed); //Dates need reformatting
-  team.active = req.body.active === "on" ? true : false; //Turn on/off into true/false
+  team.formed = req.body.formed;
+  team.active = req.body.active; //If not checked, better have '' not 'false'
+
+  console.log(team);
 
   //Try to save it
   team

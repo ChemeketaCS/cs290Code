@@ -5,17 +5,17 @@ var TeamSchema = new Schema({
   squadName: { type: String, required: [true, "You must provide a Team Name"] },
   homeTown: {
     type: String,
-    required: [true, "{PATH}You must provide a Hometown"],
+    required: [true, "You must provide a Hometown"],
     minlength: [3, "Hometown must be 3 characters or more"],
   },
   formed: {
     type: Date,
     default: Date.now(),
+    required: [true, "You must provide a Date formed"],
     max: [Date.now(), "Formed may not be set to the future"],
   },
   active: {
     type: Boolean,
-    required: [true, "You must provide a Date formed"],
     default: true,
   },
 });
@@ -26,9 +26,10 @@ TeamSchema.virtual("url").get(function () {
 
 //Provide a way to get a prettier version of the formed date
 TeamSchema.virtual("formed_short").get(function () {
-  const d = this.formed;
-  //js uses 0 indexed months and 1 indexed days
-  let dateString = d.getMonth() + 1 + "/" + d.getDate() + "/" + d.getFullYear();
+  let d = this.formed;
+  //js uses 0 indexed months and 1 indexed days. Use UTC to avoid timezone issues
+  let dateString =
+    d.getMonth() + 1 + "/" + d.getUTCDate() + "/" + d.getFullYear();
   return dateString;
 });
 
@@ -36,12 +37,8 @@ TeamSchema.virtual("formed_short").get(function () {
 TeamSchema.virtual("formed_html").get(function () {
   const d = this.formed;
   //js uses 0 indexed months and 1 indexed days
-  let dateString =
-    d.getFullYear() +
-    "-" +
-    String(d.getMonth() + 1).padStart(2, "0") +
-    "-" +
-    String(d.getDate()).padStart(2, "0");
+  let dateString = d.toISOString();
+  dateString = dateString.slice(0, dateString.indexOf("T"));
   return dateString;
 });
 

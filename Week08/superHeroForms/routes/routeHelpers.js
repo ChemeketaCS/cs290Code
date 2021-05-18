@@ -12,11 +12,4 @@ function errorParser(errorString) {
   return errorArray;
 }
 
-//Takes a date string like 12/31/2005 and turns it into the correct
-//JS Date
-function dateParser(htmlDateString) {
-  htmlDateString = htmlDateString.replace(/-/g, "/");
-  return Date.parse(htmlDateString);
-}
-
-module.exports = { errorParser, dateParser };
+module.exports = { errorParser };

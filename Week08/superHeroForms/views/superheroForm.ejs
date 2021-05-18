@@ -2,8 +2,8 @@
 
 
 <% if(locals.errors) { %>
-  <div class='alert alert-danger'>
-    <ul class='mb-0'>
+  <div class="alert alert-danger">
+    <ul class="mb-0">
       <% errors.forEach(function(error) { %>
         <li><%= error %></li>
       <% }); %>
@@ -12,57 +12,57 @@
 <% } %>
 
 <%# Set action to return to the update route regardless of if we got here from create or update routes %>
-<form method='POST' action='/heroes/update/<%- hero._id %>'>
+<form method="POST" action="/heroes/update/<%- hero._id %>">
   <input type="hidden" name="id" value="<%- hero._id %>" >
-  <div class='mb-3'>
-    <label for='name' class='form-label'>Name <em>(Required)</em></label>
-    <input type='text' class='form-control' name='name' id='name'
-      value='<%- hero.name %>' >
+  <div class="mb-3">
+    <label for="name" class="form-label">Name <em>(Required)</em></label>
+    <input type="text" class="form-control" name="name" id="name"
+      value="<%- hero.name %>" required>
   </div>
-  <div class='mb-3'>
-    <label for='secretIdentity' class='form-label'>Secret Identity</label>
-    <input type='text' class='form-control' name='secretIdentity' id='secretIdentity'
-      value='<%- hero.secretIdentity %>' >
+  <div class="mb-3">
+    <label for="secretIdentity" class="form-label">Secret Identity</label>
+    <input type="text" class="form-control" name="secretIdentity" id="secretIdentity"
+      value="<%- hero.secretIdentity %>" >
   </div>
-  <div class='mb-3'>
-    <label for='age' class='form-label'>Age <em>(Required)</em></label>
-    <input type='number' class='form-control' name='age' id='age'
-    value='<%- hero.age %>' >
+  <div class="mb-3">
+    <label for="age" class="form-label">Age <em>(Required)</em></label>
+    <input type="number" class="form-control" name="age" id="age"
+    value="<%- hero.age %>" required min="0">
   </div>
-  <div class='mb-3'>
-    <label for='powers' class='form-label'>Powers</label>
-    <textarea class='form-control' name='powers' id='powers' rows="8" 
+  <div class="mb-3">
+    <label for="powers" class="form-label">Powers</label>
+    <textarea class="form-control" name="powers" id="powers" rows="8" required
     aria-describedby="powersHelp"><%- hero.powers.join("\n") -%></textarea>
     <div id="powersHelp" class="form-text">Enter one power per line.</div>
   </div>
 
   <p>Team select as radio buttons because it is a single option:</p>
-  <fieldset class='mb-3 '>
+  <fieldset class="mb-3 ">
     <legend>Team</legend>
     <% for(let t of teams) { %>
       <div class="form-check">
         <%# Have to use .equals to compare _ids. OR convert to strings and compare those %>
-        <input type='radio' class='form-check-input' name='team' value='<%- t._id %>'
+        <input type="radio" class="form-check-input" name="team" value="<%- t._id %>"
         id="team_<%- t._id %>" <%- hero.team && hero.team.equals(t._id) ? "checked" : "" %>>
-        <label for='team_<%- t._id %>' class='form-check-label'><%= t.squadName %></label>
+        <label for="team_<%- t._id %>" class="form-check-label"><%= t.squadName %></label>
       </div>
     <% } %>
     <div class="form-check">
-      <input type='radio' class='form-check-input' name='team' value=''
+      <input type="radio" class="form-check-input" name="team" value=""
       id="team_none" <%- !hero.team ? "checked" : "" %>>
-      <label for='team_none' class='form-check-label'>None</label>
+      <label for="team_none" class="form-check-label">None</label>
     </div>
   </fieldset>
 
   <div class="alert alert-warning">
-    <p>Alternative Team Select as Checkboxes, Can Multiselect</p>
-    <div class='mb-3 '>
-      <label for='teamFake'>Team (Fake)</label>
-      <select class='form-select' id='teamFake' name='teamFake'>
+    <p>Alternative Team Select as Dropdown</p>
+    <div class="mb-3 ">
+      <label for="teamFake">Team (Fake)</label>
+      <select class="form-select" id="teamFake" name="teamFake">
         <option value="">None</option>
         <% for(let t of teams) { %>
             <%# Have to use .equals to compare _ids. OR convert to strings and compare those %>
-            <option value='<%- t._id %>' <%- hero.team && hero.team.equals(t._id) ? "selected" : "" %>> 
+            <option value="<%- t._id %>" <%- hero.team && hero.team.equals(t._id) ? "selected" : "" %>> 
               <%= t.squadName %>
             </option>
         <% } %>
@@ -72,14 +72,14 @@
 
   <div class="alert alert-warning">
     <p>Alternative Team Select as checkboxes - non functional</p>
-    <fieldset class='mb-3 '>
+    <fieldset class="mb-3 ">
       <legend>Team</legend>
       <% for(let t of teams) { %>
         <div class="form-check">
           <%# Have to use .equals to compare _ids. OR convert to strings and compare those %>
-          <input type='checkbox' class='form-check-input' name='teamFake2' value='<%- t._id %>'
+          <input type="checkbox" class="form-check-input" name="teamFake2" value="<%- t._id %>"
           id="team_fake2<%- t._id %>" <%- hero.team && hero.team.equals(t._id) ? "checked" : "" %>>
-          <label for='team_fake2<%- t._id %>' class='form-check-label'><%= t.squadName %></label>
+          <label for="team_fake2<%- t._id %>" class="form-check-label"><%= t.squadName %></label>
         </div>
       <% } %>
     </fieldset>
@@ -87,13 +87,12 @@
 
   <div class="alert alert-warning">
     <p>Alternative Team Select as Multiselect Select List</p>
-    <div class='mb-3 '>
-      <label for='teamFake3'>Team (Fake) - use Control-Click to MultiSelect</label>
-      <select class='form-select' id='teamFake3' name='teamFake3' multiple>
-        <option value="">None</option>
+    <div class="mb-3 ">
+      <label for="teamFake3">Team (Fake) - use Control-Click to MultiSelect</label>
+      <select class="form-select" id="teamFake3" name="teamFake3" multiple>
         <% for(let t of teams) { %>
             <%# Have to use .equals to compare _ids. OR convert to strings and compare those %>
-            <option value='<%- t._id %>' <%- hero.team && hero.team.equals(t._id) ? "selected" : "" %>> 
+            <option value="<%- t._id %>" <%- hero.team && hero.team.equals(t._id) ? "selected" : "" %>> 
               <%= t.squadName %>
             </option>
         <% } %>
@@ -102,9 +101,22 @@
   </div>
 
   <hr>
-
-  <button class='btn btn-primary my-3' type='submit'>Submit</button>
+  <button class="btn btn-primary my-3" type="submit">Submit</button>
 </form>
+
+<script>
+  //Custom validator for the powers text area
+  const powers = document.getElementById("powers");
+  powers.addEventListener("input", function (event) {
+    //remove all whitespace and make sure the length is > 0
+    console.log(powers.value.trim().length);
+    if (powers.value.trim().length > 0) {
+      powers.setCustomValidity("");
+    } else {
+      powers.setCustomValidity("Must have at least one power");
+    }
+  });
+</script>
 
 <%- include("super-common-footer.ejs") %>
 

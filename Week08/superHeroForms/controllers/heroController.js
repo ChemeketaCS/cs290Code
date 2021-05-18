@@ -99,6 +99,8 @@ exports.update_post = async function (req, res, next) {
         _id: req.body.id,
       });
 
+    console.log(req.body);
+
     //Process Powers Input - split string into an array
     let powersList = req.body.powers.split("\n");
     for (let i = 0; i < powersList.length; i++) {
@@ -121,15 +123,18 @@ exports.update_post = async function (req, res, next) {
     //Just print some of the "fake" team info to console
     //----------------------------------------------------------
     //Get from select list:
-    console.log("You fake selected " + req.body.teamFake);
+    console.log("You fake selected");
+    console.log(req.body.teamFake);
     //Get from checkboxes - will be string if one, array if multiple
     //So first force into an array. Concat will smash either the string or
     // array elements into an empty array
     let fakeData2 = [].concat(req.body.teamFake2);
-    console.log("You fake selected " + fakeData2);
+    console.log("You fake selected");
+    console.log(fakeData2);
     //Get from multiselect select list - same idea as checkboxes
     let fakeData3 = [].concat(req.body.teamFake3);
-    console.log("You fake selected " + fakeData3);
+    console.log("You fake selected");
+    console.log(fakeData3);
     //----------------------------------------------------------
 
     let teams = await Team.find().select("squadName").exec();
