@@ -1,7 +1,7 @@
 <%- include("super-common-header.ejs", {title:title }) %>
 
 
-<% if(locals.errors) { %>
+<% if(locals.errors) {   //Check to see if there even is an errors variable %>
   <div class="alert alert-danger">
     <ul class="mb-0">
       <% errors.forEach(function(error) { %>
