@@ -88,16 +88,16 @@ exports.update_get = async function (req, res, next) {
   }
 };
 
-//Use express-validator to remove harmful content
-const { body } = require("express-validator");
+// //Use express-validator to remove harmful content
+// const { body } = require("express-validator");
 
-//Handles submission of the form
+//Handles submission of the form - it has a list of functions that will be run
 exports.update_post = [
-  //First HTML escape all the text inputs
-  // body("name").escape(),
-  // body("secretIdentity").escape(),
-  // body("powers").escape(),
-  async function (req, res, next) {
+  // //First HTML escape all the text inputs
+  // body("name").escape(),                  //function call to sanitize the name input
+  // body("secretIdentity").escape(),        //sanitize secret identity
+  // body("powers").escape(),                //sanitize powers
+  async function (req, res, next) {       //now run my handler
     try {
       //If team exists in DB, fetch it
       let hero = await Hero.findById(req.params.id).exec();
