@@ -45,7 +45,8 @@
       //Check the existing cookie value for theme and switch it
       if(cookieMap['theme'] === 'dark') {
         document.cookie = 'theme=light';
-        document.cookie = 'thing=';  //clear thing cookie
+        //clear thing cookie and set it to expire in past
+        document.cookie = 'thing=; expires=Thu, 01 Jan 1970 00:00:00 GMT';  
       } else {
         document.cookie = 'theme=dark';
         document.cookie = 'thing=mystery';

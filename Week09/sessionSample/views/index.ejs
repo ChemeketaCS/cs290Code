@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Todo list</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <form method="POST">
+      <label for="todo">Item to do</label>
+      <input type="text" id="todo" name="todo" required>
+      <button type="submit">Submit</button>
+    </form>
+
+    <ul>
+      <% for(let item of todos) { %>
+        <li><%= item %></li>
+      <% } %>
+    </ul>
+  </body>
+</html>
