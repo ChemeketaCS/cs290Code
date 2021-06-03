@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My first Vue app</title>
+    <script src="https://unpkg.com/vue"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{squad.squadName}} Member Editor</h1>
+      <p><b>Name: </b><input type="text" v-model="hero.name" /></p>
+      <p>
+        <b>Age: </b><input type="number" v-model="hero.age" /><span
+          v-if="hero.age > 1000"
+          >!!!!</span
+        >
+      </p>
+      <ul>
+        <li v-for="item in hero.powers">{{ item }}</li>
+      </ul>
+      <button @click="hero = squad.members[++curHero % squad.members.length]">
+        Next Hero
+      </button>
+    </div>
+
+    <script>
+      function render() {
+        fetch(
+          "https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json"
+        )
+          .then((response) => response.json())
+          .then(function (json) {
+            let squad = json;
+            console.log(squad);
+            var app = new Vue({
+              el: "#app",
+              data: {
+                squad: squad,
+                curHero: 0,
+                hero: squad.members[0],
+              },
+            });
+          });
+      }
+      render();
+    </script>
+  </body>
+</html>
