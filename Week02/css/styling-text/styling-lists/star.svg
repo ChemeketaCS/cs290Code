@@ -20,7 +20,7 @@
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
-     id="defs3422" />
+     id="defs3422">
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -39,7 +39,7 @@
      inkscape:window-x="0"
      inkscape:window-y="1"
      inkscape:window-maximized="1"
-     units="px" />
+     units="px">
   <metadata
      id="metadata3425">
     <rdf:RDF>
@@ -47,7 +47,7 @@
          rdf:about="">
         <dc:format>image/svg+xml</dc:format>
         <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage">
         <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
@@ -74,7 +74,7 @@
        d="m 502.85714,649.50508 -116.6703,-82.06373 -133.74432,49.58703 41.99414,-136.31913 -88.48934,-111.87517 142.62411,-2.18613 79.0549,-118.72969 46.15241,134.96803 137.34794,38.49619 -114.10034,85.60096 z"
        inkscape:transform-center-x="-2.0200332"
        inkscape:transform-center-y="-2.7869627"
-       transform="matrix(0.23662098,0,0,0.22802893,-44.118623,900.03849)" />
+       transform="matrix(0.23662098,0,0,0.22802893,-44.118623,900.03849)">
     <path
        transform="matrix(0.23662098,0,0,0.22802893,-46.429224,897.66953)"
        inkscape:transform-center-y="-2.7869704"
@@ -92,6 +92,6 @@
        sodipodi:sides="5"
        id="path3463"
        style="fill:#ff0000;stroke:#000000;stroke-opacity:1"
-       sodipodi:type="star" />
+       sodipodi:type="star">
   </g>
 </svg>

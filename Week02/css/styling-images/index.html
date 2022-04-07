@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head lang="en">
+    <meta charset="utf-8" />
+    <title>Images and CSS</title>
+  </head>
+  <style>
+    .image-box {
+      width: 300px;
+      height: 300px;
+      border: 1px solid black;
+      -overflow: hidden;
+    }
+    .image-box .image-frame {
+      height: 270px;
+      border: 1px solid blue;
+    }
+    .image-box img {
+      border: 1px solid red;
+      -width: 100%;
+      -height: 100%;
+      -object-fit: contain;
+    }
+    .image-box p {
+      text-align: center;
+      margin: 3px;
+    }
+  </style>
+  <body>
+    <h1>Images in HTML</h1>
+    <figure class="image-box">
+      <div class="image-frame">
+        <img
+          src="images/dinosaur.jpg"
+          alt="The head and torso of a dinosaur skeleton; it has a large head with long sharp teeth"
+          title="A T-Rex on display in the Manchester University Museum"
+        />
+      </div>
+      <figcaption class="image-caption">This is Mr. T-Rex</figcaption>
+    </figure>
+
+    <p>
+      Until recently, the prevailing view assumed lorem ipsum was born as a
+      nonsense text. “It's not Latin, though it looks like it, and it actually
+      says nothing,” Before & After magazine answered a curious reader, “Its
+      ‘words’ loosely approximate the frequency with which letters occur in
+      English, which is why at a glance it looks pretty real.” As Cicero would
+      put it, “Um, not so fast.”
+    </p>
+
+    <figure class="image-box">
+      <div class="image-frame">
+        <img src="images/giraffe.jpg" alt="A giraffe!" title="A giraffe" />
+      </div>
+      <figcaption class="image-caption">A giraffe</figcaption>
+    </figure>
+
+    <p>
+      The placeholder text, beginning with the line “Lorem ipsum dolor sit amet,
+      consectetur adipiscing elit”, looks like Latin because in its youth,
+      centuries ago, it was Latin. Richard McClintock, a Latin scholar from
+      Hampden-Sydney College, is credited with discovering the source behind the
+      ubiquitous filler text. In seeing a sample of lorem ipsum, his interest
+      was piqued by consectetur—a genuine, albeit rare, Latin word. Consulting a
+      Latin dictionary led McClintock to a passage from De Finibus Bonorum et
+      Malorum (“On the Extremes of Good and Evil”), a first-century B.C. text
+      from the Roman philosopher Cicero.
+    </p>
+  </body>
+</html>
