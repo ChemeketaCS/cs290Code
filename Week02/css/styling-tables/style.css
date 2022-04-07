@@ -7,6 +7,12 @@ table {
   border: 3px solid purple;
 }
 
+/* target the first col using the colgroup */
+table .bandcol {
+  border-right: 1px solid black;
+}
+
+/* target the first col using nth-child */
 thead th:nth-child(1) {
   width: 30%;
 }
@@ -92,7 +98,6 @@ table {
 }
 
 /* caption */
-
 caption {
   font-family: "Rock Salt", cursive;
   padding: 20px;
