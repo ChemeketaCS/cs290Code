@@ -7,7 +7,14 @@
     <!-- CSS only -->
 
     <style>
+      :root {
+        --main-color: rgb(150, 150, 200);
+        --background-color: rgb(220, 220, 220);
+        --std-width: 300px;
+      }
+
       body {
+        background-color: var(--background-color);
         display: flex;
         flex-wrap: wrap;
       }
@@ -19,26 +26,22 @@
         display: none;
       }
 
+      #variable-header {
+        background-color: var(--main-color);
+        color: var(--background-color);
+        width: var(--main-width);
+      }
+
       .colorbox {
-        background-color: #ccc;
+        background-color: var(--main-color);
         overflow: auto;
       }
 
-      .thing1 {
-        background-color: #ddf;
+      .thing {
+        background-color: var(--background-color);
         box-sizing: border-box;
         height: 40px;
-        width: 60px;
-        border: 1px solid black;
-        padding: 5px;
-        margin: 5px;
-      }
-
-      .thing2 {
-        background-color: #ddf;
-        box-sizing: content-box;
-        height: 40px;
-        width: 60px;
+        width: var(--std-width);
         border: 1px solid black;
         padding: 5px;
         margin: 5px;
@@ -46,25 +49,23 @@
 
       .container {
         width: 100%;
-        padding: 1em;
+        padding: 10px;
+        margin-bottom: 1em;
+        border: 1px solid black;
       }
 
-      @media screen and (min-width: 768px) {
+      @media (min-width: 768px) {
         .container {
-          width: 40%;
-          margin: 0 auto;
-          border: 1px solid black;
+          width: 50%; /* too big because of margin/padding/border */
+          width: calc(50% - 42px); /* 42px total of margin/padding/border */
+          margin-left: 10px;
+          margin-right: 10px;
         }
       }
     </style>
   </head>
 
   <body>
-    <p>
-      This layout should change for phone screens. Removing the meta viewport
-      tag from the head should break things so you only see the "big page"
-      version on phones.
-    </p>
     <div class="container">
       <h2>Visibility Hidden vs Display None</h2>
       <p>This list has 5 items. Can you find them?</p>
@@ -77,28 +78,15 @@
       </ul>
     </div>
     <div class="container">
-      <h2>Different box-sizings</h2>
+      <h2 id="variable-header">Variables</h2>
       <p>
-        The two blue boxes below use different box-sizing values. Both are set
-        to a width of 60px.
-      </p>
-      <p>
-        Thing 1 is border-box. Its width and height control the final size. The
-        thing 1 box's padding(5 on each side) and border(1 on each side) are
-        subtracted from the 60 pixels it occupies. So the blue content area is
-        48pixels wide.
+        Variables are used to set colors and widths here.
       </p>
       <div class="colorbox">
-        <div class="thing1">Thing 1</div>
+        <div class="thing">Thing 1</div>
       </div>
-      <p>
-        Thing 2 is content-box. Its width and height control the size of just
-        the content. The thing 1 box's padding(5 on each side) and border(1 on
-        each side) are added from the 60 pixels it wants. So the total space it
-        occupies is 72px.
-      </p>
       <div class="colorbox">
-        <div class="thing2">Thing 2</div>
+        <div class="thing">Thing 2</div>
       </div>
     </div>
   </body>

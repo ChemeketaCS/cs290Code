@@ -17,6 +17,30 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
 
   <link href="styles.css" rel="stylesheet" type="text/css" />
+  <style>
+    ul.photos-grid {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    ul.photos-grid li {
+      flex: 0 0 auto;
+      width: 25%;
+      padding: 5px;
+    }
+
+    @media (min-width: 768px) {
+      ul.photos-grid li {
+        width: 50%;
+      }
+    }
+
+    ul.photos-grid li img {
+      max-width: 100%;
+    }
+  </style>
 </head>
 
 <body>
@@ -54,7 +78,7 @@
     <div class="row mt-4">
       <main class="col-12 col-md-8">
         <article class="">
-          <h1>An Exciting Blog Post<i class="bi bi-alarm-"></i></h1>
+          <h1>An Exciting Blog Post</h1>
           <img src="images/balloon-sq6.jpg" class="d-block figurmx-auto mb-3 me-md-4 float-md-start" />
           <h2>Subheading</h2>
           <p>
@@ -108,30 +132,30 @@
 
       <aside class="col-12 col-md-4">
         <h2>Photography <i class="bi bi-camera-fill"></i></h2>
-        <ul class="photos row list-unstyled p-2">
-          <li class="col-3 col-md-6 p-2">
+        <ul class="photos-grid">
+          <li>
             <a href="images/balloon-sq1.jpg">
-              <img src="images/balloon-sq1.jpg" class="mw-100" alt="placeholder" />
+              <img src="images/balloon-sq1.jpg" alt="placeholder" />
             </a>
           </li>
-          <li class="col-3 col-md-6 p-2">
+          <li>
             <a href="images/balloon-sq1.jpg">
-              <img src="images/balloon-sq2.jpg" class="mw-100" alt="placeholder" />
+              <img src="images/balloon-sq2.jpg" alt="placeholder" />
             </a>
           </li>
-          <li class="col-3 col-md-6 p-2">
+          <li>
             <a href="images/balloon-sq1.jpg">
-              <img src="images/balloon-sq3.jpg" class="mw-100" alt="placeholder" />
+              <img src="images/balloon-sq3.jpg" alt="placeholder" />
             </a>
           </li>
-          <li class="col-3 col-md-6 p-2">
+          <li>
             <a href="images/balloon-sq1.jpg">
-              <img src="images/balloon-sq4.jpg" class="mw-100" alt="placeholder" />
+              <img src="images/balloon-sq4.jpg" alt="placeholder" />
             </a>
           </li>
-          <li class="col-3 col-md-6 p-2">
+          <li>
             <a href="images/balloon-sq1.jpg">
-              <img src="images/balloon-sq5.jpg" class="mw-100" alt="placeholder" />
+              <img src="images/balloon-sq5.jpg" alt="placeholder" />
             </a>
           </li>
         </ul>
