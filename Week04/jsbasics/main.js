@@ -11,15 +11,22 @@ for (let i = 0; i < x; i++) {
   console.log(i);
 }
 
-// if (true) {
-//   a = "a is here!";
-// }
-// console.log(a);
+function foo() {
+  if (true) {
+    //a is automatically a global variable!
+    a = "globalVar is here!";
+  }
+}
+console.log(a);  //a still exists
 
-// console.log(wtf);
-// if (true) {
-//   var wtf = "This is valid???";
-// }
+function bar() {
+  if (true) {
+    //b is scoped within the current function
+    var b = "This is valid???";
+  }
+  console.log(b);  //b still exists
+}
+//console.log(b);  //b is gone
 
 let message = "Yes";
 

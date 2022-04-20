@@ -32,12 +32,13 @@ console.log(arrayDogs);
 
 console.log("-----------------------------");
 for (let i = 0; i < arrayDogs.length; i++) {
-  console.log(arrayDogs[i]);
+  console.log("item ", i, " is ", arrayDogs[i]);
 }
 
 for (let dog of arrayDogs) {
   console.log(dog);
 }
+
 
 arrayDogs.forEach(function (dogName) {
   console.log("Who's a good dog " + dogName + "?");

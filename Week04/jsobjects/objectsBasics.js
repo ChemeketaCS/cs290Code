@@ -22,7 +22,7 @@ delete person1.age;
 console.log(person1);
 
 for (let prop in person1) {
-  console.log(prop + " = " + person1[prop]);
+  console.log("----" + prop + " = " + person1[prop]);
 }
 
 console.log("---------------------------");
@@ -32,6 +32,7 @@ const otherPerson = {};
 otherPerson.name = {}; //now name is an empty object
 otherPerson.name.first = "Bob";
 otherPerson.age = 26;
+console.log(otherPerson);
 
 console.log("---------------------------");
 console.log("Using as an associative array");
