@@ -21,8 +21,8 @@ person1["major"] = "CS";
 delete person1.age;
 console.log(person1);
 
-for (let prop in person1) {
-  console.log("----" + prop + " = " + person1[prop]);
+for (let key in person1) {
+  console.log("----" + key + " = " + person1[key]);
 }
 
 console.log("---------------------------");
@@ -40,10 +40,12 @@ const items = ["Apple", "Banana", "Pear", "Apple", "Apple", "Orange", "Pear"];
 const itemCounts = {};
 
 for (let item of items) {
+  console.log(item);
   //seen it before
   if (item in itemCounts) itemCounts[item]++;
   else itemCounts[item] = 1; //new
 }
+
 console.log(itemCounts);
 for (let item in itemCounts) {
   console.log(`There are ${itemCounts[item]} ${item}(s)`);
