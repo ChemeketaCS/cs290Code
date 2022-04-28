@@ -15,11 +15,19 @@
         Here we will add a link to the
         <a href="https://www.mozilla.org/">Mozilla homepage</a>
       </p>
+      <!--old school way to add handler-->
       <p id="second" onclick="makeBold(this)">
         And a link to <a class="fancy" href="https://www.google.com/">google</a>
       </p>
 
       <script>
+
+        //Function run by old school handler
+        function makeBold(item) {
+          console.log(item);
+          item.style.fontWeight = "bold";
+        }
+
         //find first <p> tag
         const p1 = document.querySelector("p");
         p1.onclick = function () {
@@ -31,32 +39,44 @@
           this.style.color = "blue";
         };
 
-        p1.onmouseover = function () {
-          this.style.backgroundColor = "yellow";
-        };
+        //wipes out onclick for p1
+        p1.onclick = null;
 
-        p1.onmouseout = function () {
-          this.style.backgroundColor = "inherit";
-        };
-
-        //add a second event listenet
+        //Modern way to add handlers, easier to have multiple handlers for same event
+        //add a second event listener
         p1.addEventListener("click", function () {
           this.style.fontSize = "125%";
         });
 
-        function makeBold(item) {
-          console.log(item);
-          item.style.fontWeight = "bold";
-        }
+        p1.addEventListener("mouseover", function () {
+          this.style.backgroundColor = "yellow";
+        });
 
+        p1.addEventListener("mouseout", function () {
+          this.style.backgroundColor = "inherit";
+        });
+
+        //Add handler to every anchor tag
         const links = document.querySelectorAll("a");
         links.forEach((link) => {
           link.addEventListener("click", function (event) {
-            console.log("hahahaha");
+            console.log(event);
             console.log("You clicked at x location " + event.pageX);
+            console.log("You are staying here!");
             event.preventDefault();
           });
         });
+
+        // //Same but using for...of to loop
+        // for(const link of links) {
+        //   link.addEventListener("click", function (event) {
+        //     console.log(event);
+        //     console.log("You clicked at x location " + event.pageX);
+        //     console.log("You are staying here!");
+        //     event.preventDefault();
+        //   });
+        // }
+
       </script>
     </section>
   </body>

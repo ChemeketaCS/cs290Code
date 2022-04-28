@@ -3,63 +3,104 @@
   <head>
     <meta charset="utf-8">
     <title>Simple DOM example</title>
+    <style>
+      .red {
+        color: red;
+      }
+      .green {
+        color: #00ff44;
+      }
+      .center {
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
       <section>
         <img class="fancy" src="dinosaur.jpg" alt="A red Tyrannosaurus Rex: A two legged dinosaur standing upright like a human, with small arms, and a large head with lots of sharp teeth.">
-        <p class="red large">Here we will add a link to the <a href="https://www.mozilla.org/">Mozilla homepage</a></p>
+        <p id="first" class="red large">Here we will add a link to the <a href="https://www.mozilla.org/">Mozilla homepage</a>.</p>
         <p id="second">And a link to <a class="fancy" href="https://www.google.com/">google</a></p>
 
         <script>
+          //querySelector uses css style selectors to identify items
+          //  returns first match or null
           //find first <p> tag
           const p1 = document.querySelector('p');
+          //find same element by id
+          const p1Alt = document.querySelector('#first');
+          //find same element by class
+          const p1Alt2 = document.querySelector('.red.large');
+
+          //find same element using older getElementById
+          const p1Alt3 = document.getElementById('first');
 
           console.log(p1);
+          // console.log(p1Alt);
+          // console.log(p1Alt2);
+          // console.log(p1Alt3);
           console.log(p1.innerText);
           console.log(p1.innerHTML);
           console.log(p1.id);
           console.log(p1.children);
           console.log(p1.childNodes);
 
-          console.log(p1.className);
-          console.log(p1.classList);
 
-          p1.style.fontSize = "3em";
+          //Change style directly. style names go from -'s to camelcase
+          // i.e. font-size in css is fontSize in js
+          p1.style.background = "pink";
+          p1.style.fontSize = "2em";
           
-          p1.className = "red large";
+          //className is the string with list of classes
+          console.log(p1.className);
+          p1.className = "green large";
 
+          //classList is an actual list of the individual styles - easier to add/remove
+          // using it
+          console.log(p1.classList);
           p1.classList.remove("red");
           p1.classList.add("green");
-
           console.log(p1.classList);
 
-          //find all <p> tags
-          const paras = document.querySelectorAll('p');
+          //querySelectorAll finds a list of matches (or empty list)
+          //find all <p> tags and center their contents
+          const paragraphs = document.querySelectorAll('p');
+          console.log(paragraphs);
+          for(const p of paragraphs) {
+            console.log(p);
+            p.classList.add("center");
+          }
 
-          console.log(paras);
-
-          const secondP = paras[1];
-          const linksInSecondP = secondP.querySelectorAll('a');
+          //Can start do a querySelection within a found element instead of the
+          // whole document
+          //get second paragraph and change target of its first link:
+          const secondP = paragraphs[1];
+          const linksInSecondP = secondP.querySelectorAll('a');  //a's only within secondP
           console.log(linksInSecondP);
           linksInSecondP[0].href = "microsoft.com";
 
-          // //remove some things
-          // const dinoImg = document.querySelector('img');
-          // dinoImg.remove();
-          // p1.innerHTML = "";
+          //Remove some things
+          const dinoImg = document.querySelector('img');
+          console.log(dinoImg);
+          dinoImg.remove();  //totally gone
+
+          p1.innerHTML = "";  //Still there, but empty contents
+
+          const p2 = document.querySelector('#second');
+          p2.style.display = "none";  //Still in DOM, still has contents, removed from layout
 
 
-          //addd a list
+          //Add elements by appending to the innerHTML of something
+          //add a list by appending to p1
           p1.innerHTML = "This is all <b>new!!!</b>";
           let newContent = "<ul>";
           for(let i = 0; i < 5; i++) {
             newContent += `<li>Item ${i}</li>`;
           }
           newContent += "</ul>";
-
           p1.innerHTML += newContent;
 
           
+          //Or by createElement and then appending it to an existing item
           //add another list
           const body = document.querySelector('body');
           const newList = document.createElement('ul');
@@ -71,10 +112,7 @@
           }
           body.append(newList);
 
-
-
         </script>
-
       </section>
   </body>
 </html>

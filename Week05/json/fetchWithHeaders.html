@@ -10,12 +10,11 @@
     <p>Open the console to see the results...</p>
     <script>
       function doStuff() {
-        fetch("https://fall-guys.p.rapidapi.com/celebrations", {
+        fetch("https://api-basketball.p.rapidapi.com/timezone", {
           method: "GET",
           headers: {
-            "x-rapidapi-key":
-              "cadc737909mshfc1ce44146d6cb1p16852djsn7698b616faba",
-            "x-rapidapi-host": "fall-guys.p.rapidapi.com",
+            'X-RapidAPI-Host': 'api-basketball.p.rapidapi.com',
+            'X-RapidAPI-Key': 'cadc737909mshfc1ce44146d6cb1p16852djsn7698b616faba'
           },
         })
           .then(function (response) {
