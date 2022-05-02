@@ -1,15 +1,16 @@
 {
-  "name": "expressbasics",
+  "name": "npminitdemo",
   "version": "1.0.0",
   "description": "",
-  "main": "serve.js",
+  "main": "useFetch.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node serve.js"
+    "start": "node .\\useFetch.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "node-fetch": "^3.2.4"
   }
 }

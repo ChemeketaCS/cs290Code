@@ -1,3 +1,6 @@
+//A simple server created directly with node
+//Not what we will actually do!!!
+
 const http = require("http");
 const fs = require("fs");
 

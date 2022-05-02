@@ -1,6 +1,10 @@
+//node-fetch is a module available through npm
+// Version 3 of node-fetch is ES6 style module - have to "import" not "require"
 //Need to install node-fetch with npm to have this work!
-let fetch = require("node-fetch");
+import fetch from 'node-fetch';
 
+//Version 2 of node-fetch was a commonjs module - used this syntax:
+//let fetch = require("node-fetch");
 
 fetch("https://api.punkapi.com/v2/beers?per_page=4&yeast=05")
   .then(function (response) {
