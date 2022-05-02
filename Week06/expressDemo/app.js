@@ -20,7 +20,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //---------------------------------------------------
-//New routes - Self contained here:
+// //New routes - Self contained here:
+// app.use("/test", (req, res) => {
+//   res.sendFile(__dirname + "/public/index.html");
+// });
+
 app.get("/test", (req, res) => {
   res.send("You accessed /test");
 });
@@ -53,7 +57,7 @@ app.use('/dept', departmentRouter);
 
 
 //Sample routes created by express generator:
-app.use('/', indexRouter);
+//app.use('/', indexRouter);            //Not being used
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
