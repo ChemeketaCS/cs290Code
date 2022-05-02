@@ -1,4 +1,4 @@
-const carLib = require("./car");
+const carLib = require("./car.js");
 //carLib is now bound to module.exports from 'car.js'
 
 console.log(carLib);
