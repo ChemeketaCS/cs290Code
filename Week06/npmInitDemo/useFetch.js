@@ -1,6 +1,7 @@
 //Need to install node-fetch with npm to have this work!
 let fetch = require("node-fetch");
 
+
 fetch("https://api.punkapi.com/v2/beers?per_page=4&yeast=05")
   .then(function (response) {
     if (response.status == 200) {
@@ -15,8 +16,8 @@ fetch("https://api.punkapi.com/v2/beers?per_page=4&yeast=05")
     console.log("Fetch problem: " + err.message);
   });
 
-// //Same ideal, done within async funciton so we can use await
-// // on promises
+
+// //Same idea, but implemented with async/await
 // async function main() {
 //   try {
 //     let response = await fetch(
