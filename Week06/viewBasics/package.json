@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node basic.js"
+    "start": "nodemon basic.js",
+    "debugmac": "DEBUG=* & npm start",
+    "debugwin": "set DEBUG=* & npm start"
   },
   "author": "",
   "license": "ISC",

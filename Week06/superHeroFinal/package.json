@@ -1,10 +1,11 @@
-
 {
   "name": "superherofinal",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "nodemon ./bin/www",
+    "debugmac": "DEBUG=* & npm start",
+    "debugwin": "set DEBUG=* & npm start"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
