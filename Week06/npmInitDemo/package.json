@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "useFetch.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node .\\useFetch.js"
@@ -11,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node-fetch": "^3.2.4"
+    "node-fetch": "^2.6.7"
   }
 }
