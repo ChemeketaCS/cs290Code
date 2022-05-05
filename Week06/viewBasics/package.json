@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon basic.js",
+    "start": "node basic.js",
     "debugmac": "DEBUG=* & npm start",
     "debugwin": "set DEBUG=* & npm start"
   },
