@@ -20,10 +20,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-//We could put routes into those... keeping it simple
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
-
 //--------------------------------------------------------
 //My routes
 
@@ -32,62 +28,18 @@ app.get("/", async (req, res) => {
   res.send("index.html");
 });
 
-app.get("/heroes/", async (req, res) => {
-  const superSquad = await getSquad();
-  console.log(superSquad);
-  //Sort the members of superQuad
-  superSquad.members.sort((a, b) => {
-    if (a.name < b.name) return -1;
-    if (a.name > b.name) return 1;
-    return 0;
-  });
+//All other routes in heroes.js file
+let heroRouter = require("./routes/heroes.js");
+app.use("/heroes", heroRouter);
 
-  //Manually render the view and send it
-  //let page = await ejs.render("views/superheros.ejs", superSquad);
-  //res.send(page);
-
-  //Automatically render and send the view
-  //Assumed view is in views/ folder
-
-  res.render("superheroes.ejs", superSquad);
-});
-
-app.get("/hero/:name", async (req, res, next) => {
-  const superSquad = await getSquad();
-  console.log(superSquad);
-
-  const heroName = req.params.name;
-
-  console.log("--------------------");
-  console.log(heroName);
-  console.log("--------------------");
-  let index = -1;
-
-  superSquad.members.forEach((value, i) => {
-    if (value.name === heroName) {
-      index = i;
-    }
-  });
-
-  let hero = superSquad.members[index];
-  console.log(hero);
-
-  if (index != -1) res.render("superheroSingle.ejs", hero);
-  else next();
-});
-
-app.get("*", async (req, res) => {
+// catch any other route and send 404
+app.use(function (req, res, next) {
+  //Could send a file here instead...
   res.status = 404;
   res.send("No such file");
-  //Could send a file here instead...
 });
 
 //--------------------------------------------------------
-
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
-});
 
 // error handler
 app.use(function (err, req, res, next) {
@@ -101,17 +53,3 @@ app.use(function (err, req, res, next) {
 });
 
 module.exports = app;
-
-//--------------------------------------------------------
-//My data source - gets the super hero data
-
-//Need to have node-fetch installed!
-let fetch = require("node-fetch");
-
-async function getSquad() {
-  let responsePromise = await fetch(
-    "https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json"
-  );
-  let json = await responsePromise.json();
-  return json;
-}
