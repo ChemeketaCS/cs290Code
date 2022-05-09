@@ -1,0 +1,12 @@
+{
+  "name": "mongooseSimple",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "addData": "node addData.js",
+    "testData": "node testData.js"
+  },
+  "dependencies": {
+    "mongoose": "^6.3.2"
+  }
+}
