@@ -9,8 +9,8 @@ mongoose.connect(credentials.connection_string, {
 
 //Create a schema
 let CitySchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  population: { type: Number, required: true },
+  name: { type: String },
+  population: { type: Number },
 });
 
 //Create a model from the schema
@@ -18,8 +18,8 @@ let City = mongoose.model("City", CitySchema);
 
 //Use the model to make an object
 const metropolis = new City({
-  name: "Metropolis",
-  population: 10000042,
+  name: "Gothan City",
+  population: 3453245,
 });
 
 //Save it to the database, receive promise

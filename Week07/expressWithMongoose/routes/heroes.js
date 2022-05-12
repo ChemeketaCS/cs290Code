@@ -6,7 +6,7 @@ const Hero = require("../models/hero");
 router.get("/", async function (req, res) {
   let heroList = await Hero.find().sort("name").exec();
   //pass an object with one property, the heroList
-  res.render("superheroList.ejs", { heroList });
+  res.render("superheroList.ejs", { heroList: heroList });
 });
 
 router.get("/byname/:name", async function (req, res) {
@@ -20,7 +20,7 @@ router.get("/byname/:name", async function (req, res) {
     .exec();
 
   //pass an object with one property, the heroList
-  res.render("superheroList.ejs", { heroList });
+  res.render("superheroList.ejs", { heroList: heroList });
 });
 
 router.get("/id/:id", async function (req, res) {

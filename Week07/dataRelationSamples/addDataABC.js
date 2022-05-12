@@ -1,6 +1,3 @@
-//Loads the data stored in this data file:
-const dataFile = require("./data.js");
-
 //--------------------------------------------
 //Connect to DB with Mongoose
 const credentials = require("./dbCredentials.js");
@@ -14,6 +11,9 @@ mongoose.connect(credentials.connection_string, {
 const A = require("./models/A.js");
 const B = require("./models/B.js");
 const C = require("./models/C.js");
+
+//Loads the data stored in this data file:
+const dataFile = require("./data.js");
 
 //Async function so we can use await to synchronize steps
 async function loadAllRecords() {
@@ -86,8 +86,14 @@ async function loadAllRecords() {
 
   //Now we are ready to save everything. Make one giant list:
   let allRecords = ARecords.concat(BRecords).concat(CRecords);
+
+  //Could loop through all records and call save on each and await results
+  // one by one. But more efficient to save all and wait for all to be
+  // finished.
+
   //Use map to tell each record to save itself and collect resulting promises
   let promises = allRecords.map((record) => record.save());
+
   //Now wait for all to finish
   await Promise.all(promises);
 

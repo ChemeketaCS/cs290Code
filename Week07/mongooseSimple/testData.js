@@ -26,5 +26,5 @@ findResult.then((data) => {
   console.log(data);
   console.log("First city's name is:", data[0].name);
   //close DB connection, allow script to end
-  mongoose.disconnect();
+  //mongoose.disconnect();
 });

@@ -19,6 +19,13 @@ async function testHero() {
   console.log("\nPrinting Molecule Man:");
   console.log(hero0);
 
+  //Get info about hero0's team
+  console.log("\nPrinting hero0's team info:");
+  let squad = await Team.findById(hero0.team).exec();
+  console.log(hero0.team);
+  hero0.team = squad;
+  console.log(hero0.team);
+
   //Find record where name matches a regex
   const hero1 = await Hero.findOne()
     .where("name")
