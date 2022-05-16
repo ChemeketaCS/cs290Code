@@ -12,7 +12,7 @@
 <% } %>
 
 <%# Set action to return to the update route regardless of if we got here from create or update routes %>
-<form method="POST" action="/heroes/update/<%- hero._id %>">
+<form method="POST" action="/heroes/update/<%- hero._id %>" id="heroForm">
   <input type="hidden" name="id" value="<%- hero._id %>" >
   <div class="mb-3">
     <label for="name" class="form-label">Name <em>(Required)</em></label>
@@ -31,7 +31,7 @@
   </div>
   <div class="mb-3">
     <label for="powers" class="form-label">Powers</label>
-    <textarea class="form-control" name="powers" id="powers" rows="8" required
+    <textarea class="form-control" name="powers" id="powers" rows="8"
     aria-describedby="powersHelp"><%- hero.powers.join("\n") -%></textarea>
     <div id="powersHelp" class="form-text">Enter one power per line.</div>
   </div>
@@ -105,17 +105,33 @@
 </form>
 
 <script>
-  //Custom validator for the powers text area
-  const powers = document.getElementById("powers");
-  powers.addEventListener("input", function (event) {
-    //remove all whitespace and make sure the length is > 0
-    console.log(powers.value.trim().length);
-    if (powers.value.trim().length > 0) {
-      powers.setCustomValidity("");
-    } else {
-      powers.setCustomValidity("Must have at least one power");
-    }
+  //Custom validator example
+
+  //Attach event to the form's submit event
+  const form = document.getElementById("heroForm");
+  let powers = document.getElementById("powers");
+
+  //Any time form is submitted, run validation on powers field
+  form.addEventListener("submit", function (event) {
+    console.log("We are validating form...");
+    validatePowers();
   });
+
+  //Any time we change powers value, validate it
+  powers.addEventListener('change', validatePowers); 
+
+  //Check to see if there are more than 6 lines of input
+  function validatePowers() {
+    let numPowers = powers.value.split("\n").length;
+    if (numPowers <= 6) {
+      powers.setCustomValidity("");
+      return true
+    } else {
+      powers.setCustomValidity("Max of 6 powers");
+      powers.reportValidity();
+      return false;
+    }
+  }
 </script>
 
 <%- include("super-common-footer.ejs") %>

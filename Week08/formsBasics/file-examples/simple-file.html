@@ -9,17 +9,21 @@
     </style>
   </head>
   <body>
-      <form>
-       <div>
-         <label for="file">Choose file to upload</label>
-         <input type="file" id="file" name="file" multiple>
-       </div>
-       <div>
-         <button>Submit</button>
-       </div>
-      </form>
-     <script>
-       var test = document.querySelector('input');
-     </script>
+    <form method="POST">
+      <div>
+        <label for="file">Choose file to upload</label>
+        <input
+          type="file"
+          id="file"
+          name="file"
+          multiple
+          accept="image/png, image/jpeg"
+          enctype="multipart/form-data"
+        />
+      </div>
+      <div>
+        <button>Submit</button>
+      </div>
+    </form>
   </body>
 </html>

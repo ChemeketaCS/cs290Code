@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Educational registration form</title>
+
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+      crossorigin="anonymous"
+    />
+
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+      crossorigin="anonymous"
+    ></script>
+    <style></style>
+  </head>
+  <body>
+    <div class="m-3">
+      <form>
+        <div class="mb-3">
+          <label for="comment" class="form-label">Enter a comment:</label>
+          <input
+            required
+            type="text"
+            id="comment"
+            name="comment"
+            minlength="3"
+            class="form-control"
+          />
+        </div>
+
+        <div class="mb-3 row">
+          <label for="pwd" class="form-label col-3">Password:</label>
+          <div class="col-9">
+            <input type="password" id="pwd" name="pwd" class="form-control" />
+          </div>
+        </div>
+
+        <fieldset>
+          <legend>Choose all the vegetables you like to eat</legend>
+
+          <div class="form-check">
+            <label for="carrots">Carrots</label>
+            <input
+              type="checkbox"
+              id="carrots"
+              name="vegetable"
+              value="carrots"
+              checked
+              class="form-check-input"
+            />
+          </div>
+
+          <div class="form-check">
+            <label for="peas">Peas</label>
+            <input
+              type="checkbox"
+              id="peas"
+              name="vegetable"
+              value="peas"
+              class="form-check-input"
+            />
+          </div>
+
+          <div class="form-check">
+            <label for="cabbage">Cabbage</label>
+            <input
+              type="checkbox"
+              id="cabbage"
+              name="vegetable"
+              value="cabbage"
+              class="form-check-input"
+            />
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>What is your favorite meal?</legend>
+
+          <div class="form-check form-check-inline">
+            <label for="soup">Soup</label>
+            <input
+              type="radio"
+              id="soup"
+              name="meal"
+              value="soup"
+              checked
+              class="form-check-input"
+            />
+          </div>
+
+          <div class="form-check form-check-inline">
+            <label for="curry">Curry</label>
+            <input
+              type="radio"
+              id="curry"
+              name="meal"
+              value="curry"
+              class="form-check-input"
+            />
+          </div>
+
+          <div class="form-check form-check-inline">
+            <label for="pizza">Pizza</label>
+            <input
+              type="radio"
+              id="pizza"
+              name="meal"
+              value="pizza"
+              class="form-check-input"
+            />
+          </div>
+        </fieldset>
+
+        <div class="my-3">
+          <label for="notes">Notes:</label>
+          <textarea
+            cols="30"
+            rows="8"
+            id="notes"
+            class="form-control"
+          ></textarea>
+        </div>
+        <select id="simple" name="fruitChoice" class="form-select my-3">
+          <option value="banana">I like bananas</option>
+          <option selected>Cherry</option>
+          <option>Lemon</option>
+        </select>
+        <select id="multi" name="multi" multiple size="8" class="form-select">
+          <optgroup label="fruits">
+            <option>Banana</option>
+            <option selected>Cherry</option>
+            <option>Lemon</option>
+          </optgroup>
+          <optgroup label="vegetables">
+            <option>Carrot</option>
+            <option>Eggplant</option>
+            <option>Potato</option>
+          </optgroup>
+        </select>
+        <input
+          type="submit"
+          value="This is a submit button"
+          class="btn btn-primary my-3 form-control"
+        />
+        <input
+          type="reset"
+          value="This is a reset button"
+          class="btn btn-outline-danger form-control"
+        />
+      </form>
+    </div>
+  </body>
+</html>
