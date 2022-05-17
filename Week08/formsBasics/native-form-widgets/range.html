@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
     <title>&lt;input type="range"&gt; example</title>
     <style>
-      html, input {
+      html,
+      input {
         font-family: sans-serif;
       }
 
@@ -27,9 +28,11 @@
         align-items: center;
       }
 
-      label, input, button {
+      label,
+      input,
+      button {
         font-size: 14px;
-        line-height: 1.5
+        line-height: 1.5;
       }
 
       label {
@@ -46,15 +49,21 @@
         width: 70%;
         margin: 0 auto;
       }
-
     </style>
-   </head>
+  </head>
   <body>
     <form>
-
       <div>
         <label for="price">Choose a maximum house price: </label>
-        <input type="range" name="price" id="price" min="50000" max="500000" step="100" value="250000">
+        <input
+          type="range"
+          name="price"
+          id="price"
+          min="50000"
+          max="500000"
+          step="100"
+          value="250000"
+        />
         <output class="price-output" for="price"></output>
       </div>
       <div>
@@ -62,14 +71,14 @@
       </div>
     </form>
     <script>
-      const price = document.querySelector('#price')
-      const output = document.querySelector('.price-output')
+      const price = document.querySelector("#price");
+      const output = document.querySelector(".price-output");
 
-      output.textContent = price.value
+      output.textContent = price.value;
 
-      price.addEventListener('input', function() {
-        output.textContent = price.value
+      price.addEventListener("input", function () {
+        output.textContent = price.value;
       });
     </script>
-</body>
-  </html>
+  </body>
+</html>

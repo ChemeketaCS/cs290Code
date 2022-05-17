@@ -45,9 +45,11 @@ router.get("/create", function (req, res) {
   res.render("teamForm.ejs", { title: "Create Team", team: team });
 });
 
+//Handles the initial request (get) to load an update page
 router.get("/update/:id", async function (req, res, next) {
   try {
     let team = await Team.findById(req.params.id).exec();
+    console.log(team);
     res.render("teamForm.ejs", { title: "Update Team", team: team });
   } catch (err) {
     var err = new Error("Team not found");
@@ -56,6 +58,7 @@ router.get("/update/:id", async function (req, res, next) {
   }
 });
 
+//Handles the actual submission (post) of the update
 router.post("/update/:id", async function (req, res, next) {
   //If team exists in DB, fetch it
   let team = await Team.findById(req.params.id).exec();

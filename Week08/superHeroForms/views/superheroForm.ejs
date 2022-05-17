@@ -41,9 +41,9 @@
     <legend>Team</legend>
     <% for(let t of teams) { %>
       <div class="form-check">
-        <%# Have to use .equals to compare _ids. OR convert to strings and compare those %>
+        <%# Have to use .equals to compare _ids!!!!!!! %>
         <input type="radio" class="form-check-input" name="team" value="<%- t._id %>"
-        id="team_<%- t._id %>" <%- hero.team && hero.team.equals(t._id) ? "checked" : "" %>>
+        id="team_<%- t._id %>" <%- hero.team && hero.team._id.equals(t._id) ? "checked" : "" %>>
         <label for="team_<%- t._id %>" class="form-check-label"><%= t.squadName %></label>
       </div>
     <% } %>
@@ -61,7 +61,7 @@
       <select class="form-select" id="teamFake" name="teamFake">
         <option value="">None</option>
         <% for(let t of teams) { %>
-            <%# Have to use .equals to compare _ids. OR convert to strings and compare those %>
+            <%# Have to use .equals to compare _ids!!! %>
             <option value="<%- t._id %>" <%- hero.team && hero.team.equals(t._id) ? "selected" : "" %>> 
               <%= t.squadName %>
             </option>
@@ -76,7 +76,7 @@
       <legend>Team</legend>
       <% for(let t of teams) { %>
         <div class="form-check">
-          <%# Have to use .equals to compare _ids. OR convert to strings and compare those %>
+          <%# Have to use .equals to compare _ids!!! %>
           <input type="checkbox" class="form-check-input" name="teamFake2" value="<%- t._id %>"
           id="team_fake2<%- t._id %>" <%- hero.team && hero.team.equals(t._id) ? "checked" : "" %>>
           <label for="team_fake2<%- t._id %>" class="form-check-label"><%= t.squadName %></label>
@@ -91,7 +91,7 @@
       <label for="teamFake3">Team (Fake) - use Control-Click to MultiSelect</label>
       <select class="form-select" id="teamFake3" name="teamFake3" multiple>
         <% for(let t of teams) { %>
-            <%# Have to use .equals to compare _ids. OR convert to strings and compare those %>
+            <%# Have to use .equals to compare _ids!!! %>
             <option value="<%- t._id %>" <%- hero.team && hero.team.equals(t._id) ? "selected" : "" %>> 
               <%= t.squadName %>
             </option>
@@ -114,7 +114,8 @@
   //Any time form is submitted, run validation on powers field
   form.addEventListener("submit", function (event) {
     console.log("We are validating form...");
-    validatePowers();
+    if(!validatePowers())
+      event.preventDefault();  //stop form from submitting
   });
 
   //Any time we change powers value, validate it
