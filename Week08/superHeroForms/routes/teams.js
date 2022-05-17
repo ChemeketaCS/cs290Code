@@ -74,7 +74,10 @@ router.post("/update/:id", async function (req, res, next) {
   team.squadName = req.body.squadName;
   team.homeTown = req.body.homeTown;
   team.formed = req.body.formed;
-  team.active = req.body.active; //If not checked, better have '' not 'false'
+  //team.active is boolean, req.body.active is string
+  //If form sends '', team.active will be false
+  //If form sends 'false', team.active will be true!!!
+  team.active = req.body.active;
 
   console.log(team);
 
