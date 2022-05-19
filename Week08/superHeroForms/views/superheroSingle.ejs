@@ -10,15 +10,14 @@
         <% } %>
       </ul>
       <% if(team) { %>
-      <p>Team: <a href="<%- team.url %>"><%- team.squadName %></a></p>
+      <p>Team: <a href="<%= team.url %>"><%= team.squadName %></a></p>
       <% } %>
     </div>
 
     <hr>
 
     <ul class="list-unstyled">
-      <li><a href="/heroes/update/<%- _id %>">Update this hero</a></li>
-      <li><a href="/heroes/delete/<%- _id %>">Delete this hero</a></li>
+      <li><a href="/heroes/update/<%= _id %>">Update this hero</a></li>
     </ul>
 
 

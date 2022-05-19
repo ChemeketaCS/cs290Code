@@ -6,15 +6,14 @@
     <p>Members:
       <ul>
         <% for (let m of members) { %>
-          <li><a href="<%- m.url %>"><%= m.name %></a></li>
+          <li><a href="<%= m.url %>"><%= m.name %></a></li>
         <% } %>
       </ul>
     </p>
 
     <hr>
     <ul class="list-unstyled">
-      <li><a href="/teams/update/<%- team._id %>">Update this team</a></li>
-      <li><a href="/teams/delete/<%- team._id %>">Delete this team</a></li>
+      <li><a href="/teams/update/<%= team._id %>">Update this team</a></li>
     </ul>
 
 <%- include("super-common-footer.ejs")%>

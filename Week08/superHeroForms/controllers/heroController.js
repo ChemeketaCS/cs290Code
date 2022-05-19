@@ -1,8 +1,10 @@
+// Functions to generate pages for hero routes
 const routeHelper = require("../routes/routeHelpers.js");
 
 const Hero = require("../models/hero.js");
 const Team = require("../models/team.js");
 
+//All heroes
 exports.heroList = async function (req, res, next) {
   try {
     let heroList = await Hero.find().sort("name").exec();
@@ -31,6 +33,7 @@ exports.heroListByName = async function (req, res, next) {
   }
 };
 
+//Single hero by id
 exports.heroById = async function (req, res, next) {
   try {
     let hero = await Hero.findById(req.params.id)
@@ -43,15 +46,7 @@ exports.heroById = async function (req, res, next) {
   }
 };
 
-exports.delete = async function (req, res, next) {
-  try {
-    await Hero.findByIdAndDelete(req.params.id).exec();
-    res.redirect("/heroes/");
-  } catch (err) {
-    next(err);
-  }
-};
-
+//Add a new hero
 exports.create = async function (req, res, next) {
   try {
     //Make a Hero Team object just to get any default values
@@ -71,7 +66,7 @@ exports.create = async function (req, res, next) {
   }
 };
 
-//Handles getting an editable form with hero data
+//Get an existing hero to edit
 exports.update_get = async function (req, res, next) {
   try {
     let hero = await Hero.findById(req.params.id).exec();
@@ -97,7 +92,8 @@ exports.update_post = [
   // body("name").escape(),                  //function call to sanitize the name input
   // body("secretIdentity").escape(),        //sanitize secret identity
   // body("powers").escape(),                //sanitize powers
-  async function (req, res, next) {       //now run my handler
+  async function (req, res, next) {
+    //now run my handler
     try {
       //If team exists in DB, fetch it
       let hero = await Hero.findById(req.params.id).exec();

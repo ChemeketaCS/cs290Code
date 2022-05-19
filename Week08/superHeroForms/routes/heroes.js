@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
+// Controller has the functions that are used by this route
 var heroController = require("../controllers/heroController.js");
 
 router.get("/", heroController.heroList);
@@ -8,8 +9,6 @@ router.get("/", heroController.heroList);
 router.get("/byname/:name", heroController.heroListByName);
 
 router.get("/id/:id", heroController.heroById);
-
-router.get("/delete/:id", heroController.delete);
 
 router.get("/create", heroController.create);
 
