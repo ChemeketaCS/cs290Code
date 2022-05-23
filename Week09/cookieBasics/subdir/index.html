@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>My cookie test page 2</title>
+  </head>
+  <body>
+    <p>This is a subdirectory.</p>
+    <p id="greeting">
+      Welcome stranger
+    </p>
+    <a href="../index.html">Go back</a>
+
+    <script>
+      let oldCookie = document.cookie;
+      console.log(oldCookie);
+      let cookieCrumbs = oldCookie.split(';');
+      for(let crumb of cookieCrumbs) {
+        crumb = crumb.trim();
+        let eqInd = crumb.search("=");
+        let key = crumb.substr(0, eqInd);
+        let value = crumb.substr(eqInd + 1);
+        console.log(key)
+        if(key === "username") {
+          document.getElementById("greeting").innerText = "Welcome back " + value;
+        }
+      }
+
+      //This assumes being served by a server using the cs290Code folder as root
+      document.cookie = "age=31; Path=/Week09/cookieBasics/subdir/";
+    </script>
+  </body>
+</html>

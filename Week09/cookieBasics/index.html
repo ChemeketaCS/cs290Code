@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>My cookie test page</title>
+  </head>
+  <body>
+    <p id="greeting">
+      Welcome stranger
+    </p>
+    <a href="subdir/index.html">Go to subdirectory</a>
+
+    <script>
+      let oldCookie = document.cookie;
+      console.log(oldCookie);
+      let cookieCrumbs = oldCookie.split(';');
+      for(let crumb of cookieCrumbs) {
+        crumb = crumb.trim();
+        let eqInd = crumb.search("=");
+        let key = crumb.substr(0, eqInd);
+        let value = crumb.substr(eqInd + 1);
+        console.log(key)
+        if(key === "username") {
+          document.getElementById("greeting").innerText = "Welcome back " + value;
+        }
+      }
+
+      let expire = new Date();
+      expire.setTime(Date.now() + 60 * 1000);  //expire in one minute
+      let expireString = expire.toUTCString();
+      console.log(expireString);
+      document.cookie = "username=John Doe; Expires=" + expireString;
+      document.cookie = "favorite_color=blue; Expires=" + expireString;
+    </script>
+  </body>
+</html>
