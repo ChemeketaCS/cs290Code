@@ -4,7 +4,9 @@
     "description": "",
     "main": "serve.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "start": "node serve.js",
+        "debugmac": "DEBUG=* & npm start",
+        "debugwin": "set DEBUG=* & npm start"
     },
     "author": "",
     "license": "ISC",
