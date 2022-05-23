@@ -27,7 +27,7 @@
     <input type="date" class="form-control" name="formed" value="<%= team.formed_html %>" >
   </div>
   <div class="mb-3 form-check">
-    <input class="form-check-input" type="checkbox" name="active" id="active" <%= team.active !== undefined ? "checked" : "" %>>
+    <input class="form-check-input" type="checkbox" name="active" id="active" value="true" <%= team.active === true ? "checked" : "" %>>
     <label for="active" class="form-check-label">Active</label>
   </div>
   <button class="btn btn-primary my-3" type="submit">Submit</button>

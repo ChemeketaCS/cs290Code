@@ -92,7 +92,7 @@
       <select class="form-select" id="teamFake3" name="teamFake3" multiple>
         <% for(let t of teams) { %>
             <%# Have to use .equals to compare _ids!!! %>
-            <option value="<%= t._id %>" <%= hero.team && hero.team.equals(t._id) ? "selected" : "" %>> 
+            <option value="<%= t._id %>" <%= hero.team && hero.team._id.equals(t._id) ? "selected" : "" %>> 
               <%= t.squadName %>
             </option>
         <% } %>
