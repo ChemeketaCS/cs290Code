@@ -251,24 +251,19 @@ exports.book_delete_post = function (req, res, next) {
         return next(err);
       }
       // Success
-      if (results.book_bookinstances.length > 0) {
-        // Book has book_instances. Render in same way as for GET route.
-        res.render("book_delete", {
-          title: "Delete Book",
-          book: results.book,
-          book_instances: results.book_bookinstances,
-        });
-        return;
-      } else {
-        // Book has no BookInstance objects. Delete object and redirect to the list of books.
-        Book.findByIdAndRemove(req.body.id, function deleteBook(err) {
-          if (err) {
-            return next(err);
-          }
-          // Success - got to books list.
-          res.redirect("/catalog/books");
-        });
+
+      // Delete any existing instances
+      for (let instance of results.book_bookinstances) {
+        instance.remove();
       }
+      // Now delete object and redirect to the list of books.
+      Book.findByIdAndRemove(req.body.id, function deleteBook(err) {
+        if (err) {
+          return next(err);
+        }
+        // Success - got to books list.
+        res.redirect("/catalog/books");
+      });
     }
   );
 };

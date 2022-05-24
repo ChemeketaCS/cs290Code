@@ -7,7 +7,6 @@
 <p><strong>Author: </strong><a href="<%- book.author.url %>"><%= book.author.name %></a></p>
 <p><strong>Summary:</strong> <%= book.summary %></p>
 
-<% if(book_instances.length === 0) { %>
   <p>Do you really want to delete this Book?</p>
   
   <form method="POST" action="">
@@ -17,8 +16,8 @@
       </div>
     </form>
 
-<% } else { %>
-  <p><strong>Delete the following copies before attempting to delete this Book.</strong></p>
+<% if(book_instances.length !== 0) { %>
+  <p><strong>The following instances will be deleted also:</strong></p>
   <% book_instances.forEach(function(instance) {   %>
       <p><strong>Instance Id: </strong><a href="<%- instance.url %>"><%= instance._id %></a></p>
   <% }) //foreach %>
