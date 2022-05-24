@@ -150,25 +150,21 @@ exports.genre_delete_post = function (req, res, next) {
       if (err) {
         return next(err);
       }
-      // Success
-      if (results.genre_books.length > 0) {
-        // Genre has books. Render in same way as for GET route.
-        res.render("genre_delete", {
-          title: "Delete Genre",
-          genre: results.genre,
-          genre_books: results.genre_books,
-        });
-        return;
-      } else {
-        // Genre has no books. Delete object and redirect to the list of genres.
-        Genre.findByIdAndRemove(req.body.id, function deleteGenre(err) {
-          if (err) {
-            return next(err);
-          }
-          // Success - go to genres list.
-          res.redirect("/catalog/genres");
-        });
+      // Success - remove it from all books with that genre
+      for (let book of results.genre_books) {
+        //pull removes matching item from a mongoose array
+        book.genre.pull({ _id: results.genre._id });
+        book.save();
       }
+
+      // Now delete object and redirect to the list of genres.
+      Genre.findByIdAndRemove(req.body.id, function deleteGenre(err) {
+        if (err) {
+          return next(err);
+        }
+        // Success - go to genres list.
+        res.redirect("/catalog/genres");
+      });
     }
   );
 };
