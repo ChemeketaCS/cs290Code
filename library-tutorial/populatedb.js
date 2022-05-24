@@ -307,27 +307,26 @@ function createBookInstances(cb) {
 }
 
 //clears all existing data
-function clearAllExistingRecords(callback) {
-  mongoose.connection.dropDatabase();
-  callback(null, 1);
+async function clearAllExistingRecords() {
+  await Author.deleteMany();
+  await Book.deleteMany();
+  await BookInstance.deleteMany();
+  await Genre.deleteMany();
 }
 
-//generate new data with asynchronous calls.
-async.series(
-  [
-    clearAllExistingRecords,
-    createGenreAuthors,
-    createBooks,
-    createBookInstances,
-  ],
-  // Optional callback
-  function (err, results) {
-    if (err) {
-      console.log("FINAL ERR: " + err);
-    } else {
-      console.log("BOOKInstances: " + bookinstances);
+//Clear existing records then reload
+clearAllExistingRecords().then((result) => {
+  async.series(
+    [createGenreAuthors, createBooks, createBookInstances],
+    // Optional callback
+    function (err, results) {
+      if (err) {
+        //console.log("FINAL ERR: " + err);
+      } else {
+        //console.log("BOOK Instances: " + bookinstances);
+      }
+      // All done, disconnect from database
+      mongoose.connection.close();
     }
-    // All done, disconnect from database
-    mongoose.connection.close();
-  }
-);
+  );
+});
