@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>Hero Vue</title>
+    <script src="https://unpkg.com/vue"></script>
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Hero Editor</h1>
+      <div id="app">
+        <div class="spinner-border" role="status" v-if="state == 'loading'">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+
+        <div v-else>
+          <form @submit.prevent="onSubmit">
+            <input type="hidden" v-model="hero._id" />
+            <div class="mb-3">
+              <b>Name: </b><input type="text" v-model="hero.name" />
+            </div>
+            <div class="mb-3">
+              <b>Age: </b><input type="number" v-model="hero.age" />
+            </div>
+            <div class="mb-3" v-if="hero.team">
+              <b>Team: </b> {{ hero.team.squadName }}
+            </div>
+            <div class="mb-3">
+              <ul>
+                <li v-for="item in hero.powers">{{ item }}</li>
+              </ul>
+            </div>
+            <div class="mb-3">
+              <button
+                type="submit"
+                :disabled="state == 'updating'"
+                class="me-3"
+              >
+                Submit Changes
+              </button>
+              <button @click="deleteItem" :disabled="state == 'updating'">
+                Delete Item
+              </button>
+              <div
+                class="spinner-border spinner-border-sm mx-2 mb-1"
+                role="status"
+                v-if="state == 'updating'"
+              >
+                <span class="visually-hidden">Updating...</span>
+              </div>
+            </div>
+          </form>
+          <div class="mb-3">
+            <button @click="prev" :disabled="state == 'updating'" class="me-3">
+              Previous Hero
+            </button>
+            <button @click="next" :disabled="state == 'updating'">
+              Next Hero
+            </button>
+          </div>
+          <div
+            v-if="errorMessage"
+            v-html="errorMessage"
+            class="alert alert-danger"
+          ></div>
+        </div>
+      </div>
+
+      <script>
+        const { createApp } = Vue;
+        let vueApp = createApp({
+          data() {
+            return {
+              state: "loading",
+              errorMessage: "",
+              hero: undefined,
+              heroList: [],
+              curHero: -1,
+            };
+          },
+          created() {
+            this.getData();
+          },
+          methods: {
+            onSubmit() {
+              this.updateData();
+            },
+            next() {
+              this.hero = this.heroList[++this.curHero % this.heroList.length];
+            },
+            prev() {
+              if (this.curHero === 0) this.curHero = this.heroList.length;
+              this.hero = this.heroList[--this.curHero % this.heroList.length];
+            },
+            async deleteItem() {
+              let app = this;
+              app.state = "updating";
+              let response = await fetch(`/api/delete/${this.hero._id}`);
+
+              if (response.status === 204) {
+                //successful delete - remove from array
+                this.heroList.splice(this.curHero, 1);
+                this.curHero--;
+                this.next();
+              } else if (response.status === 500) {
+                app.errorMessage = err;
+              }
+              //else nothing special to do
+              app.state = "";
+            },
+            async updateData() {
+              let app = this;
+              app.state = "updating";
+              let data = JSON.stringify(app.hero);
+              let response = await fetch("/api/update/", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: data,
+              });
+
+              if (response.status === 500) {
+                app.errorMessage = err;
+              } else if (response.status === 400) {
+                let json = await response.json();
+                let errorHTML = Object.values(json).join("<br>");
+                app.errorMessage = errorHTML;
+              }
+              //else nothing special to do
+              app.state = "";
+            },
+            async getData() {
+              let app = this;
+              await fetch("/api/")
+                .then((response) => {
+                  return response.json();
+                })
+                .then(function (heroList) {
+                  console.log(heroList);
+                  app.heroList = heroList;
+                  app.curHero = 0;
+                  app.hero = app.heroList[0];
+                  app.state = "";
+                })
+                .catch((err) => {
+                  app.state = "error";
+                });
+            },
+          },
+        });
+        vueApp.mount("#app");
+      </script>
+    </main>
+  </body>
+</html>

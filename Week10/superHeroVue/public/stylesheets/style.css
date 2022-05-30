@@ -1,0 +1,37 @@
+body {
+  padding: 50px;
+  font: "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #005374;
+}
+
+label em {
+  color: #888;
+  font-size: 90%;
+  position: relative;
+  top: -1px;
+}
+
+.btn-primary {
+  background-color: #005374;
+  border-color: #005374;
+}
+
+.list-unstyled {
+  line-height: 175%;
+}
+
+.form-check-input {
+  margin-top: 0.25em;
+}
+
+.btn {
+  font-size: 110%;
+}
+
+.form-check-input:checked {
+  border-color: #005374;
+  background-color: #005374;
+}
