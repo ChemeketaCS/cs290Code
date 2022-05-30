@@ -1,9 +1,11 @@
+<% console.log(locals) %>
 
 <p>
     Scriptlet <% name %>
 </p>
 <p>
     Basic insertion <%- name %>
+    Basic insertion <%- locals.name %>  <%#Same as name %>
 </p>
 <p>
     HTML Escape <%= name %>
