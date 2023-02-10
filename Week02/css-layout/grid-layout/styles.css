@@ -12,51 +12,55 @@ img {
 
 .logo {
   font-size: 200%;
-  padding: 50px 20px;
-  margin: 0 auto;
-  max-width: 980px;
+  text-align: center;
+  padding: 20px 0;
+  background: rgb(193, 207, 230);
 }
 
 main {
   max-width: 1200px;
   min-width: 800px;
-  margin: 0 auto;
-  display: flex;
-}
 
-main article {
-  flex: 500px 1;
-  margin-right: 40px;
+  margin: 0 auto;
+
   padding: 10px;
+
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
 }
 
 main aside {
-  padding-top: 10px;
-  flex: 225px 0;
+  padding-left: 20px;
+  border-left: 1px solid #ccc;
 }
+
 nav {
   background-color: #000;
   padding: 0.5em;
-  top: 0;
-  position: sticky;
 }
 
 nav ul {
-  margin: 0 auto;
   padding: 0;
+
+  min-width: 800px;
   max-width: 1200px;
-  list-style: none;
-  display: flex;
-  justify-content: flex-start;
+  margin: 0 auto;
 }
 
 nav ul li {
+  display: inline-block;
   margin-right: 20px;
 }
 
 nav a {
   color: #fff;
   text-decoration: none;
+}
+
+nav a:hover {
+  color: hsl(204, 100%, 87%);
+  text-decoration: underline;
 }
 
 .photos {

@@ -12,9 +12,9 @@ img {
 
 .logo {
   font-size: 200%;
-  padding: 50px 20px;
-  margin: 0 auto;
-  max-width: 980px;
+  text-align: center;
+  padding: 20px 0;
+  background: rgb(193, 207, 230);
 }
 
 main {
@@ -23,7 +23,6 @@ main {
 
 main article {
   flex: 500px 1;
-  margin-right: 40px;
   padding: 10px;
 }
 
@@ -32,31 +31,69 @@ main aside {
   flex: 225px 0;
 }
 
+/* Hamburger menu start */
+#menu-toggle {
+  display: none;
+}
+
+.menu-button {
+  display: block;
+  color: white;
+  padding: 5px 0;
+}
+
+.menu-button img {
+  filter: invert(100%);
+  width: 30px;
+  height: 30px;
+}
+
+.menu-body {
+  display: none;
+}
+
+/* + is "immediately follows" */
+#menu-toggle:checked + .menu-button-container img {
+  margin-top: 0px;
+  transform: rotate(90deg);
+}
+
+/* ~ is "later sibling of" */
+#menu-toggle:checked ~ .menu-body {
+  display: block;
+}
+/* Hamburger menu end */
+
 nav {
   background-color: #000;
   padding: 0.5em;
-  padding-bottom: 0;
   top: 0;
   position: sticky;
 }
 
 nav ul {
-  margin: 0;
-  padding: 0;
   list-style: none;
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
 }
 
 nav ul li {
-  margin-right: 20px;
   margin-bottom: 0.5em;
 }
 
 nav a {
   color: #fff;
   text-decoration: none;
+}
+
+nav a:hover {
+  color: hsl(204, 100%, 87%);
+  text-decoration: underline;
+}
+
+.feature {
+  max-width: 80%;
+  margin: 10px auto;
 }
 
 .photos {
@@ -73,16 +110,30 @@ nav a {
   margin-bottom: 10px;
 }
 
-.feature {
-  width: 200px;
-  float: left;
-  margin: 0 20px 20px 0;
-}
-
 @media (min-width: 800px) {
   /* only apply these rules if screen width >= 800 */
 
+  .menu-button-container {
+    display: none;
+  }
+
+  .menu-body {
+    display: block;
+  }
+
+  nav ul li {
+    margin-right: 20px;
+    margin-bottom: 0;
+    display: inline-block;
+  }
+
   nav ul {
+    padding: 0;
+    display: inline-block;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
     margin: 0 auto;
     max-width: 1200px;
     min-width: 800px;
@@ -104,5 +155,11 @@ nav a {
   main aside {
     padding: 0.5em;
     flex: 225px 0;
+  }
+
+  .feature {
+    max-width: 300px;
+    float: left;
+    margin: 0 20px 10px 0;
   }
 }

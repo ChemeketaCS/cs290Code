@@ -1,16 +1,17 @@
 .logo {
-  font-size: 200%;
+  font-size: 250%;
+  background: hsl(204, 100%, 87%);
 }
 
 /* .photos img {
   max-width: 100%;
 } */
 
-nav a {
+.navbar-dark .navbar-nav .nav-link {
   color: white;
 }
 
-nav a:hover {
+.navbar-dark .navbar-nav .nav-link:hover {
   color: hsl(204, 100%, 87%);
   text-decoration: underline;
 }
