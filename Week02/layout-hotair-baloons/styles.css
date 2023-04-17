@@ -3,6 +3,7 @@ body {
   color: #333;
   margin: 0;
   font: 1.2em / 1.2 Arial, Helvetica, sans-serif;
+  box-sizing: border-box; 
 }
 
 img {
@@ -11,19 +12,18 @@ img {
 }
 
 .logo {
+  background: rgb(185, 209, 236);
+  text-align: center;
   font-size: 200%;
   padding: 50px 20px;
   margin: 0 auto;
-  max-width: 980px;
 }
 
 main {
-  width: 1200px;
+  max-width: 1200px;
+  box-sizing: border-box; 
+  padding: 0 20px;
   margin: 0 auto;
-}
-
-main article {
-  padding: 10px;
 }
 
 main aside {
@@ -34,7 +34,6 @@ main aside {
 
 nav {
   background-color: #000;
-  padding: 0.5em;
   top: 0;
   position: sticky;
 }
@@ -43,17 +42,24 @@ nav ul {
   margin: 0 auto;
   padding: 0;
   max-width: 1200px;
+  box-sizing: border-box; 
+  padding: 10px 20px;
   list-style: none;
 }
 
 nav ul li {
   margin-right: 20px;
-  display: inline-block
+  display: inline-block;
 }
 
 nav a {
-  color: #fff;
+  color: rgb(227, 237, 248);
   text-decoration: none;
+}
+
+nav a:hover {
+  color: white;
+  text-decoration: underline;
 }
 
 .photos {
@@ -76,4 +82,4 @@ nav a {
   width: 200px;
   float: left;
   margin: 0 20px 20px 0;
-}
+}=
