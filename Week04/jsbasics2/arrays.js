@@ -39,7 +39,6 @@ for (let dog of arrayDogs) {
   console.log(dog);
 }
 
-
 arrayDogs.forEach(function (dogName) {
   console.log("Who's a good dog " + dogName + "?");
 });
@@ -60,6 +59,7 @@ console.log(arrayDogs.indexOf("Bella"));
 console.log(arrayDogs.indexOf("Tramp"));
 
 console.log("-----------------------------");
+console.log("Modifications");
 
 let notacopy = arrayDogs;
 notacopy.push("Odie");
@@ -87,6 +87,7 @@ console.log(critters);
 console.log(arrayDogs);
 
 console.log("-----------------------------");
+console.log("Sorts");
 
 let array1 = [1, 30, 4, 21, 100000];
 array1.sort();
@@ -98,14 +99,56 @@ function compareNumbers(a, b) {
 array1.sort(compareNumbers);
 console.log(array1);
 
+//Sort strings by length
+console.log("Sort by name");
+critters.sort();
+console.log(critters);
+
+console.log("Sort by name desc");
+//Descending sort
+critters.sort((a, b) => {
+  if(a < b) return 1;
+  if(a > b) return -1;
+  return 0;
+});  
+console.log(critters);
+//or
+critters.sort().reverse();
+console.log(critters);
+
+
+console.log("Sort some numbers again:");
 let numbers = [4, 2, 5, 1, 3];
 
+//ascending
 numbers.sort((a, b) => a - b);
+//or
+numbers.sort();
 console.log(numbers);
 
+//Descending
 numbers.sort((a, b) => b - a);
+//or
+numbers.sort().reverse();
 console.log(numbers);
 
-//Long to short
+console.log("Sort by length");
+//Ascending sort
+function lengthCompare(strA, strB) {
+  if (strA.length < strB.length) return -1;
+  if (strA.length > strB.length) return 1;
+  return 0;
+}
+critters.sort(lengthCompare);
+console.log(critters);
+//or
+critters.sort((a, b) => a.length - b.length);
+console.log(critters);
+
+//Descending sort
+console.log("Sort by length desc");
+critters.sort(lengthCompare).reverse();
+console.log(critters);
+//or
 critters.sort((a, b) => b.length - a.length);
 console.log(critters);
