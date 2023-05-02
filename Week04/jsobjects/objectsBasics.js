@@ -21,10 +21,6 @@ person1["major"] = "CS";
 delete person1.age;
 console.log(person1);
 
-for (let key in person1) {
-  console.log("----" + key + " = " + person1[key]);
-}
-
 console.log("---------------------------");
 //make an object starting with an empty one
 const otherPerson = {};
@@ -35,8 +31,29 @@ otherPerson.age = 26;
 console.log(otherPerson);
 
 console.log("---------------------------");
-console.log("Using as an associative array");
+console.log("Loops");
+
+for (let key in person1) {
+  console.log("----" + key + " = " + person1[key]);
+}
+
 const items = ["Apple", "Banana", "Pear", "Apple", "Apple", "Orange", "Pear"];
+for (let item of items) {
+  console.log(item);
+}
+
+//Produce array of keys/values/both
+console.log(Object.keys(person1));
+console.log(Object.values(person1));
+console.log(Object.entries(person1));
+
+//Loop through array of key/value pairs that exist in object
+for (let [key, value] of Object.entries(person1)) {
+  console.log("----" + key + " = " + value);
+}
+
+console.log("---------------------------");
+console.log("Using as an associative array");
 const itemCounts = {};
 
 for (let item of items) {

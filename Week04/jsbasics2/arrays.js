@@ -89,6 +89,7 @@ console.log(arrayDogs);
 console.log("-----------------------------");
 console.log("Sorts");
 
+console.log("sort() sorts alphabetically.... does not work on numbers!")
 let array1 = [1, 30, 4, 21, 100000];
 array1.sort();
 console.log(array1);
@@ -122,14 +123,13 @@ let numbers = [4, 2, 5, 1, 3];
 
 //ascending
 numbers.sort((a, b) => a - b);
-//or
-numbers.sort();
 console.log(numbers);
 
 //Descending
 numbers.sort((a, b) => b - a);
+console.log(numbers);
 //or
-numbers.sort().reverse();
+numbers.sort((a, b) => a - b).reverse();
 console.log(numbers);
 
 console.log("Sort by length");
@@ -139,10 +139,10 @@ function lengthCompare(strA, strB) {
   if (strA.length > strB.length) return 1;
   return 0;
 }
+
 critters.sort(lengthCompare);
-console.log(critters);
-//or
 critters.sort((a, b) => a.length - b.length);
+//or
 console.log(critters);
 
 //Descending sort
