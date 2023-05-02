@@ -19,6 +19,7 @@
         return 0;
       }
 
+
       //Get beer list using .then syntax for promises
       function doStuffThen() {
         //Make web request for data
@@ -44,6 +45,7 @@
 
         console.log("Done running doStuff");
       }
+
 
       //Same but using await syntax
       async function doStuffAwait() {
@@ -71,7 +73,8 @@
       }
 
       let fillBtn = document.querySelector("#go");
-      fillBtn.addEventListener("click", doStuffThen);
+      fillBtn.addEventListener("click", doStuffAwait);
+      //fillBtn.addEventListener("click", doStuffThen);
     </script>
   </body>
 </html>

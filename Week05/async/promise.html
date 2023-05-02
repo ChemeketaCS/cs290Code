@@ -6,28 +6,63 @@
     <style></style>
   </head>
   <body>
-    <button id="go">Go</button>
+    <button id="doPromise">Do Promise</button>
+    <button id="doChain">Do Chain</button>
+    <button id="doStuffParallel">Do StuffParallel</button>
     <p>Open the console to see the results...</p>
     <script>
+
+      //Function that simulates a slow operation that returns a promise
       function later(delay, value) {
-        return new Promise((resolve) => setTimeout(resolve, delay, value));
+        let promise = new Promise(function(resolve, reject) {
+          // the function is executed automatically when the promise is constructed
+          // after delaying for indicated amount of time, either rejects or resolves promise
+          setTimeout(() => { resolve(value)}, delay);
+        });
+        return promise;
       }
 
-      function doStuff() {
+      //Function that simulates a slow operation that returns a promise that may fail
+      function laterFailable(delay, value) {
+        let promise = new Promise(function(resolve, reject) {
+          // the function is executed automatically when the promise is constructed
+          // after delaying for indicated amount of time, either rejects or resolves promise
+          setTimeout(() => { Math.random() < 0.5 ? resolve(value) : reject("Unlucky!!!") }, delay);
+        });
+        return promise;
+      }
+
+      
+      function doPromise() {
+        //Ask for some data that will not be available for about 5 seconds
+        let promisedResult = laterFailable(2000, "Here is some data");
+        console.log("Have promise:", promisedResult);
+        promisedResult
+          .then((response) => {
+            console.log("Have result of promise:", response);
+          })
+          .catch((error) => {
+            console.log("We had an issue " + error);
+          });
+        console.log("Done with doPromise");
+      }
+
+      function doChain() {
         console.log("Starting doStuff");
-        let myPromise = later(1000, "Later 1");
-        myPromise
+        let start = performance.now();
+
+        later(2000, "Job 1")  //call that returns a promise
           .then((response) => {
             console.log(response);
-            return later(1000, "Later 2");
+            return later(1000, "Job 2"); //new call that returns a promise
           })
           .then((response) => {
             console.log(response);
-            return later(1000, "Later 3");
+            return later(1000, "Job 3");
           })
           .then((response) => {
             console.log(response);
-            return later(1000, "Later 4");
+            return later(1000, "Job 4");
           })
           .then((response) => {
             console.log(response);
@@ -37,32 +72,38 @@
             console.log("We had an issue " + error);
           })
           .finally(() => {
-            console.log("Done with promise chain");
+            let end = performance.now();
+            console.log("Done with promise chain in " + (end - start) + "ms");
           });
 
-        console.log("Ending doStuff");
+        console.log("Ending doChain");
       }
 
       async function doStuffParallel() {
+        //Call three long functions that each return a promise
         let result1 = later(1000, "Parallel Stuff 1");
         let result2 = later(1000, "Parallel Stuff 2");
         let result3 = later(1000, "Parallel Stuff 3");
 
+        let start = performance.now();
+        //Wait for all three to resolve
         Promise.all([result1, result2, result3]).then((values) => {
           console.log(values);
+          let end = performance.now();
+          console.log("   Finished Parallel Stuff in " + (end - start) + "ms");
         });
 
         console.log("Done doing doStuffParallel");
       }
 
-      function doThings() {
-        doStuff();
-        doStuffParallel();
-        console.log("Done with things");
-      }
+      let promiseBtn = document.querySelector("#doPromise");
+      promiseBtn.addEventListener("click", doPromise);
 
-      let fillBtn = document.querySelector("#go");
-      fillBtn.addEventListener("click", doThings);
+      let chainBtn = document.querySelector("#doChain");
+      chainBtn.addEventListener("click", doChain);
+
+      let parallelBtn = document.querySelector("#doStuffParallel");
+      parallelBtn.addEventListener("click", doStuffParallel);
     </script>
   </body>
 </html>

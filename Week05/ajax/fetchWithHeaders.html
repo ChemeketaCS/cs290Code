@@ -26,12 +26,15 @@
         try {
           const response = await fetch(url, options);
 
+          console.log(response);
           if (response.status != 200)
             throw response.status + " " + response.statusText;
 
+          //Read the body of the response and wait until that is done.
           const result = await response.json();
+
+          //Show the results
           console.log(result);
-          console.log(result.response);
 
           //Response has an array with one element. It is an array of 60 items
           const records = result.response[0];

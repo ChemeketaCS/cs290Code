@@ -6,45 +6,59 @@
     <style></style>
   </head>
   <body>
-    <button id="go">Go</button>
+    <button id="startTick">Start Ticker</button>
+    <button id="doChain">Do Chain</button>
     <p>Open the console to see the results...</p>
     <script>
-      function doStuff() {
+
+      function doChain() {
         console.log("Starting doStuff");
 
         setTimeout(function () {
+  
           console.log("Done with first job");
           setTimeout(function () {
+
             console.log("Done with second job");
             setTimeout(function () {
               console.log("Done with third job");
-            }, 2000);
+            },
+            2000);
           }, 2000);
         }, 2000);
 
-        console.log("Ending doStuff");
+        console.log("Ending doChain");
       }
 
-      let fillBtn = document.querySelector("#go");
-      fillBtn.addEventListener("click", doStuff);
+      //Starts up an interval timer that will tick off 10 seconds
+      function startTicker() {
+        const maxTicks = 10;
+        let ticks = 0;
 
-      console.log("Starting a long job");
+        let intervalID = setInterval(function () {
+          console.log("tick...", ticks);
+          ticks++;
+          if (ticks == maxTicks) clearTimeout(intervalID);
+        }, 1000);
+      }
+
+      //Set up code to call function later
       setTimeout(
         function (input) {
           console.log("Callback is executing with " + input);
         },
-        2000,
-        "This information"
+        2000,  //ms
+        42     //value to pass to function
       );
+
+      let fillBtn = document.querySelector("#startTick");
+      fillBtn.addEventListener("click", startTicker);
+
+      let chainBtn = document.querySelector("#doChain");
+      chainBtn.addEventListener("click", doChain);
+
       console.log("Done with loading all js");
 
-      const maxTicks = 10;
-      let ticks = 0;
-      let intervalID = setInterval(function () {
-        console.log("tick...");
-        ticks++;
-        if (ticks == maxTicks) clearTimeout(intervalID);
-      }, 1000);
     </script>
   </body>
 </html>
