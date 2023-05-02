@@ -7,11 +7,17 @@
   </head>
   <body>
     <p>I use lots of threads. Open console to see!</p>
+    <p><a href="threadMulti.html">Switch to multithreaded</a></p>
+    <p><a href="threadSingle.html">Switch to single threaded code that runs directly on page</a></p>
+    <p><a href="threadSingleOnload.html">Switch to single threaded code that is event triggered</a></p>
     <script>
+      let start = performance.now();
       for (let i = 1; i <= 8; i++) {
         const worker = new Worker("worker.js");
         worker.onmessage = function (event) {
           console.log(event.data);
+          let end = performance.now();
+          console.log("   Finished in " + (end - start) + "ms");
         };
         worker.postMessage("Worker " + i);
       }

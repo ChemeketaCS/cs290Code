@@ -9,29 +9,55 @@
     <button id="go">Go</button>
     <p>Open the console to see the results...</p>
     <script>
-      function doStuff() {
-        fetch("https://api-basketball.p.rapidapi.com/timezone", {
+      async function doStuff() {
+        //get data from: https://rapidapi.com/api-sports/api/api-basketball/
+        //NBA is league 12
+        const url =
+          "https://api-basketball.p.rapidapi.com/standings?league=12&season=2022-2023";
+        const options = {
           method: "GET",
           headers: {
-            'X-RapidAPI-Host': 'api-basketball.p.rapidapi.com',
-            'X-RapidAPI-Key': 'cadc737909mshfc1ce44146d6cb1p16852djsn7698b616faba'
+            "X-RapidAPI-Host": "api-basketball.p.rapidapi.com",
+            "X-RapidAPI-Key":
+              "cadc737909mshfc1ce44146d6cb1p16852djsn7698b616faba",
           },
-        })
-          .then(function (response) {
-            console.log(response);
-            if (response.status == 200) {
-              return response.json();
-            } else throw response.status + " " + response.statusText;
-          })
-          .then(function (json) {
-            let data = json;
-            console.log(data);
-          })
-          .catch(function (err) {
-            console.log("Fetch problem: " + err.message);
-          });
+        };
 
-        console.log("Done running doStuff");
+        try {
+          const response = await fetch(url, options);
+
+          if (response.status != 200)
+            throw response.status + " " + response.statusText;
+
+          const result = await response.json();
+          console.log(result);
+          console.log(result.response);
+
+          //Response has an array with one element. It is an array of 60 items
+          const records = result.response[0];
+
+          for (let record of records) {
+            //console.log(record)
+            console.log(record.team.name);
+            let modifier = "th";
+            switch (record.position) {
+              case 1:
+                modifier = "st";
+                break;
+              case 2:
+                modifier = "nd";
+                break;
+              case 2:
+                modifier = "rd";
+                break;
+            }
+            console.log(
+              `  ${record.position}${modifier} place in the ${record.group.name}`
+            );
+          }
+        } catch (error) {
+          console.error(error);
+        }
       }
 
       let fillBtn = document.querySelector("#go");

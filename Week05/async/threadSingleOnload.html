@@ -7,10 +7,11 @@
   </head>
   <body>
     <p>Open console to see results...</p>
+    <p><a href="threadSingle.html">Switch to code that runs directly on page</a></p>
     <script>
       function expensiveJob(name) {
         let myDate;
-        for (let i = 0; i < 10000000; i++) {
+        for (let i = 0; i < 4000000; i++) {
           let date = new Date();
           myDate = date;
         }
@@ -18,6 +19,7 @@
         console.log(name + " finished at " + myDate);
       }
       window.onload = function () {
+        let start = performance.now();
         expensiveJob("Job 1");
         expensiveJob("Job 2");
         expensiveJob("Job 3");
@@ -26,7 +28,10 @@
         expensiveJob("Job 6");
         expensiveJob("Job 7");
         expensiveJob("Job 8");
+        let end = performance.now();
+        console.log("   Finished in " + (end - start) + "ms");
       };
+      console.log("Page loaded");
     </script>
   </body>
 </html>

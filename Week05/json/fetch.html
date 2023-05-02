@@ -19,14 +19,21 @@
         return 0;
       }
 
-      function doStuff() {
-        fetch("https://api.punkapi.com/v2/beers?per_page=20&yeast=05")
+      //Get beer list using .then syntax for promises
+      function doStuffThen() {
+        //Make web request for data
+        let promisedResult = fetch("https://api.punkapi.com/v2/beers?per_page=10&yeast=05");
+
+        fetch("https://api.punkapi.com/v2/beers?per_page=10&yeast=05")
           .then(function (response) {
+            //Make sure response code was OK
             if (response.status == 200) {
+              //Convert response data to json
               return response.json();
             } else throw response.status + " " + response.statusText;
           })
           .then(function (json) {
+            //Now use json data
             let recipes = json;
             recipes.sort(nameSort);
             console.log(recipes);
@@ -38,8 +45,33 @@
         console.log("Done running doStuff");
       }
 
+      //Same but using await syntax
+      async function doStuffAwait() {
+        try {
+          //Make web request for data
+          let response = await fetch(
+            "https://api.punkapi.com/v2/beers?per_page=10&yeast=05"
+          );
+
+          //Make sure response code was OK
+          if (response.status != 200)
+            throw response.status + " " + response.statusText;
+
+          //Convert response data to json
+          let recipes = await response.json();
+
+          //Now use json data
+          recipes.sort(nameSort);
+          console.log(recipes);
+        } catch (error) {
+          console.error(error);
+        }
+
+        console.log("Done running doStuff");
+      }
+
       let fillBtn = document.querySelector("#go");
-      fillBtn.addEventListener("click", doStuff);
+      fillBtn.addEventListener("click", doStuffThen);
     </script>
   </body>
 </html>
