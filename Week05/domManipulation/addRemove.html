@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Simple DOM example</title>
+    <style>
+      .red {
+        color: red;
+      }
+      .green {
+        color: #00ff44;
+      }
+      .underline {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+      <section>
+        <img class="fancy" src="dinosaur.jpg" alt="A red Tyrannosaurus Rex: A two legged dinosaur standing upright like a human, with small arms, and a large head with lots of sharp teeth.">
+        <p id="first" class="red large">Here we will add a link to the <a href="https://www.mozilla.org/">Mozilla homepage</a>.</p>
+        <p id="second">And a link to <a class="fancy" href="https://www.google.com/">google</a></p>
+
+        <script>
+          //Remove some things
+          const dinoImg = document.querySelector('img');
+          console.log(dinoImg);
+          dinoImg.remove();  //totally gone
+
+          const p1 = document.querySelector('#first');
+          p1.innerHTML = "";  //Still there, but empty contents
+
+          const p2 = document.querySelector('#second');
+          p2.style.display = "none";  //Still in DOM, still has contents, removed from layout
+
+
+          //Add elements by appending to the innerHTML of something
+          p1.innerHTML = "This is all <b>new!!!</b>";
+
+          //Can make elements with string containing HTML
+          let newContent = "<ul>";
+          for(let i = 0; i < 5; i++) {
+            newContent += `<li>Item ${i}</li>`;
+          }
+          newContent += "</ul>";
+          //add string to the contents of p1
+          p1.innerHTML += newContent;
+
+          //Or via createElement to make objects
+          const newList = document.createElement('ul');
+          //Can manipulate as objects
+          newList.classList.add('green');
+          for(let i = 0; i < 5; i++) {
+            const listItem = document.createElement('li');
+            listItem.append(document.createTextNode(`List item ${i}`));
+            //Add this <li> to the <ul> we made
+            newList.append(listItem);
+          }
+          //Add this <ul> we made to the end of the body
+          const body = document.querySelector('body');
+          body.append(newList);
+
+        </script>
+      </section>
+  </body>
+</html>

@@ -10,8 +10,8 @@
       .green {
         color: #00ff44;
       }
-      .center {
-        text-align: center;
+      .underline {
+        text-decoration: underline;
       }
     </style>
   </head>
@@ -35,14 +35,16 @@
           const p1Alt3 = document.getElementById('first');
 
           console.log(p1);
-          // console.log(p1Alt);
-          // console.log(p1Alt2);
-          // console.log(p1Alt3);
+          console.log(p1Alt);
+          console.log(p1Alt2);
+          console.log(p1Alt3);
+          console.log("--------------------------------");
           console.log(p1.innerText);
           console.log(p1.innerHTML);
           console.log(p1.id);
           console.log(p1.children);
           console.log(p1.childNodes);
+          console.log("--------------------------------");
 
 
           //Change style directly. style names go from -'s to camelcase
@@ -52,11 +54,11 @@
           
           //className is the string with list of classes
           console.log(p1.className);
-          p1.className = "green large";
+          p1.className = "red large";
+          console.log(p1.classList);
 
           //classList is an actual list of the individual styles - easier to add/remove
           // using it
-          console.log(p1.classList);
           p1.classList.remove("red");
           p1.classList.add("green");
           console.log(p1.classList);
@@ -67,51 +69,17 @@
           console.log(paragraphs);
           for(const p of paragraphs) {
             console.log(p);
-            p.classList.add("center");
+            p.classList.add("underline");
           }
 
-          //Can start do a querySelection within a found element instead of the
+          //Can do a querySelection within a found element instead of the
           // whole document
           //get second paragraph and change target of its first link:
           const secondP = paragraphs[1];
           const linksInSecondP = secondP.querySelectorAll('a');  //a's only within secondP
           console.log(linksInSecondP);
           linksInSecondP[0].href = "microsoft.com";
-
-          //Remove some things
-          const dinoImg = document.querySelector('img');
-          console.log(dinoImg);
-          dinoImg.remove();  //totally gone
-
-          p1.innerHTML = "";  //Still there, but empty contents
-
-          const p2 = document.querySelector('#second');
-          p2.style.display = "none";  //Still in DOM, still has contents, removed from layout
-
-
-          //Add elements by appending to the innerHTML of something
-          //add a list by appending to p1
-          p1.innerHTML = "This is all <b>new!!!</b>";
-          let newContent = "<ul>";
-          for(let i = 0; i < 5; i++) {
-            newContent += `<li>Item ${i}</li>`;
-          }
-          newContent += "</ul>";
-          p1.innerHTML += newContent;
-
           
-          //Or by createElement and then appending it to an existing item
-          //add another list
-          const body = document.querySelector('body');
-          const newList = document.createElement('ul');
-          newList.classList.add('cool');
-          for(let i = 0; i < 5; i++) {
-            const listItem = document.createElement('li');
-            listItem.append(document.createTextNode(`List item ${i}`));
-            newList.append(listItem);
-          }
-          body.append(newList);
-
         </script>
       </section>
   </body>

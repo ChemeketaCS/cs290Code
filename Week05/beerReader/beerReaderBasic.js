@@ -1,44 +1,37 @@
+//immediately start loading recipes... will happen asynchronously
+loadRecipies();
 
-const recipes = document.querySelector("#recipes");
+async function loadRecipies() {
+  try {
+    //Do request
+    let response = await fetch("https://api.punkapi.com/v2/beers?per_page=10&yeast=2007");
+    if (!response.ok) throw "Issue with request: " + response;
+    
+    //Read json data from request
+    let data = await response.json();
 
-//Newer way to clear existing recipes
-recipes.replaceChildren([]);
+    //start a string with the new HTML we will add to page
+    let newHTML = "";
+  
+    //Turn each into a card and add to the newHTML
+    for (const recipeObj of data) {
+      console.log(recipeObj);
+  
+      let recipeHTML = createBeerCard(recipeObj);
+      console.log(recipeHTML);
+  
+      newHTML += recipeHTML;
+      console.log(newHTML);
+    }
 
-// //Older way of clearing children
-// for (let c of recipes.children) {
-//     c.remove();
-// }
-// //OR
-// recipes.innerHTML = ""
+    //Now set the contents of the recipes element to be that string
+    const recipesElement = document.querySelector("#recipes");
+    recipesElement.innerHTML = newHTML;
 
-fetch("https://api.punkapi.com/v2/beers?per_page=20")
-.then((response) => {
-  if (!response.ok) console.error("Issue with request:", response);
-  return response.json();
-})
-.then((data) => {
-  console.log(data);
-
-  //start a string with the new HTML we will add
-  let newHTML = "";
-
-  //Turn each into a card and add to the newHTML
-  for (const recipeObj of data) {
-    console.log(recipeObj);
-
-    let recipeHTML = createBeerCard(recipeObj);
-    console.log(recipeHTML);
-
-    newHTML += recipeHTML;
-    console.log(newHTML);
+  } catch(error) {
+    console.error("Error:", error);
   }
-
-  //Now add the entire string to the end of recipes element
-  recipes.innerHTML += newHTML;
-})
-.catch((error) => {
-  console.error("Error:", error);
-});
+}
 
 
 //Given an object for a beer recipe, produce a formatted HTML

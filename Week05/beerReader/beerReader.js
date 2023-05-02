@@ -1,13 +1,17 @@
 //Add an event handler to the button
 const searchBtn = document.querySelector("#searchBtn");
-searchBtn.addEventListener("click", loadYeasts);
+searchBtn.addEventListener("click", searchForBeers);
 
-function loadYeasts() {
+//Function to do query when button pressed
+async function searchForBeers() {
+  //Find the yeast text field by ID and get the value from it
   const yeastNameTextField = document.querySelector("#yeast");
   const yeastName = yeastNameTextField.value;
+
+  //Find the div with the recipes
   const recipesList = document.querySelector("#recipes");
 
-  //Newer way to clear existing recipes
+  //Newer way to clear all child elements
   recipesList.replaceChildren([]);
 
   // //Older way of clearing children
@@ -15,40 +19,37 @@ function loadYeasts() {
   //     c.remove();
   // }
 
-  fetch("https://api.punkapi.com/v2/beers?per_page=20&yeast=" + yeastName)
-    .then((response) => {
-      if (!response.ok) console.error("Issue with request:", response);
+  try {
+    //Do request
+    let response = await fetch("https://api.punkapi.com/v2/beers?per_page=20&yeast=" + yeastName);
+    if (!response.ok) throw "Issue with request: " + response;
+    
+    //Read json data from request
+    let data = await response.json();
 
-      return response.json();
-    })
-    .then((data) => {
-      //Have JSON - array of recipes - sort by recipe name
-      data.sort((a, b) => {
-        let nameA = a.name.toLowerCase(),
-          nameB = b.name.toLowerCase();
-        if (nameA < nameB)
-          //sort string ascending
-          return -1;
-        if (nameA > nameB) return 1;
-        return 0;
-      });
-
-      //Turn each into a card and add to layout
-      for (const recipeObj of data) {
-        console.log(recipeObj);
-
-        let recipeElement = createBeerCard(recipeObj);
-        recipesList.appendChild(recipeElement);
-      }
-    })
-    .catch((error) => {
-      console.error("Error:", error);
+    //Sort the recipes by name ascending
+    data.sort((a, b) => {
+      let nameA = a.name.toLowerCase();
+      let nameB = b.name.toLowerCase();
+      if (nameA < nameB)
+        return -1;
+      if (nameA > nameB) return 1;
+      return 0;
     });
+
+    //Turn each into a card and add to layout
+    for (const recipeObj of data) {
+      console.log(recipeObj);
+      let recipeElement = createBeerCard(recipeObj);
+      recipesList.appendChild(recipeElement);
+    }
+  } catch(error) {
+    console.error("Error:", error);
+  }
 }
 
-//Given an object for a beer recipe, produce a formatted HTML
-// representation
-//Returns div to be added into layour
+//Given an object for a beer recipe, produce div containing data
+//Returns div to be added into layout
 function createBeerCard(recipeObj) {
   let container = createElementWithClass("div", "");
 

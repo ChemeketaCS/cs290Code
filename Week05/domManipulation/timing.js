@@ -5,6 +5,7 @@
 window.addEventListener("load", function () {
   const dino2 = document.querySelector("img");
   dino2.addEventListener("click", function () {
+    console.log("Fired click handler 1");
     this.style.boxShadow = "black 10px 10px 5px";
   });
 });
@@ -13,5 +14,6 @@ window.addEventListener("load", function () {
 //This will fail if the img tag has not been seen when this script is encountered
 const dino = document.querySelector("img");
 dino.addEventListener("click", function () {
+  console.log("Fired click handler 2");
   this.style.border = "5px solid blue";
 });
