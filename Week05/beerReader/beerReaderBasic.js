@@ -39,7 +39,7 @@ async function loadRecipies() {
 //Returns a string
 function createBeerCard(recipeObj) {
   //Using spaces and newlines will make it easier to read what gets generated
-  let resultString = "<div><div class='card h-100'>\n";
+  let resultString = "<div><div class='card'>\n";
   resultString    += "  <div class='card-header'>\n";
   resultString    += `    <h2 class='card-title'>${recipeObj.name}</h2>\n`;
   resultString    += "  </div>\n";

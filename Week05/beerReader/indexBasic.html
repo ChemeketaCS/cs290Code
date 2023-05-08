@@ -3,40 +3,42 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Beer Recipe Finder</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css"
-    />
     <style>
-      input {
-        margin-right: 20px;
+      .card {
+        width: 250px;
+        border: 1px solid black;
+        padding: 0;
       }
 
       .card-header {
         background: #282828;
         color: #ddd;
+        text-align: center;
       }
 
       .card-body {
         background-color: #f8f7f6;
+        padding: 10px;
       }
 
       .card-header h2 {
         font-size: 1.5em;
+        margin: 0;
       }
 
       .card-body h3 {
         font-size: 1.2em;
+        margin-top: 0;
       }
 
       .section {
         margin-bottom: 20px;
+      }
+
+      #recipes {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
       }
     </style>
   </head>
@@ -44,16 +46,8 @@
   <body>
     <main class="container">
       <h1 class="text-center">Beer Recipes</h1>
-      <div
-        id="recipes"
-        class="section row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"
-      ></div>
+      <div id="recipes"></div>
     </main>
     <script src="beerReaderBasic.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-      crossorigin="anonymous"
-    ></script>
   </body>
 </html>
