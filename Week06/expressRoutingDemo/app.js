@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+var createError = require('http-errors')
 
 var app = express();
 
@@ -33,17 +34,25 @@ app.get("/foo/", (req, res) => {
   res.sendFile(__dirname + "/public/foo/index.html");
 });
 
+
+//Intentionally causes an error
+app.get("/error", (req, res, next) => {
+  let error = createError(401, 'Please login to view this page.');
+  next(error);
+});
+
+
 //---------------------------------------------------
 
 
 //---------------------------------------------------
 // Direct all /dept requests to the rules in routes/department.js
 var departmentRouter = require('./routes/department');
-app.use('/dept', departmentRouter);
+app.use('/department', departmentRouter);
 
 //Direct /users requests to the routes in routes/users.js
 var usersRouter = require('./routes/users');
-app.use('/users', usersRouter);
+app.use('/user', usersRouter);
 //---------------------------------------------------
 
 //If no other route works, try looking for the file in the
@@ -57,19 +66,23 @@ app.use(function(req, res, next) {
 
 //---------------------------------------------------
   //send a custom 404 (file not found) page
+  res.status(404);
   res.sendFile(__dirname + "/public/404.html");
 //---------------------------------------------------
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  let message = err.message;
+  console.log(req.app);
 
-  // render the error page
+  // Set the status code of response, default to 500
   res.status(err.status || 500);
-  res.render('error');
+  
+  let body = `<h1>${message}</h1>`;
+  body += `<h2>${err.status}</h2>`;
+  body += `<pre>${err.stack}</pre>`;
+  res.send(body);
 });
 
 module.exports = app;
