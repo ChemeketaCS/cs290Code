@@ -1,11 +1,5 @@
-var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 
 var app = express();
 
@@ -13,52 +7,48 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
 //---------------------------------------------------
-// //New routes - Self contained here:
-// app.use("/test", (req, res) => {
-//   res.sendFile(__dirname + "/public/index.html");
-// });
-
+// //New routes - Self contained in this file:
 app.get("/test", (req, res) => {
   res.send("You accessed /test");
 });
 
-app.get("/test/file.html", (req, res) => {
-  res.send("You accessed /test/file.html");
-});
 
 app.get("/secret.html", (req, res, next) => {
   console.log("We are here...");
   //Add something to response
   res.body = "Start of message...<br>";
-  next(); //continue processing this
+  next(); //continue processing this...
 });
 
 app.get("/secret.html", (req, res) => {
   console.log("...and here");
   res.body += "...end of message";
   res.send(res.body); //send the body we built
+  //ends the chain of handlers
 });
+
+// Send a file
+app.get("/foo/", (req, res) => {
+  res.sendFile(__dirname + "/public/foo/index.html");
+});
+
 //---------------------------------------------------
 
 
 //---------------------------------------------------
-//New routes - direct all /dept requests to the
-// rules in routes/department.js
+// Direct all /dept requests to the rules in routes/department.js
 var departmentRouter = require('./routes/department');
 app.use('/dept', departmentRouter);
+
+//Direct /users requests to the routes in routes/users.js
+var usersRouter = require('./routes/users');
+app.use('/users', usersRouter);
 //---------------------------------------------------
 
-
-//Sample routes created by express generator:
-//app.use('/', indexRouter);            //Not being used
-app.use('/users', usersRouter);
+//If no other route works, try looking for the file in the
+// public folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
