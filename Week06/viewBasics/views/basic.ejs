@@ -1,25 +1,26 @@
 <% console.log(locals) %>
 
 <p>
-    Scriptlet <% name %>
-</p>
-<p>
-    Basic insertion <%- name %>
-    Basic insertion <%- locals.name %>  <%#Same as name %>
+    Basic insertion, no HTML escaping <%- name %>
+    Basic insertion <%- locals.name %>  <%# Same as name %>
 </p>
 <p>
     HTML Escape <%= name %>
 </p>
 <p>
-    Whitespace slurping <%- name _%>                   
+    Whitespace slurping <%_ name _%>                   
 </p>
 <p>
     Newline trim <%- name -%>
 </p>
 
 
+<p>
+    Scriptlet <% name %> <%# This is a comment. Scriptlets have no output %>
+</p>
+
 Age???
-<% if (typeof(age) !== 'undefined') { -%>
+<% if (typeof(age) !== 'undefined') { -%> <%# Scriptlet used for flow control %>
 It is: <%- age -%>
 <%  } else { -%>
 Not provided
