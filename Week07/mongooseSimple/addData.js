@@ -2,10 +2,7 @@
 //Connect to DB with Mongoose
 const credentials = require("./dbCredentials.js");
 const mongoose = require("mongoose");
-mongoose.connect(credentials.connection_string, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(credentials.connection_string);
 
 //Create a schema
 let CitySchema = new mongoose.Schema({
@@ -28,5 +25,5 @@ let saveResult = metropolis.save();
 //Wait until done, then disconnect
 saveResult.then((data) => {
   console.log(data);
-  mongoose.disconnect();
+  mongoose.connection.close();
 });

@@ -1,12 +1,6 @@
 //Test out accessing data
 
-//Connect to DB with Mongoose
-const credentials = require("./dbCredentials.js");
 const mongoose = require("mongoose");
-mongoose.connect(credentials.connection_string, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
 
 //Create a schema
 let CitySchema = new mongoose.Schema({
@@ -17,6 +11,10 @@ let CitySchema = new mongoose.Schema({
 //Create a model from the schema
 let City = mongoose.model("City", CitySchema);
 
+//Connect to DB with Mongoose
+const credentials = require("./dbCredentials.js");
+mongoose.connect(credentials.connection_string);
+
 //Get all cities - returns a promise
 let findResult = City.find().exec();
 
@@ -26,5 +24,5 @@ findResult.then((data) => {
   console.log(data);
   console.log("First city's name is:", data[0].name);
   //close DB connection, allow script to end
-  //mongoose.disconnect();
+  mongoose.connection.close();
 });
