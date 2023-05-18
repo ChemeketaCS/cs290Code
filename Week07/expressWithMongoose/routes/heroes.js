@@ -1,6 +1,8 @@
 var express = require("express");
 var router = express.Router();
 
+var createError = require('http-errors');
+
 const Hero = require("../models/hero");
 
 router.get("/", async function (req, res) {
@@ -23,10 +25,12 @@ router.get("/byname/:name", async function (req, res) {
   res.render("superheroList.ejs", { heroList: heroList });
 });
 
-router.get("/id/:id", async function (req, res) {
+router.get("/id/:id", async function (req, res, next) {
   let hero = await Hero.findById(req.params.id)
     .populate("team") //get data of team as well
-    .exec();
+    .exec().catch(next(createError(404)));
+
+
   //pass the hero itself to the view
   res.render("superheroSingle.ejs", hero);
 });
