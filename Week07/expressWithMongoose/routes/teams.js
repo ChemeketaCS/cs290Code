@@ -9,8 +9,17 @@ router.get("/", async function (req, res) {
   res.render("teamList.ejs", { teamList: teamList });
 });
 
-router.get("/id/:id", async function (req, res) {
-  let team = await Team.findById(req.params.id).exec();
+router.get("/id/:id", async function (req, res, next) {
+  let team = await Team.findById(req.params.id)
+    .exec() //do query
+    .catch(
+      //if there is a problem...
+      (except) => {
+        console.log("Error in hero router", except);
+        next(); //pass this on to next handler (404)
+      }
+    );
+    
   //Team doesn't know about heroes that are members
   //but provides a property to find them
   let members = await team.members;

@@ -23,11 +23,19 @@ router.get("/byname/:name", async function (req, res) {
   res.render("superheroList.ejs", { heroList: heroList });
 });
 
-router.get("/id/:id", async function (req, res) {
+router.get("/id/:id", async function (req, res, next) {
   let hero = await Hero.findById(req.params.id)
     .populate("team") //get data of team as well
-    .exec();
-  //pass the hero itself to the view
+    .exec() //do query
+    .catch(
+      //if there is a problem...
+      (except) => {
+        console.log("Error in hero router", except);
+        next();  //pass this on to next handler (404)
+      }
+    );
+
+  //Render view with found hero
   res.render("superheroSingle.ejs", hero);
 });
 

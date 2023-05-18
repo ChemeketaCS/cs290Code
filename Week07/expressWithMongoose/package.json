@@ -6,7 +6,9 @@
     "start": "node ./bin/www",
     "startWithReload": "nodemon ./bin/www",
     "addData": "node addData.js",
-    "testData": "node testData.js"
+    "testData": "node testData.js",
+    "debugmac": "DEBUG=* & npm run startWithReload",
+    "debugwin": "set DEBUG=* & npm run startWithReload"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
