@@ -1,4 +1,5 @@
 // Functions to generate pages for hero routes
+
 const routeHelper = require("../routes/routeHelpers.js");
 
 const Hero = require("../models/hero.js");
@@ -164,3 +165,10 @@ exports.update_post = [
     }
   },
 ];
+
+exports.delete = async function (req, res) {
+  //Team doesn't really know about hero, so just delete hero
+  await Hero.findByIdAndDelete(req.params.id).exec();
+  //Send the user back to the heroes page
+  res.redirect("/heroes/");
+};

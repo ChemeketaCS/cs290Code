@@ -29,8 +29,11 @@ TeamSchema.virtual("formed_short").get(function () {
   let d = this.formed;
   //js uses 0 indexed months and 1 indexed days!?!?!
   let monthNum = d.getMonth() + 1;
+  
   //days are 1 indexed - but need to ask for UTC date to avoid timezone issues
   let dayNum = d.getUTCDate();
+  //let dayNum = d.getDate();   //Will be timezone adjusted. Likely wrong!
+
   let dateString = monthNum + "/" + dayNum + "/" + d.getFullYear();
   return dateString;
 });

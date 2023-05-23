@@ -51,7 +51,7 @@ router.post("/update/:id", async function (req, res, next) {
       _id: req.body.id,
     });
 
-  console.log(req.body);
+  console.log("Request body: ", req.body);
 
   //Replace existing data
   team.squadName = req.body.squadName;
@@ -80,5 +80,23 @@ router.post("/update/:id", async function (req, res, next) {
       });
     });
 });
+
+router.get("/delete/:id", async function (req, res) {
+  //Before we delete the team, we need to find any hero's that are on this team
+  // and unset their Team
+  const Hero = require("../models/hero");
+  let teamHeroes = await Hero.find().where("team").eq(req.params.id).exec();
+  for (let h of teamHeroes) {
+    h.team = undefined; //tell mongoose to remove team field
+    h.save(); //no need to wait for result, just do it
+  }
+
+  //Now delete the team
+  let team = await Team.findByIdAndRemove(req.params.id).exec();
+
+  //Send the user back to the teams page
+  res.redirect("/teams/");
+});
+
 
 module.exports = router;

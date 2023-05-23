@@ -16,4 +16,6 @@ router.get("/update/:id", heroController.update_get);
 
 router.post("/update/:id", heroController.update_post);
 
+router.get("/delete/:id", heroController.delete);
+
 module.exports = router;
