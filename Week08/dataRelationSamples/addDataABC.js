@@ -62,27 +62,27 @@ async function loadAllRecords() {
     let ARec = ARecords[connection[0]];
     let BRec = BRecords[connection[1]];
 
-    //A and B records are denormalized - make sure to set both
     ARec.relatedB = BRec._id; //relatedB is a single value in A
-    BRec.relatedAs.push(ARec._id); //relatedAs is an array in B
   }
 
   //Now let's wire up the connections between As and Cs
-  for (let connection of dataFile.ACRelations) {
-    //Connection looks like [1, [0, 1]]. Get A record
-    let ARec = ARecords[connection[0]];
+  for (let connection of dataFile.CARelations) {
+    //Connection looks like [1, [0, 1]]. Get C record
+    let Cindex = connection[0];
+    let Alist = connection[1];
+    let CRec = CRecords[Cindex];
     //Loop through all indexes for C
-    for (let CIndex of connection[1]) {
-      let CRecord = CRecords[CIndex];
+    for (let AIndex of Alist) {
+      let ARec = ARecords[AIndex];
       //Relationship is normalized - only have to set on A side
-      ARec.relatedCs.push(CRecord._id);
+      CRec.relatedAs.push(ARec._id);
     }
   }
 
   console.log("Done updating:");
-  console.log(ARecords);
-  console.log(BRecords);
-  console.log(CRecords);
+  console.log("ARecords\n", ARecords);
+  console.log("BRecords\n", BRecords);
+  console.log("CRecords\n", CRecords);
 
   //Now we are ready to save everything. Make one giant list:
   let allRecords = ARecords.concat(BRecords).concat(CRecords);
@@ -96,6 +96,22 @@ async function loadAllRecords() {
 
   //Now wait for all to finish
   await Promise.all(promises);
+
+  //Demonstrate retrieving a C record with associated data
+  let firstCWithAs = await C.findOne().populate("relatedAs").exec();
+  console.log("First C with A data\n", firstCWithAs);
+
+  //Do deep population of B objects referenced by A's referenced from C
+  let firstCWithAB = await C.findOne().populate({
+    //get data for relatedAs
+    path: 'relatedAs',
+    //for each one, get data for relatedB
+    populate: { path: 'relatedB' }
+  }).exec();
+  
+  console.log("First C with A and B data\n", firstCWithAB);
+  //Access name of a B record starting from a C:
+  console.log("C zero's first A's B:", firstCWithAB.relatedAs[0].relatedB.name);
 
   //Done with connection, close so program can exit
   mongoose.connection.close();
