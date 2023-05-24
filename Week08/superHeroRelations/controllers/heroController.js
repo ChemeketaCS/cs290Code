@@ -108,7 +108,7 @@ exports.update_post = [
           _id: req.body.id,
         });
 
-      console.log("Requst body:", req.body);
+      console.log("Request body:", req.body);
 
       //Process Powers Input - split string into an array
       let powersList = req.body.powers.split("\n");
