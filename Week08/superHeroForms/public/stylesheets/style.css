@@ -35,3 +35,7 @@ label em {
   border-color: #005374;
   background-color: #005374;
 }
+
+input:invalid {
+  outline: 3px solid red;
+}
