@@ -13,10 +13,30 @@
     />
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
+
   <body>
     <main>
       <h1>Hero Editor</h1>
       <div id="app">
+        <div class="mb-3 d-flex justify-content-between">
+          <button
+            @click="prev"
+            :disabled="state == 'updating'"
+            class="btn btn-primary me-3"
+          >
+            Previous Hero
+          </button>
+          <button
+            @click="next"
+            :disabled="state == 'updating'"
+            class="btn btn-primary"
+          >
+            Next Hero
+          </button>
+        </div>
+
+        <hr />
+
         <div class="spinner-border" role="status" v-if="state == 'loading'">
           <span class="visually-hidden">Loading...</span>
         </div>
@@ -25,10 +45,22 @@
           <form @submit.prevent="onSubmit">
             <input type="hidden" v-model="hero._id" />
             <div class="mb-3">
-              <b>Name: </b><input type="text" v-model="hero.name" />
+              <label for="hero_name" class="form-label">Name: </label>
+              <input
+                class="form-control"
+                id="hero_name"
+                type="text"
+                v-model="hero.name"
+              />
             </div>
             <div class="mb-3">
-              <b>Age: </b><input type="number" v-model="hero.age" />
+              <label for="hero_age" class="form-label">Age: </label>
+              <input
+                class="form-control"
+                id="hero_age"
+                type="number"
+                v-model="hero.age"
+              />
             </div>
             <div class="mb-3" v-if="hero.team">
               <b>Team: </b> {{ hero.team.squadName }}
@@ -38,16 +70,20 @@
                 <li v-for="item in hero.powers">{{ item }}</li>
               </ul>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 d-flex">
               <button
                 type="submit"
                 :disabled="state == 'updating'"
-                class="me-3"
+                class="btn btn-primary me-3"
               >
                 Submit Changes
               </button>
-              <button @click="deleteItem" :disabled="state == 'updating'">
-                Delete Item
+              <button
+                @click="deleteItem"
+                :disabled="state == 'updating'"
+                class="btn btn-danger"
+              >
+                Delete Hero
               </button>
               <div
                 class="spinner-border spinner-border-sm mx-2 mb-1"
@@ -58,14 +94,6 @@
               </div>
             </div>
           </form>
-          <div class="mb-3">
-            <button @click="prev" :disabled="state == 'updating'" class="me-3">
-              Previous Hero
-            </button>
-            <button @click="next" :disabled="state == 'updating'">
-              Next Hero
-            </button>
-          </div>
           <div
             v-if="errorMessage"
             v-html="errorMessage"
