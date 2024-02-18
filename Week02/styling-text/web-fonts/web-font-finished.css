@@ -14,12 +14,7 @@
 
 @font-face {
   font-family: "zantrokeregular";
-  src: url("fonts/zantroke-webfont.eot");
-  src: url("fonts/zantroke-webfont.eot?#iefix") format("embedded-opentype"),
-    url("fonts/zantroke-webfont.woff2") format("woff2"),
-    url("fonts/zantroke-webfont.woff") format("woff"),
-    url("fonts/zantroke-webfont.ttf") format("truetype"),
-    url("fonts/zantroke-webfont.svg#zantrokeregular") format("svg");
+  src: url("fonts/zantroke-webfont.woff2");
   font-weight: normal;
   font-style: normal;
 }

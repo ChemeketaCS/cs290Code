@@ -29,6 +29,7 @@ main {
 main aside {
   width: 200px;
   padding-top: 10px;
+  margin-left: 10px;
   float: right;
 }
 

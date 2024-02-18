@@ -4,6 +4,44 @@ h1 {
   border: 1px solid black;
 }
 
-p {
+
+.warning .larger {
+  color: red;
+}
+
+.larger {
+  font-size: 125%;
+}
+
+div {
+  color: red;
+  font-size: 150%;
+}
+
+article p {
+  color: red;
+  font-size: 150%;
+}
+
+#main-paragraph {
+  color: green;
+}
+
+.haha {
+  color: blue !important;
+}
+
+/* short version */
+ul,
+ol {
+  color: red;
+}
+
+/* long version */
+ul {
+  color: red;
+}
+
+ol {
   color: red;
 }
