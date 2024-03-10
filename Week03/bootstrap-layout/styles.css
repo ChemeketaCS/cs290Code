@@ -15,3 +15,7 @@
   color: hsl(204, 100%, 87%);
   text-decoration: underline;
 }
+
+button:focus {
+  outline: 4px dashed orange;
+}
