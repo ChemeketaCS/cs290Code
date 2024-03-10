@@ -1,7 +1,5 @@
 console.log("Hello there from the included file");
 
-//this is not javascript!!!
-
 //A comment for this line
 let x = 10;
 
@@ -11,13 +9,15 @@ for (let i = 0; i < x; i++) {
   console.log(i);
 }
 
+let s1 = '<img src="img.jpg" alt="My image">';
+
 function foo() {
   if (true) {
     //a is automatically a global variable!
     a = "globalVar is here!";
   }
+  console.log(a);  //a still exists
 }
-console.log(a);  //a still exists
 
 function bar() {
   if (true) {
@@ -26,7 +26,6 @@ function bar() {
   }
   console.log(b);  //b still exists
 }
-//console.log(b);  //b is gone
 
 let message = "Yes";
 
@@ -68,10 +67,13 @@ let a1 = 1 + "2"; //12
 let a2 = 1 < "2"; //true... "2" becomes 2
 let a3 = 1 < "asdf"; //false... "asdf" becomes 0
 
-var temp = "";
+let temp = "";
+if (temp == false) {
+  console.log("whooops1");  //Prints
+}
 
 if (temp === false) {
-  console.log("whooops");
+  console.log("whooops2");  //Does not print
 }
 
 let anum = Number("123");
