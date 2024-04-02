@@ -1,5 +1,5 @@
 onmessage = function (e) {
-  //Same expensive work
+  //Pointless expensive work
   let myDate;
   for (let i = 0; i < 4000000; i++) {
     let date = new Date();

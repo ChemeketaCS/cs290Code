@@ -51,11 +51,8 @@ function Teacher(first, last, age, gender, subject) {
 //Copy Person's prototype into teacher's
 Teacher.prototype = Object.create(Person.prototype);
 //But set the correct constructor
-Object.defineProperty(Teacher.prototype, "constructor", {
-  value: Teacher,
-  enumerable: false, // so that it does not appear in 'for in' loop
-  writable: true,
-});
+Teacher.prototype.constructor = Teacher;
+
 //Now a Teacher has the prototype functions from Person
 let teacherA = new Teacher("Andrew", "Scholer", 47, "male");
 console.log(teacherA.getInitials());

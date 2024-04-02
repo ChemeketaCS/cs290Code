@@ -57,25 +57,25 @@
         });
 
         //Add handler to every anchor tag
-        const links = document.querySelectorAll("a");
-        links.forEach((link) => {
-          link.addEventListener("click", function (event) {
-            console.log(event);
-            console.log("You clicked at x location " + event.pageX);
-            console.log("You are staying here!");
-            event.preventDefault();
-          });
-        });
-
-        // //Same but using for...of to loop
-        // for(const link of links) {
+        // const links = document.querySelectorAll("a");
+        // links.forEach((link) => {
         //   link.addEventListener("click", function (event) {
         //     console.log(event);
         //     console.log("You clicked at x location " + event.pageX);
         //     console.log("You are staying here!");
         //     event.preventDefault();
         //   });
-        // }
+        // });
+
+        // //Same but using for...of to loop
+        for(const link of links) {
+          link.addEventListener("click", function (event) {
+            console.log(event);
+            console.log("You clicked at x location " + event.pageX);
+            console.log("You are staying here!");
+            event.preventDefault();
+          });
+        }
 
       </script>
     </section>

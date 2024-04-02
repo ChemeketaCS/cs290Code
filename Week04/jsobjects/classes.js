@@ -23,13 +23,15 @@ class Hero {
 }
 
 let han = new Hero("Han", "Solo", 25, "male", ["Smuggling"]);
-let leia = new Hero("Leia", "Organa", 19); //don't have to bother with all params!
+let leia = new Hero("Leia", "Organa", 19); //rely on defaults for gender/interests
 han.greeting();
-leia.greeting();
+han.name.first = "Bob";
+han.greeting();
 
 Hero.prototype.getOlder = function () {
   this.age++;
 };
+
 console.log(han.age);
 han.getOlder();
 console.log(han.age);
@@ -85,6 +87,6 @@ class Instructor {
 }
 
 let scholer = new Instructor("CS", "Chemeketa");
-scholer.subject = "Computer Science";
-console.log(scholer.subject);
+scholer.subject = "Computer Science";  //uses setter
+console.log(scholer.subject);          //uses getter
 console.log(scholer);

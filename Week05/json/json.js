@@ -55,8 +55,8 @@ console.log(squadString);
 
 //Turn the string back into an object
 let parsedSquad = JSON.parse(squadString);
-console.log(superSquad);
-console.log(superSquad.squadName);
+console.log(parsedSquad);
+console.log(parsedSquad.squadName);
 
 //------------------------------------------------------
 

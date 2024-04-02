@@ -14,6 +14,7 @@
         //NBA is league 12
         const url =
           "https://api-basketball.p.rapidapi.com/standings?league=12&season=2022-2023";
+
         const options = {
           method: "GET",
           headers: {
@@ -36,7 +37,7 @@
           //Show the results
           console.log(result);
 
-          //Response has an array with one element. It is an array of 60 items
+          //Response has an array with one element. It's value is an array of 60 items
           const records = result.response[0];
 
           for (let record of records) {
