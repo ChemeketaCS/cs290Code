@@ -1,8 +1,8 @@
 //A simple server created directly with node
 //Not what we will actually do!!!
 
-const http = require("http");
-const fs = require("fs");
+import {default as http} from 'http';
+import {default as fs} from 'fs';
 
 const port = 3000;
 

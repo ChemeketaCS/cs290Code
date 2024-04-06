@@ -1,8 +1,8 @@
-var express = require("express");
+import {default as express} from 'express';
 var router = express.Router();
 
-const Hero = require("../models/hero.js");
-const Team = require("../models/team.js");
+import {default as Hero} from '../models/hero.js';
+import {default as Team} from '../models/team.js';
 
 router.get("/", async function (req, res, next) {
   try {

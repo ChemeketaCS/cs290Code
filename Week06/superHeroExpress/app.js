@@ -1,12 +1,12 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+import {default as createError} from 'http-errors';
+import {default as express} from 'express';
+import {default as path} from 'path';
+import {default as cookieParser} from 'cookie-parser';
+import {default as logger} from 'morgan';
 
 //I am not going to use those route files
-// var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
+import {default as indexRouter} from './routes/index';
+import {default as usersRouter} from './routes/users';
 
 var app = express();
 
@@ -29,7 +29,7 @@ app.get("/", async (req, res) => {
 });
 
 //All other routes in heroes.js file
-let heroRouter = require("./routes/heroes.js");
+import {default as heroRouter} from './routes/heroes.js';
 app.use("/heroes", heroRouter);
 
 // catch any other route and send 404

@@ -1,8 +1,8 @@
-var express = require("express");
+import {default as express} from 'express';
 var router = express.Router();
 
 // Controller has the functions that are used by this route
-var heroController = require("../controllers/heroController.js");
+import {default as heroController} from '../controllers/heroController.js';
 
 router.get("/", heroController.heroList);
 

@@ -1,6 +1,6 @@
 //Test out accessing data
 
-const mongoose = require("mongoose");
+import { default as mongoose } from "mongoose";
 
 //Create a schema
 let CitySchema = new mongoose.Schema({
@@ -12,7 +12,7 @@ let CitySchema = new mongoose.Schema({
 let City = mongoose.model("City", CitySchema);
 
 //Connect to DB with Mongoose
-const credentials = require("./dbCredentials.js");
+import { default as credentials } from "./dbCredentials.mjs";
 mongoose.connect(credentials.connection_string);
 
 //Get all cities - returns a promise

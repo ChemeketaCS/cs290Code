@@ -1,7 +1,7 @@
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+import {default as express} from 'express';
+import {default as path} from 'path';
+import {default as cookieParser} from 'cookie-parser';
+import {default as logger} from 'morgan';
 
 var app = express();
 
@@ -14,17 +14,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 //Use database with mongoose
-const credentials = require("./dbCredentials.js");
-const mongoose = require("mongoose");
+import {default as credentials} from './dbCredentials.js';
+import {default as mongoose} from 'mongoose';
 mongoose.connect(credentials.connection_string, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
 //Add in custom routes
-var teamsRouter = require("./routes/teams");
+import {default as teamsRouter} from './routes/teams';
 app.use("/teams", teamsRouter);
-var heroesRouter = require("./routes/heroes");
+import {default as heroesRouter} from './routes/heroes';
 app.use("/heroes", heroesRouter);
 
 app.use(express.static(path.join(__dirname, "public")));

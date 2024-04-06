@@ -1,4 +1,4 @@
-const express = require('express');
+import {default as express} from 'express';
 const app = express();
 
 // Listen for get requests

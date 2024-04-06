@@ -1,15 +1,15 @@
 //Test out accessing data
 
 //Connect to DB with Mongoose
-const credentials = require("./dbCredentials.js");
-const mongoose = require("mongoose");
+import {default as credentials} from './dbCredentials.js';
+import {default as mongoose} from 'mongoose';
 mongoose.connect(credentials.connection_string, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
 //Load our models
-const Team = require("./models/team.js");
+import {default as Team} from './models/team.js';
 
 async function testTeam() {
   //Get the first team, only get their _id

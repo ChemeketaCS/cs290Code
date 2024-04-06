@@ -1,4 +1,4 @@
-const ejs = require("ejs");
+import {default as ejs} from 'ejs';
 
 //Just use ejs to render a template to the console
 let data = {

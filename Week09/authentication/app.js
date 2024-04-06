@@ -1,8 +1,8 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+import {default as createError} from 'http-errors';
+import {default as express} from 'express';
+import {default as path} from 'path';
+import {default as cookieParser} from 'cookie-parser';
+import {default as logger} from 'morgan';
 
 var app = express();
 
@@ -25,18 +25,18 @@ app.use(
   })
 );
 
-let passport = require("passport");
-let LocalStrategy = require("passport-local").Strategy;
+import {default as passport} from 'passport';
+import {default as LocalStrategy} from 'passport-local'.Strategy;
 app.use(passport.initialize());
 app.use(passport.session());
 
-const credentials = require("./dbCredentials.js");
-const mongoose = require("mongoose");
+import {default as credentials} from './dbCredentials.js';
+import {default as mongoose} from 'mongoose';
 mongoose.connect(credentials.connection_string, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-var User = require("./models/user.js");
+import {default as User} from './models/user.js';
 
 passport.use(
   new LocalStrategy(function (username, password, done) {
@@ -51,7 +51,7 @@ passport.use(
       }
 
       //Make use of bcrypt for encrypting user passwords
-      const bcrypt = require("bcrypt");
+import {default as bcrypt} from 'bcrypt';
       let passwordCorrect = bcrypt.compareSync(password, user.password);
 
       if (!passwordCorrect) {

@@ -1,6 +1,6 @@
-var express = require('express');
-var path = require('path');
-var createError = require('http-errors')
+import {default as express} from 'express';
+import {default as path} from 'path';
+import {default as createError} from 'http-errors'
 
 var app = express();
 
@@ -47,11 +47,11 @@ app.get("/error", (req, res, next) => {
 
 //---------------------------------------------------
 // Direct all /dept requests to the rules in routes/department.js
-var departmentRouter = require('./routes/department');
+import {default as departmentRouter} from './routes/department';
 app.use('/department', departmentRouter);
 
 //Direct /users requests to the routes in routes/users.js
-var usersRouter = require('./routes/users');
+import {default as usersRouter} from './routes/users';
 app.use('/user', usersRouter);
 //---------------------------------------------------
 

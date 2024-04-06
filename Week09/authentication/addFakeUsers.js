@@ -1,16 +1,16 @@
 //Make use of bcrypt for encrypting user passwords
-const bcrypt = require("bcrypt");
+import {default as bcrypt} from 'bcrypt';
 
 //Connect to DB with Mongoose
-const credentials = require("./dbCredentials.js");
-const mongoose = require("mongoose");
+import {default as credentials} from './dbCredentials.js';
+import {default as mongoose} from 'mongoose';
 mongoose.connect(credentials.connection_string, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
 //Load our models
-const User = require("./models/user.js");
+import {default as User} from './models/user.js';
 
 async function makeUsers() {
   //Get rid of existing users

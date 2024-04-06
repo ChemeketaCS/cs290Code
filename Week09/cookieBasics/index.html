@@ -29,7 +29,8 @@
       expire.setTime(Date.now() + 60 * 1000);  //expire in one minute
       let expireString = expire.toUTCString();
       console.log(expireString);
-      document.cookie = "username=John Doe; Expires=" + expireString;
+      document.cookie = "username=John Doe";
+      document.cookie = "fav_number=42";
       document.cookie = "favorite_color=blue; Expires=" + expireString;
     </script>
   </body>

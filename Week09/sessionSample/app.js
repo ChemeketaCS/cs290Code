@@ -1,20 +1,21 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+import {default as createError} from 'http-errors'
+import {default as express} from 'express'
+import {default as session} from 'express-session'
+import {default as path} from 'path'
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
+import {default as cookieParser} from 'cookie-parser'
+import {default as logger} from 'morgan'
+
+import {default as indexRouter} from './routes/index.js'
+import {default as usersRouter} from './routes/users.js'
+
+const __dirname = import.meta.dirname;
 
 var app = express();
 
-//Use sessions
-var session = require("express-session");
-
 // //Set up mongodb to store session information
-// const credentials = require("./dbCredentials.js");
-// const MongoDBStore = require("connect-mongodb-session")(session);
+import {default as credentials} from './dbCredentials.js';
+import {default as MongoDBStore} from 'connect-mongodb-session'(session);
 // const sessionStore = new MongoDBStore({
 //   uri: credentials.connection_string,
 //   collection: "mySessions",
@@ -63,4 +64,5 @@ app.use(function (err, req, res, next) {
   res.render("error");
 });
 
-module.exports = app;
+export default app;
+//module.exports = app;

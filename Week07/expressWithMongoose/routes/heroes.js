@@ -1,7 +1,7 @@
-var express = require("express");
+import {default as express} from 'express';
 var router = express.Router();
 
-const Hero = require("../models/hero");
+import {default as Hero} from '../models/hero';
 
 router.get("/", async function (req, res) {
   let heroList = await Hero.find().sort("name").exec();

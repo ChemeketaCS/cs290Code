@@ -126,6 +126,7 @@
     let numPowers = powers.value.split("\n").length;
     if (numPowers <= 6) {
       powers.setCustomValidity("");
+      powers.reportValidity();
       return true;
     } else {
       powers.setCustomValidity("Max of 6 powers");
