@@ -13,7 +13,7 @@ mongoose.connect(credentials.connection_string, {
 const User = require("./models/user.js");
 
 async function makeUsers() {
-  //Get rid of existing teams
+  //Get rid of existing users
   await User.deleteMany();
 
   const user1 = new User({
@@ -26,7 +26,7 @@ async function makeUsers() {
     password: "pass123",
   });
 
-  //Use bcrypt to generate passwords for users using 10 rounds to generate salt
+  //Use bcrypt to generate passwords for users using 10 rounds to generate
   user1.password = bcrypt.hashSync(user1.password, 10);
   user2.password = bcrypt.hashSync(user2.password, 10);
 

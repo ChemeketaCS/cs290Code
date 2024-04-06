@@ -47,11 +47,9 @@ Math.trunc(3 / 2); //1
 
 let myString = "abc";
 myString = myString + "defg";
-
 console.log(myString.length);
 console.log(myString[2]);
 console.log(myString.indexOf("s"));
-console.log(myString.substr(2, 4));
 console.log(myString.slice(2, 4));
 console.log(myString.replace("defg", "xxxx"));
 console.log(myString);
