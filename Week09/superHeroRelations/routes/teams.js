@@ -1,10 +1,10 @@
-var express = require("express");
+import {default as express} from 'express';
 var router = express.Router();
 
-const routeHelper = require("./routeHelpers.js");
+import {default as routeHelper} from './routeHelpers.js';
 
-const Team = require("../models/team");
-const Hero = require("../models/hero");
+import {default as Team} from '../models/team';
+import {default as Hero} from '../models/hero';
 
 router.get("/", async function (req, res) {
   let teamList = await Team.find().sort("name").exec();

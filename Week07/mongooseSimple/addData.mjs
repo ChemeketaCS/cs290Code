@@ -1,7 +1,7 @@
 //--------------------------------------------
 //Connect to DB with Mongoose
-const credentials = require("./dbCredentials.js");
-const mongoose = require("mongoose");
+import { default as credentials } from "./dbCredentials.mjs";
+import { default as mongoose } from "mongoose";
 mongoose.connect(credentials.connection_string);
 
 //Create a schema

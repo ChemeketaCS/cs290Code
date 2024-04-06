@@ -1,7 +1,7 @@
-var express = require("express");
+import {default as express} from 'express';
 var router = express.Router();
 
-const Team = require("../models/team");
+import {default as Team} from '../models/team';
 
 router.get("/", async function (req, res) {
   let teamList = await Team.find().sort("name").exec();
@@ -31,7 +31,7 @@ router.get("/id/:id", async function (req, res, next) {
 router.get("/delete/:id", async function (req, res) {
   //Before we delete the team, we need to find any hero's that are on this team
   // and unset their Team
-  const Hero = require("../models/hero");
+import {default as Hero} from '../models/hero';
   let teamHeroes = await Hero.find().where("team").eq(req.params.id).exec();
   for (let h of teamHeroes) {
     h.team = undefined; //tell mongoose to remove team field

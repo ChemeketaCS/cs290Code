@@ -1,11 +1,11 @@
-var express = require("express");
-var path = require("path");
-var logger = require("morgan");
+import {default as express} from 'express';
+import {default as path} from 'path';
+import {default as logger} from 'morgan';
 
 var app = express();
 
 //Automatically convert cookie strings to js objects available in request
-var cookieParser = require("cookie-parser");
+import {default as cookieParser} from 'cookie-parser';
 app.use(cookieParser());
 
 app.use(logger("dev"));
@@ -16,8 +16,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.set("view engine", "ejs");
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
+import {default as indexRouter} from './routes/index';
+import {default as usersRouter} from './routes/users';
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);

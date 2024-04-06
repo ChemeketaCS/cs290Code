@@ -1,16 +1,16 @@
 //Test out accessing data
 
 //Connect to DB with Mongoose
-const credentials = require("./dbCredentials.js");
-const mongoose = require("mongoose");
+import {default as credentials} from './dbCredentials.js';
+import {default as mongoose} from 'mongoose';
 mongoose.connect(credentials.connection_string, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
 //Load our models
-const Hero = require("./models/hero.js");
-const Team = require("./models/team.js");
+import {default as Hero} from './models/hero.js';
+import {default as Team} from './models/team.js';
 
 //Async function so we can use await to synchronize steps
 async function testHero() {

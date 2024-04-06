@@ -4,7 +4,7 @@
 //npm install random-words
 
 //Bring in the library
-const randomWords = require('random-words');
+import {default as randomWords} from 'random-words';
 
 //Get some words
 let words = randomWords(20)

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import {default as mongoose} from 'mongoose';
 const Schema = mongoose.Schema;
 
 let HeroSchema = new Schema({

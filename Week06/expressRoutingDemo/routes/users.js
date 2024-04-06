@@ -1,4 +1,4 @@
-var express = require('express');
+import {default as express} from 'express';
 var router = express.Router();
 
 /* GET users listing. */

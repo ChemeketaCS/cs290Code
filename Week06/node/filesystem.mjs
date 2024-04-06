@@ -1,5 +1,7 @@
+//.mjs extension identifies the file as an ES module
+
 //Filessystem provides async and synchronous modes
-const fs = require("fs");
+import fs from "fs";
 
 //Use asynch callback to open file and read it
 fs.readFile("./data.txt", (error, data) => {

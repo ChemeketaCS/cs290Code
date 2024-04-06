@@ -1,6 +1,5 @@
 //Example of CommonJS Module Syntax
-//This is what we will see/use
-
+//We will avoid this as much as possible
 
 const car = {
   brand: "Ford",

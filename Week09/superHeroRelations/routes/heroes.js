@@ -1,7 +1,7 @@
-var express = require("express");
+import {default as express} from 'express';
 var router = express.Router();
 
-var heroController = require("../controllers/heroController.js");
+import {default as heroController} from '../controllers/heroController.js';
 
 router.get("/", heroController.heroList);
 

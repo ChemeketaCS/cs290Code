@@ -1,19 +1,19 @@
 //--------------------------------------------
 //Connect to DB with Mongoose
-const credentials = require("./dbCredentials.js");
-const mongoose = require("mongoose");
+import {default as credentials} from './dbCredentials.js';
+import {default as mongoose} from 'mongoose';
 mongoose.connect(credentials.connection_string, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
 //Load our models
-const A = require("./models/A.js");
-const B = require("./models/B.js");
-const C = require("./models/C.js");
+import {default as A} from './models/A.js';
+import {default as B} from './models/B.js';
+import {default as C} from './models/C.js';
 
 //Loads the data stored in this data file:
-const dataFile = require("./data.js");
+import {default as dataFile} from './data.js';
 
 //Async function so we can use await to synchronize steps
 async function loadAllRecords() {

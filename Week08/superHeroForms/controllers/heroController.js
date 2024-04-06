@@ -1,9 +1,9 @@
 // Functions to generate pages for hero routes
 
-const routeHelper = require("../routes/routeHelpers.js");
+import {default as routeHelper} from '../routes/routeHelpers.js';
 
-const Hero = require("../models/hero.js");
-const Team = require("../models/team.js");
+import {default as Hero} from '../models/hero.js';
+import {default as Team} from '../models/team.js';
 
 //All heroes
 exports.heroList = async function (req, res, next) {
@@ -85,7 +85,7 @@ exports.update_get = async function (req, res, next) {
 };
 
 // //Use express-validator to remove harmful content
-// const { body } = require("express-validator");
+import {default as }} from 'express-validator';
 
 //Handles submission of the form - it has a list of functions that will be run
 exports.update_post = [

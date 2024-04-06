@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import {default as mongoose} from 'mongoose';
 const Schema = mongoose.Schema;
 
 var TeamSchema = new Schema({
@@ -48,7 +48,7 @@ TeamSchema.virtual("formed_html").get(function () {
 // provide a property to look them up. Must be async to
 // await necessary DB query
 TeamSchema.virtual("members").get(async function () {
-  const Hero = require("./hero");
+import {default as Hero} from './hero';
   let heroArray = await Hero.find().where("team").equals(this._id).exec();
   return heroArray;
 });

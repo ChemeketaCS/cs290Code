@@ -1,4 +1,4 @@
-var express = require("express");
+import {default as express} from 'express';
 var router = express.Router();
 
 //Listing for all heroes
@@ -54,7 +54,7 @@ module.exports = router;
 //My data source - gets the super hero data
 
 //Need to have node-fetch installed!
-let fetch = require("node-fetch");
+import {default as fetch} from 'node-fetch';
 
 async function getSquad() {
   let responsePromise = await fetch(
