@@ -56,50 +56,19 @@ const heroesList = [
 
 //--------------------------------------------
 //Connect to DB with Mongoose
-import {default as credentials} from './dbCredentials.js';
-import {default as mongoose} from 'mongoose';
-mongoose.connect(credentials.connection_string, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+import { default as credentials } from "./dbCredentials.mjs";
+import { default as mongoose } from "mongoose";
+mongoose.connect(credentials.connection_string);
 
 //Load our models
-import {default as Hero} from './models/hero.js';
-import {default as Team} from './models/team.js';
-
-//Basic version of loading/reloading records - not actually called
-//Just provided for illustration
-//Async function so we can use await to synchronize steps
-async function sampleSimpleLoad() {
-  //Get rid of existing teams
-  await Team.deleteMany();
-
-  //Make JS object using model and some hard coded data
-  const teamRecord1 = new Team({
-    squadName: "Super hero squad",
-    homeTown: "Metro City",
-    formed: Date.parse("1995-01-20"),
-    active: true,
-  });
-  //Tell it to save itself to database
-  await teamRecord1.save();
-
-  //Now do another record
-  const teamRecord2 = new Team({
-    squadName: "Just us league",
-    homeTown: "Midtown",
-    formed: Date.parse("2003-08-03"),
-    active: true,
-  });
-  await teamRecord2.save();
-  mongoose.connection.close();
-}
+import { default as Hero } from "./models/hero.mjs";
+import { default as Team } from "./models/team.mjs";
 
 //Async function so we can use await to synchronize steps
 async function loadAllRecords() {
   //Delete all existing records
-  await Team.deleteMany();
   await Hero.deleteMany();
+  await Team.deleteMany();
 
   //Will use this to store a list of all our teams
   const teamRecords = [];

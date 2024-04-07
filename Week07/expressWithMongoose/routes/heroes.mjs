@@ -1,7 +1,8 @@
-import {default as express} from 'express';
-var router = express.Router();
+import { default as express } from "express";
+const router = express.Router();
+export default router;
 
-import {default as Hero} from '../models/hero';
+import { default as Hero } from "../models/hero.mjs";
 
 router.get("/", async function (req, res) {
   let heroList = await Hero.find().sort("name").exec();
@@ -31,7 +32,7 @@ router.get("/id/:id", async function (req, res, next) {
       //if there is a problem...
       (except) => {
         console.log("Error in hero router", except);
-        next();  //pass this on to next handler (404)
+        next(); //pass this on to next handler (404)
       }
     );
 
@@ -45,5 +46,3 @@ router.get("/delete/:id", async function (req, res) {
   //Send the user back to the heroes page
   res.redirect("/heroes/");
 });
-
-module.exports = router;

@@ -1,7 +1,9 @@
-import {default as express} from 'express';
-var router = express.Router();
+import { default as express } from "express";
+const router = express.Router();
+export default router;
 
-import {default as Team} from '../models/team';
+import { default as Team } from "../models/team.mjs";
+import { default as Hero } from "../models/hero.mjs";
 
 router.get("/", async function (req, res) {
   let teamList = await Team.find().sort("name").exec();
@@ -19,7 +21,7 @@ router.get("/id/:id", async function (req, res, next) {
         next(); //pass this on to next handler (404)
       }
     );
-    
+
   //Team doesn't know about heroes that are members
   //but provides a property to find them
   let members = await team.members;
@@ -31,7 +33,6 @@ router.get("/id/:id", async function (req, res, next) {
 router.get("/delete/:id", async function (req, res) {
   //Before we delete the team, we need to find any hero's that are on this team
   // and unset their Team
-import {default as Hero} from '../models/hero';
   let teamHeroes = await Hero.find().where("team").eq(req.params.id).exec();
   for (let h of teamHeroes) {
     h.team = undefined; //tell mongoose to remove team field
@@ -44,5 +45,3 @@ import {default as Hero} from '../models/hero';
   //Send the user back to the teams page
   res.redirect("/teams/");
 });
-
-module.exports = router;

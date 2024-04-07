@@ -1,7 +1,7 @@
-import {default as mongoose} from 'mongoose';
+import { default as mongoose } from "mongoose";
 const Schema = mongoose.Schema;
 
-let HeroSchema = new Schema({
+var HeroSchema = new Schema({
   name: { type: String, required: true },
   age: { type: Number, required: true },
   secretIdentity: { type: String, required: true },
@@ -20,5 +20,6 @@ HeroSchema.virtual("last_first").get(function () {
     return this.name.slice(spaceLoc + 1) + ", " + this.name.slice(0, spaceLoc);
 });
 
-//Export model
-module.exports = mongoose.model("Hero", HeroSchema);
+
+// Make a model from the Schema for the type 'Hero' and export that
+export default mongoose.model('Hero', HeroSchema);

@@ -1,4 +1,6 @@
-import {default as mongoose} from 'mongoose';
+import { default as Hero } from "./hero.mjs";
+
+import { default as mongoose } from "mongoose";
 const Schema = mongoose.Schema;
 
 var TeamSchema = new Schema({
@@ -24,10 +26,9 @@ TeamSchema.virtual("formed_short").get(function () {
 // provide a property to look them up. Must be async to
 // await necessary DB query
 TeamSchema.virtual("members").get(async function () {
-import {default as Hero} from './hero';
   let heroArray = await Hero.find().where("team").equals(this._id).exec();
   return heroArray;
 });
 
-//Export model
-module.exports = mongoose.model("Team", TeamSchema);
+// Make a model from the Schema for the type "Team" and export that
+export default mongoose.model("Team", TeamSchema);

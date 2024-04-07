@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "addData": "node addData.js",
-    "addDataSimple": "node addDataSimple.js",
-    "testData": "node testData.js"
+    "addData": "node addData.mjs",
+    "addDataSimple": "node addDataSimple.mjs",
+    "testData": "node testData.mjs"
   },
   "dependencies": {
-    "mongoose": "^6.3.2"
+    "mongoose": "^8.3.0"
   }
 }
