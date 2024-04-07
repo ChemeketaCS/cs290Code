@@ -6,3 +6,4 @@ node_modules/
 
 #Ignore any file named dbCredentials
 dbCredentials.js
+dbCredentials.mjs
