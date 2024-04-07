@@ -1,20 +1,17 @@
-import {default as createError} from 'http-errors';
-import {default as express} from 'express';
-import {default as path} from 'path';
-import {default as cookieParser} from 'cookie-parser';
-import {default as logger} from 'morgan';
+import { default as express } from "express";
+import { default as path } from "path";
+import { default as cookieParser } from "cookie-parser";
 
-//I am not going to use those route files
-import {default as indexRouter} from './routes/index';
-import {default as usersRouter} from './routes/users';
+// Create an express app
+const app = express();
 
-var app = express();
+// Get the directory name of the current module
+const __dirname = import.meta.dirname;
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -29,7 +26,7 @@ app.get("/", async (req, res) => {
 });
 
 //All other routes in heroes.js file
-import {default as heroRouter} from './routes/heroes.js';
+import { default as heroRouter } from "./routes/heroes.mjs";
 app.use("/heroes", heroRouter);
 
 // catch any other route and send 404
@@ -52,4 +49,11 @@ app.use(function (err, req, res, next) {
   res.render("error");
 });
 
-module.exports = app;
+//---------------------------------------------------
+// Start the server
+const port = 3000;
+app.listen(port, () => {
+  console.log(
+    `Example app listening on port ${port} in directory ${__dirname}`
+  );
+});

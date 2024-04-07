@@ -1,8 +1,8 @@
 //A simple server created directly with node
 //Not what we will actually do!!!
 
-import {default as http} from 'http';
-import {default as fs} from 'fs';
+import { default as http } from "http";
+import { default as fs } from "fs";
 
 const port = 3000;
 
@@ -11,6 +11,10 @@ const server = http.createServer((req, res) => {
 
   try {
     let file = req.url.slice(1); //get all but first char which is /
+
+    if (file === "") {
+      file = "index.html";
+    }
 
     //If file does not exist, is 404
     if (!fs.existsSync(file)) {

@@ -1,5 +1,6 @@
-import {default as express} from 'express';
-var router = express.Router();
+import { default as express } from "express";
+const router = express.Router();
+export default router;
 
 //Listing for all heroes
 router.get("/", async (req, res) => {
@@ -48,13 +49,11 @@ router.get("/:name", async (req, res, next) => {
   else next();
 });
 
-module.exports = router;
-
 //--------------------------------------------------------
 //My data source - gets the super hero data
 
 //Need to have node-fetch installed!
-import {default as fetch} from 'node-fetch';
+import { default as fetch } from "node-fetch";
 
 async function getSquad() {
   let responsePromise = await fetch(

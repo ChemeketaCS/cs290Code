@@ -4,13 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node basic.js",
-    "debugmac": "DEBUG=* & npm start",
-    "debugwin": "set DEBUG=* & npm start"
+    "start": "node ./basic.mjs"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ejs": "^3.1.6"
+    "ejs": "^3.1.9"
   }
 }

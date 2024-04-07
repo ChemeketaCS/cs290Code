@@ -3,7 +3,7 @@
 let answer = 42;
 let question = "What is the meaning of life, the universe, and everything?";
 //Declare that question and answer are exported
-export {question, answer}
+export { question, answer };
 
 //Declare that addOne is exported as it is defined
 export function addOne(x) {
@@ -19,5 +19,3 @@ export default function sayHello() {
 function privateFunction() {
   console.log("Only for local use in this module");
 }
-
-

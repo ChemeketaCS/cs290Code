@@ -4,8 +4,7 @@
   "description": "",
   "main": "nodeserver.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node nodeserver.js"
+    "start": "node nodeserver.mjs"
   },
   "author": "",
   "license": "ISC",

@@ -2,15 +2,17 @@
   "name": "expressroutingdemo",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "start": "nodemon ./bin/www",
-    "debugmac": "DEBUG=* & npm start",
-    "debugwin": "set DEBUG=* & npm start"
+    "start": "node ./app.mjs",
+    "develop": "nodemon ./app.mjs",
+    "debugmac": "DEBUG=* & npm run develop",
+    "debugwin": "set DEBUG=* & npm run develop"
   },
   "dependencies": {
-    "debug": ">2.6.9",
-    "ejs": ">2.6.1",
-    "express": ">4.16.1",
-    "http-errors": ">1.6.3"
+    "debug": "^4.3.4",
+    "ejs": "^3.1.9",
+    "express": "^4.19.2",
+    "http-errors": "^2.0.0"
   }
 }

@@ -2,13 +2,13 @@
 
 <p>
     Basic insertion, no HTML escaping <%- name %>
-    Basic insertion <%- locals.name %>  <%# Same as name %>
+    Basic insertion <%- locals.name %> <%# Same as name %>
 </p>
 <p>
     HTML Escape <%= name %>
 </p>
 <p>
-    Whitespace slurping <%_ name _%>                   
+    Whitespace slurping <%_ name _%>
 </p>
 <p>
     Newline trim <%- name -%>
@@ -31,7 +31,7 @@ Age???
 <%- typeof(age) !== 'undefined' ? `It is ${age}` : "Not provided" %>
 
 <% for(let i = 1; i <= 10; i++) { %>
-    i:  <%- i -%>
+i: <%- i -%>
 <%  } %>
 
 <%- include('basic-include.ejs', {message: `${name} says goodbye!`}); -%>

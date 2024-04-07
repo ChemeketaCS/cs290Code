@@ -4,8 +4,7 @@
   "description": "",
   "main": "useFetch.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node randWords.js"
+    "start": "node randWords.mjs"
   },
   "author": "",
   "license": "ISC",
