@@ -1,4 +1,4 @@
-import {default as mongoose} from 'mongoose';
+import { default as mongoose } from "mongoose";
 const Schema = mongoose.Schema;
 
 var TeamSchema = new Schema({
@@ -29,7 +29,7 @@ TeamSchema.virtual("formed_short").get(function () {
   let d = this.formed;
   //js uses 0 indexed months and 1 indexed days!?!?!
   let monthNum = d.getMonth() + 1;
-  
+
   //days are 1 indexed - but need to ask for UTC date to avoid timezone issues
   let dayNum = d.getUTCDate();
   //let dayNum = d.getDate();   //Will be timezone adjusted. Likely wrong!
@@ -50,11 +50,11 @@ TeamSchema.virtual("formed_html").get(function () {
 //A team does not know about its members. For convenience,
 // provide a property to look them up. Must be async to
 // await necessary DB query
+import { default as Hero } from "./hero.mjs";
 TeamSchema.virtual("members").get(async function () {
-import {default as Hero} from './hero';
   let heroArray = await Hero.find().where("team").equals(this._id).exec();
   return heroArray;
 });
 
-//Export model
-module.exports = mongoose.model("Team", TeamSchema);
+// Make a model from the Schema for the type "Team" and export that
+export default mongoose.model("Team", TeamSchema);

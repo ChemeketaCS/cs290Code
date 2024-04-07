@@ -3,19 +3,20 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "startWithReload": "nodemon ./bin/www",
-    "addData": "node addData.js",
-    "testData": "node testData.js"
+    "start": "node ./app.mjs",
+    "develop": "nodemon ./app.mjs",
+    "debugmac": "DEBUG=* & npm run develop",
+    "debugwin": "set DEBUG=* & npm run develop",
+    "addData": "node addData.mjs",
+    "test": "node testEquality.mjs"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "ejs": "^3.1.6",
-    "express": "~4.16.1",
-    "express-validator": "^6.11.1",
-    "http-errors": "~1.6.3",
-    "mongoose": "^5.12.7",
-    "morgan": "~1.9.1"
+    "debug": "^4.3.4",
+    "ejs": "^3.1.9",
+    "express": "^4.19.2",
+    "express-validator": "^6.15.0",
+    "http-errors": "^2.0.0",
+    "mongoose": "^8.3.0"
   }
 }

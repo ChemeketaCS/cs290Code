@@ -1,19 +1,16 @@
 //--------------------------------------------
 //Connect to DB with Mongoose
-import {default as credentials} from './dbCredentials.js';
-import {default as mongoose} from 'mongoose';
-mongoose.connect(credentials.connection_string, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+import { default as credentials } from './dbCredentials.mjs';
+import { default as mongoose } from 'mongoose';
+mongoose.connect(credentials.connection_string);
 
 //Load our models
-import {default as A} from './models/A.js';
-import {default as B} from './models/B.js';
-import {default as C} from './models/C.js';
+import { default as A } from './models/A.mjs';
+import { default as B } from './models/B.mjs';
+import { default as C } from './models/C.mjs';
 
 //Loads the data stored in this data file:
-import {default as dataFile} from './data.js';
+import { default as dataFile } from './data.js';
 
 //Async function so we can use await to synchronize steps
 async function loadAllRecords() {
@@ -108,7 +105,7 @@ async function loadAllRecords() {
     //for each one, get data for relatedB
     populate: { path: 'relatedB' }
   }).exec();
-  
+
   console.log("First C with A and B data\n", firstCWithAB);
   //Access name of a B record starting from a C:
   console.log("C zero's first A's B:", firstCWithAB.relatedAs[0].relatedB.name);
