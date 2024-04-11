@@ -5,5 +5,5 @@ const ColorEnum = {
   BLACK: "Black",
 };
 
-//Make ColorEnum the only thing available if required
-module.exports = ColorEnum;
+//Make ColorEnum the only thing available from this file
+export default ColorEnum;

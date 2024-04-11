@@ -1,8 +1,8 @@
-const mongoose = require("mongoose");
+import { default as mongoose } from "mongoose";
 const Schema = mongoose.Schema;
 
 //Bring in the "enum"
-const ColorEnum = require("./colorEnum.js");
+import { default as ColorEnum } from "./colorEnum.mjs";
 
 //Build up an array of the options - that is what Schema needs
 const colorOptions = [];
@@ -20,4 +20,4 @@ var TextSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("Text", TextSchema);
+export default mongoose.model("Text", TextSchema);
