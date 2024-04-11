@@ -22,6 +22,7 @@ async function loadAllRecords() {
   //Make all the A objects and store into an array
   const ARecords = [];
 
+  //For each A record in the data file
   for (let item of dataFile.Alist) {
     //Make an object
     const aRecord = new A(item);
@@ -76,7 +77,7 @@ async function loadAllRecords() {
     }
   }
 
-  console.log("Done updating:");
+  console.log("Done connecting records:");
   console.log("ARecords\n", ARecords);
   console.log("BRecords\n", BRecords);
   console.log("CRecords\n", CRecords);
@@ -84,33 +85,15 @@ async function loadAllRecords() {
   //Now we are ready to save everything. Make one giant list:
   let allRecords = ARecords.concat(BRecords).concat(CRecords);
 
-  //Could loop through all records and call save on each and await results
-  // one by one. But more efficient to save all and wait for all to be
-  // finished.
-
+  //We could loop through all records and call save on each and await results
+  // one by one. But it is more efficient to start up all the saves in
+  // parallel and then wait for all to finish.
   //Use map to tell each record to save itself and collect resulting promises
   let promises = allRecords.map((record) => record.save());
 
   //Now wait for all to finish
   await Promise.all(promises);
 
-  //Demonstrate retrieving a C record with associated data
-  let firstCWithAs = await C.findOne().populate("relatedAs").exec();
-  console.log("First C with A data\n", firstCWithAs);
-
-  //Do deep population of B objects referenced by A's referenced from C
-  let firstCWithAB = await C.findOne().populate({
-    //get data for relatedAs
-    path: 'relatedAs',
-    //for each one, get data for relatedB
-    populate: { path: 'relatedB' }
-  }).exec();
-
-  console.log("First C with A and B data\n", firstCWithAB);
-  //Access name of a B record starting from a C:
-  console.log("C zero's first A's B:", firstCWithAB.relatedAs[0].relatedB.name);
-
-  //Done with connection, close so program can exit
   mongoose.connection.close();
 }
 

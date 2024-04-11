@@ -8,7 +8,7 @@
     "debugmac": "DEBUG=* & npm run develop",
     "debugwin": "set DEBUG=* & npm run develop",
     "addData": "node addData.mjs",
-    "test": "node testEquality.mjs"
+    "testEquality": "node testEquality.mjs"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

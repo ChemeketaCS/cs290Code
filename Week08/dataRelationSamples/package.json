@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "addData": "node ./addDataABC.mjs"
+    "addData": "node ./addDataABC.mjs",
+    "testData": "node ./testDataABC.mjs"
   },
   "author": "",
   "license": "ISC",
