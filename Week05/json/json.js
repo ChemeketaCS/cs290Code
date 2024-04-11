@@ -35,28 +35,35 @@ let superSquad = {
         "Heat Immunity",
         "Inferno",
         "Teleportation",
-        "Interdimensional travel",
+        "Inter-dimensional travel",
       ],
     },
   ],
 };
 
+console.log(superSquad);
+
 //call a function
 superSquad.activateTeam();
 
 //This would be a circular reference
-//superSquad.members[0].team = superSquadID;
+//superSquad.members[0].team = superSquad;
 
 //Turn superSquad into a string with 2 spaces as indent
 let squadString = JSON.stringify(superSquad, " ", 2);
 
 console.log(squadString);
-//console.log(squadString.squadName); //This no longer makes sense - it is just a string
+
+console.log("Squad name is", superSquad.squadName);
+console.log("JSON squad name is", squadString.squadName); //This no longer makes sense - it is just a string
 
 //Turn the string back into an object
 let parsedSquad = JSON.parse(squadString);
 console.log(parsedSquad);
-console.log(parsedSquad.squadName);
+console.log("Parsed squad name is", parsedSquad.squadName);
+
+//This will not work as the function was lost in the stringification
+//parsedSquad.activateTeam();
 
 //------------------------------------------------------
 
@@ -92,6 +99,9 @@ let foo = {
   b: (x) => 2 * x,
   c: new Date(),
 };
-
-let parsedArray2 = JSON.stringify(foo);
-console.log(parsedArray2);
+console.log(foo);
+let stringFoo = JSON.stringify(foo);
+console.log(stringFoo);
+let foo2 = JSON.parse(stringFoo);
+foo2.c = new Date(foo2.c);
+console.log(foo2);

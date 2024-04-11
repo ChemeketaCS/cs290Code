@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "addData": "node addData.mjs",
-    "addDataSimple": "node addDataSimple.mjs",
     "testData": "node testData.mjs"
   },
   "dependencies": {
