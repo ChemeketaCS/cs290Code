@@ -12,4 +12,4 @@ function errorParser(errorString) {
   return errorArray;
 }
 
-module.exports = { errorParser };
+export default errorParser;

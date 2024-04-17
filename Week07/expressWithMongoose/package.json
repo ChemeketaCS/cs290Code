@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "addData": "node addData.js",
+    "addData": "node addData.mjs",
     "start": "node ./app.mjs",
     "develop": "nodemon ./app.mjs",
     "debugmac": "DEBUG=* & npm run develop",

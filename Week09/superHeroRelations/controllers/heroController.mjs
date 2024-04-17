@@ -1,9 +1,14 @@
-import {default as routeHelper} from '../routes/routeHelpers.js';
+// Functions to generate pages for hero routes
+import * as routeHelper from '../routes/routeHelpers.mjs';
 
-import {default as Hero} from '../models/hero.mjs';
-import {default as Team} from '../models/team.mjs';
+//Use express-validator to remove harmful content
+import { default as validator } from 'express-validator';
 
-exports.heroList = async function (req, res, next) {
+import { default as Hero } from '../models/hero.mjs';
+import { default as Team } from '../models/team.mjs';
+
+//All heroes
+async function heroList(req, res, next) {
   try {
     let heroList = await Hero.find().sort("name").exec();
     res.render("superheroList.ejs", { heroList });
@@ -13,7 +18,7 @@ exports.heroList = async function (req, res, next) {
 };
 
 //Get list by partial name match
-exports.heroListByName = async function (req, res, next) {
+async function heroListByName(req, res, next) {
   try {
     //To use a variable in a regular expression, need to construct
     // it as an object
@@ -31,7 +36,8 @@ exports.heroListByName = async function (req, res, next) {
   }
 };
 
-exports.heroById = async function (req, res, next) {
+//Single hero by id
+async function heroById(req, res, next) {
   try {
     let hero = await Hero.findById(req.params.id)
       .populate("team") //get data of team as well
@@ -43,16 +49,8 @@ exports.heroById = async function (req, res, next) {
   }
 };
 
-exports.delete = async function (req, res, next) {
-  try {
-    await Hero.findByIdAndDelete(req.params.id).exec();
-    res.redirect("/heroes/");
-  } catch (err) {
-    next(err);
-  }
-};
-
-exports.create = async function (req, res, next) {
+//Add a new hero
+async function createHero(req, res, next) {
   try {
     //Make a Hero Team object just to get any default values
     // and to have the right properties for the form
@@ -71,8 +69,8 @@ exports.create = async function (req, res, next) {
   }
 };
 
-//Handles getting an editable form with hero data
-exports.update_get = async function (req, res, next) {
+//Get an existing hero to edit
+async function update_get(req, res, next) {
   try {
     let hero = await Hero.findById(req.params.id).exec();
     //Need all the team names to implement selection controls
@@ -88,15 +86,12 @@ exports.update_get = async function (req, res, next) {
   }
 };
 
-// //Use express-validator to remove harmful content
-import {default as }} from 'express-validator';
-
 //Handles submission of the form - it has a list of functions that will be run
-exports.update_post = [
+const update_post = [
   // //First HTML escape all the text inputs
-  // body("name").escape(),                  //function call to sanitize the name input
-  // body("secretIdentity").escape(),        //sanitize secret identity
-  // body("powers").escape(),                //sanitize powers
+  validator.body("name").escape(),                  //function call to sanitize the name input
+  validator.body("secretIdentity").escape(),        //sanitize secret identity
+  validator.body("powers").escape(),                //sanitize powers
   async function (req, res, next) {
     //now run my handler
     try {
@@ -108,7 +103,7 @@ exports.update_post = [
           _id: req.body.id,
         });
 
-      console.log("Request body:", req.body);
+      console.log(req.body);
 
       //Process Powers Input - split string into an array
       let powersList = req.body.powers.split("\n");
@@ -169,3 +164,12 @@ exports.update_post = [
     }
   },
 ];
+
+async function deleteHero(req, res) {
+  //Team doesn't really know about hero, so just delete hero
+  await Hero.findByIdAndDelete(req.params.id).exec();
+  //Send the user back to the heroes page
+  res.redirect("/heroes/");
+};
+
+export { heroList, heroListByName, heroById, createHero, update_get, update_post, deleteHero };

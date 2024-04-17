@@ -47,8 +47,11 @@ TeamSchema.virtual("formed_html").get(function () {
 //A team does not know about its members. For convenience,
 // provide a property to look them up. Must be async to
 // await necessary DB query
+import { default as Hero } from "./hero.mjs";
 TeamSchema.virtual("members").get(async function () {
-  import { default as Hero } from "./hero.mjs";
   let heroArray = await Hero.find().where("team").equals(this._id).exec();
   return heroArray;
 });
+
+// Make a model from the Schema for the type 'Team' and export that
+export default mongoose.model('Team', TeamSchema);

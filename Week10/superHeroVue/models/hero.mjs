@@ -41,3 +41,6 @@ HeroSchema.virtual("last_first").get(function () {
   else
     return this.name.slice(spaceLoc + 1) + ", " + this.name.slice(0, spaceLoc);
 });
+
+// Make a model from the Schema for the type 'Hero' and export that
+export default mongoose.model('Hero', HeroSchema);

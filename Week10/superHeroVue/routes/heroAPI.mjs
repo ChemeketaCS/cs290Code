@@ -1,16 +1,20 @@
-import {default as express} from 'express';
-var router = express.Router();
+import { default as express } from "express";
+const router = express.Router();
+export default router;
 
-import {default as Hero} from '../models/hero.js';
-import {default as Team} from '../models/team.js';
+import { default as Hero } from "../models/hero.mjs";
+import { default as Team } from "../models/team.mjs";
 
 router.get("/", async function (req, res, next) {
   try {
+    console.log("/ requested");
+
     let heroList = await Hero.find()
       .sort("name")
-      .populate("team squadName")
       .exec();
+
     res.set("Content-Type", "application/json");
+    console.log(heroList);
     res.json(heroList);
   } catch (err) {
     res.sendStatus(500);
@@ -103,5 +107,3 @@ router.post("/update/", async function (req, res, next) {
     res.sendStatus(500);
   }
 });
-
-module.exports = router;

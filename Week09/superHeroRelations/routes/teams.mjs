@@ -2,7 +2,7 @@ import { default as express } from "express";
 const router = express.Router();
 export default router;
 
-import { default as routeHelper } from "./routeHelpers.js";
+import { default as routeHelper } from "./routeHelpers.mjs";
 
 import { default as Team } from "../models/team.mjs";
 import { default as Hero } from "../models/hero.mjs";

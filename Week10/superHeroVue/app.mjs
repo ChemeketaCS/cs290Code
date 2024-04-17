@@ -11,9 +11,10 @@ const __dirname = import.meta.dirname;
 // view engine setup
 app.set("view engine", "ejs");
 
-app.use(express.json());
+
 
 //use middleware to parse the body of the request
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
@@ -23,10 +24,8 @@ import { default as mongoose } from "mongoose";
 mongoose.connect(credentials.connection_string);
 
 //Add in custom routes
-import { default as teamsRouter } from "./routes/teams.mjs";
-app.use("/teams", teamsRouter);
-import { default as heroesRouter } from "./routes/heroes.mjs";
-app.use("/heroes", heroesRouter);
+import { default as heroesRouter } from "./routes/heroAPI.mjs";
+app.use("/api", heroesRouter);
 
 app.use(express.static(path.join(__dirname, "public")));
 

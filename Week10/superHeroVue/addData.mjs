@@ -56,16 +56,13 @@ const heroesList = [
 
 //--------------------------------------------
 //Connect to DB with Mongoose
-import {default as credentials} from './dbCredentials.js';
-import {default as mongoose} from 'mongoose';
-mongoose.connect(credentials.connection_string, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+import { default as credentials } from "./dbCredentials.mjs";
+import { default as mongoose } from "mongoose";
+mongoose.connect(credentials.connection_string);
 
 //Load our models
-import {default as Hero} from './models/hero.js';
-import {default as Team} from './models/team.js';
+import { default as Hero } from "./models/hero.mjs";
+import { default as Team } from "./models/team.mjs";
 
 //Basic version of loading/reloading records - not actually called
 //Just provided for illustration

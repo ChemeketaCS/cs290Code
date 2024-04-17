@@ -1,12 +1,13 @@
 {
-  "name": "mongoosebasics",
+  "name": "superHeroRelations",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "node ./app.mjs",
     "develop": "nodemon ./app.mjs",
-    "addData": "node addData.js",
-    "testData": "node testData.js"
+    "debugmac": "DEBUG=* & npm run develop",
+    "debugwin": "set DEBUG=* & npm run develop",
+    "addData": "node addData.mjs"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",
