@@ -1,15 +1,12 @@
 //Test out accessing data
 
 //Connect to DB with Mongoose
-import {default as credentials} from './dbCredentials.js';
-import {default as mongoose} from 'mongoose';
-mongoose.connect(credentials.connection_string, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+import { default as credentials } from "./dbCredentials.mjs";
+import { default as mongoose } from "mongoose";
+mongoose.connect(credentials.connection_string);
 
 //Load our models
-import {default as Team} from './models/team.js';
+import { default as Team } from "./models/team.mjs";
 
 async function testTeam() {
   //Get the first team, only get their _id

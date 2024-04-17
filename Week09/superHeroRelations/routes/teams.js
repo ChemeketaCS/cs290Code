@@ -1,10 +1,11 @@
-import {default as express} from 'express';
-var router = express.Router();
+import { default as express } from "express";
+const router = express.Router();
+export default router;
 
-import {default as routeHelper} from './routeHelpers.js';
+import { default as routeHelper } from "./routeHelpers.js";
 
-import {default as Team} from '../models/team';
-import {default as Hero} from '../models/hero';
+import { default as Team } from "../models/team.mjs";
+import { default as Hero } from "../models/hero.mjs";
 
 router.get("/", async function (req, res) {
   let teamList = await Team.find().sort("name").exec();
@@ -140,5 +141,3 @@ router.post("/update/:id", async function (req, res, next) {
       });
     });
 });
-
-module.exports = router;

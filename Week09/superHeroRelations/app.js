@@ -1,30 +1,29 @@
-import {default as express} from 'express';
-import {default as path} from 'path';
-import {default as cookieParser} from 'cookie-parser';
-import {default as logger} from 'morgan';
+import { default as express } from "express";
+import { default as path } from "path";
+import { default as cookieParser } from "cookie-parser";
 
-var app = express();
+// Create an express app
+const app = express();
+
+// Get the directory name of the current module
+const __dirname = import.meta.dirname;
 
 // view engine setup
 app.set("view engine", "ejs");
 
-app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 //Use database with mongoose
-import {default as credentials} from './dbCredentials.js';
-import {default as mongoose} from 'mongoose';
-mongoose.connect(credentials.connection_string, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+import { default as credentials } from "./dbCredentials.mjs";
+import { default as mongoose } from "mongoose";
+mongoose.connect(credentials.connection_string);
 
 //Add in custom routes
-import {default as teamsRouter} from './routes/teams';
+import { default as teamsRouter } from "./routes/teams.mjs";
 app.use("/teams", teamsRouter);
-import {default as heroesRouter} from './routes/heroes';
+import { default as heroesRouter } from "./routes/heroes.mjs";
 app.use("/heroes", heroesRouter);
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -44,4 +43,11 @@ app.use(function (err, req, res, next) {
   res.render("error");
 });
 
-module.exports = app;
+//---------------------------------------------------
+// Start the server
+const port = 3000;
+app.listen(port, () => {
+  console.log(
+    `Example app listening on port ${port} in directory ${__dirname}`
+  );
+});

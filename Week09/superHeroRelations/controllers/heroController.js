@@ -1,7 +1,7 @@
 import {default as routeHelper} from '../routes/routeHelpers.js';
 
-import {default as Hero} from '../models/hero.js';
-import {default as Team} from '../models/team.js';
+import {default as Hero} from '../models/hero.mjs';
+import {default as Team} from '../models/team.mjs';
 
 exports.heroList = async function (req, res, next) {
   try {

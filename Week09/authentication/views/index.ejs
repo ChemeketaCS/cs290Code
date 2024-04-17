@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <% if(!locals.user) { %>
-    <p>Welcome to <%= title %></p>
-    <p>Please <a href="/login">Log in</a></p>
-    <% } else { %>
-      <p>Hello <%= user.name %></p>
-      <p>Check <a href="/profile">your profile</a></p>
-      <p><a href="/logout">Log out</a></p>
-      <% } %>
-  </body>
+
+<head>
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <h1><%= title %></h1>
+  <% if(!locals.user) { %>
+  <p>Welcome to <%= title %></p>
+  <p>Please <a href="/login">Log in</a></p>
+  <% } else { %>
+  <p>Hello <%= locals.user.name %></p>
+  <p>Check <a href="/profile">your profile</a></p>
+  <p><a href="/logout">Log out</a></p>
+  <% } %>
+</body>
+
 </html>

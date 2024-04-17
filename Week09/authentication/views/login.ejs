@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Login</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <% if(locals.message) { %>
-    <p>
-      <%= message %>
-    </p>
-    <% } %>
-    <form action="/login" method="post">
-      <div>
+
+<head>
+  <title>Login</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <h1>Login</h1>
+  <% if(locals.message) { %>
+  <p class="alert">
+    <%= message %>
+  </p>
+  <% } %>
+  <form action="/login" method="post">
+    <div>
       <label>Username:</label>
-      <input type="text" name="username"/><br/>
-      </div>
-      <div>
+      <input type="text" name="username" /><br />
+    </div>
+    <div>
       <label>Password:</label>
-      <input type="password" name="password"/>
-      </div>
-      <div>
-      <input type="submit" value="Submit"/>
-      </div>
-    </form>
+      <input type="password" name="password" />
+    </div>
+    <div>
+      <input type="submit" value="Submit" />
+    </div>
+  </form>
+  <p>Make sure you do <code>npm run addUsers</code> to set up some accounts.You can then find credentials to login in
+    with in addFakeUser.mjs.</p>
 </body>
+
 </html>

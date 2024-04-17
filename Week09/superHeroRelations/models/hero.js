@@ -1,4 +1,4 @@
-import {default as mongoose} from 'mongoose';
+import { default as mongoose } from "mongoose";
 const Schema = mongoose.Schema;
 
 var HeroSchema = new Schema({
@@ -41,6 +41,3 @@ HeroSchema.virtual("last_first").get(function () {
   else
     return this.name.slice(spaceLoc + 1) + ", " + this.name.slice(0, spaceLoc);
 });
-
-//Export model
-module.exports = mongoose.model("Hero", HeroSchema);

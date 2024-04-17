@@ -4,16 +4,18 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./app.mjs",
+    "develop": "nodemon ./app.mjs",
+    "debugmac": "DEBUG=* & npm run develop",
+    "debugwin": "set DEBUG=* & npm run develop"
   },
   "dependencies": {
-    "connect-mongodb-session": "^2.4.1",
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "ejs": "^2.6.2",
-    "express": "~4.16.1",
-    "express-session": "^1.17.2",
-    "http-errors": "~1.6.3",
-    "morgan": "~1.9.1"
+    "connect-mongodb-session": "^5.0.0",
+    "cookie-parser": "^1.4.6",
+    "debug": "^4.3.4",
+    "ejs": "^3.1.9",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "http-errors": "^2.0.0"
   }
 }

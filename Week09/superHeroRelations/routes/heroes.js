@@ -1,7 +1,8 @@
-import {default as express} from 'express';
-var router = express.Router();
+import { default as express } from "express";
+const router = express.Router();
+export default router;
 
-import {default as heroController} from '../controllers/heroController.js';
+import { default as heroController } from "../controllers/heroController.js";
 
 router.get("/", heroController.heroList);
 
@@ -16,5 +17,3 @@ router.get("/create", heroController.create);
 router.get("/update/:id", heroController.update_get);
 
 router.post("/update/:id", heroController.update_post);
-
-module.exports = router;

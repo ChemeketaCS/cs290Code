@@ -1,41 +1,44 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Cookies</title>
-    <style>
-      <% //This code processed on server to decide which style info to include
-      if(theme == 'dark') { %>
-        body {
-          color: white;
-          background-color: #444;
-        }
-        a, a:visited {
-          color: white;
-        }
-      <% } %>
-    </style>
-  </head>
-  <body> 
-    <h1>Cookie info</h1>
-    <hr>
-    <a href="" onclick="switchTheme(); false;">Switch Theme</a>
-    <hr>
 
+<head>
+  <title>Cookies</title>
+  <% //This code processed on server to decide which style info to include
+      if(theme == 'dark') { %>
+  <style>
+    body {
+      color: white;
+      background-color: #444;
+    }
+
+    a,
+    a:visited {
+      color: white;
+    }
+  </style>
+  <% } %>
+</head>
+
+<body>
+  <h1>Cookie info</h1>
+  <hr>
+  <a href="" onclick="switchTheme(); false;">Switch Theme</a>
+  <hr>
 
   <script>
     console.log("----------------------------");
     console.log("Raw cookies:", document.cookie);
-    let cookieMap = getCookieDictionary( );
+    let cookieMap = getCookieDictionary();
     console.log("Cookies as map:", cookieMap);
 
     //Turns cookie string like 'name=1value1; name2=value2' into js object
     function getCookieDictionary() {
       let cookieArray = document.cookie.split('; ');
       let cookieMap = {};
-      for(let c of cookieArray) {
+      for (let c of cookieArray) {
         let cParts = c.split("=");
         //If only one part, must be something
-        if(cParts.length > 1)
+        if (cParts.length > 1)
           cookieMap[cParts[0]] = cParts[1];
       }
       return cookieMap;
@@ -43,19 +46,20 @@
 
     function switchTheme() {
       //Check the existing cookie value for theme and switch it
-      if(cookieMap['theme'] === 'dark') {
+      if (cookieMap['theme'] === 'dark') {
         document.cookie = 'theme=light';
         //clear thing cookie and set it to expire in past
-        document.cookie = 'thing=; expires=Thu, 01 Jan 1970 00:00:00 GMT';  
+        document.cookie = 'thing=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
       } else {
         document.cookie = 'theme=dark';
         document.cookie = 'thing=mystery';
       }
-    console.log("Raw cookies:", document.cookie);
+      console.log("Raw cookies:", document.cookie);
       //Reload the page
       location.reload();
     }
 
   </script>
-  </body>
+</body>
+
 </html>

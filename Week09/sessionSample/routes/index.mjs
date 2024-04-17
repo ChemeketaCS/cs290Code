@@ -1,5 +1,5 @@
-import {default as express} from 'express'
-var router = express.Router();
+import { default as express } from 'express'
+const router = express.Router();
 
 /* GET home page. */
 router.get("/", function (req, res) {

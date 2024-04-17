@@ -1,25 +1,30 @@
-import {default as createError} from 'http-errors'
-import {default as express} from 'express'
-import {default as session} from 'express-session'
-import {default as path} from 'path'
+import { default as createError } from 'http-errors'
+import { default as express } from 'express'
+import { default as session } from 'express-session'
+import { default as path } from 'path'
 
-import {default as cookieParser} from 'cookie-parser'
-import {default as logger} from 'morgan'
+import { default as cookieParser } from 'cookie-parser'
 
-import {default as indexRouter} from './routes/index.js'
-import {default as usersRouter} from './routes/users.js'
+import { default as indexRouter } from './routes/index.mjs'
+import { default as usersRouter } from './routes/users.mjs'
 
+// Create an express app
+const app = express();
+
+// Get the directory name of the current module
 const __dirname = import.meta.dirname;
 
-var app = express();
-
 // //Set up mongodb to store session information
-import {default as credentials} from './dbCredentials.js';
-import {default as MongoDBStore} from 'connect-mongodb-session'(session);
-// const sessionStore = new MongoDBStore({
-//   uri: credentials.connection_string,
-//   collection: "mySessions",
-// });
+import { default as credentials } from './dbCredentials.mjs';
+import { default as MongoDBStore } from 'connect-mongodb-session';
+const sessionStore = new MongoDBStore(session)({
+  uri: credentials.connection_string,
+  collection: "mySessions",
+});
+
+sessionStore.on('error', function (error) {
+  console.log(error);
+});
 
 app.use(
   session({
@@ -31,7 +36,7 @@ app.use(
     resave: false, //Don't constantly update session if no changes
     saveUninitialized: false, //Don't start session until we write to it
     ////Uncomment to save in DB
-    //store: sessionStore,
+    store: sessionStore,
   })
 );
 
@@ -39,7 +44,7 @@ app.use(
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-app.use(logger("dev"));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -65,4 +70,9 @@ app.use(function (err, req, res, next) {
 });
 
 export default app;
-//module.exports = app;
+////---------------------------------------------------
+// Start the server
+const port = 3000;
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port} in directory ${__dirname}`);
+});
