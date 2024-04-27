@@ -1,3 +1,0 @@
-# Tell prettier to not reformat .ejs files or .bak files
-*.ejs
-*.bak
