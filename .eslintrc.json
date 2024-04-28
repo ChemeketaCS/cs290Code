@@ -1,7 +1,7 @@
 {
     "extends": "eslint:recommended",
     "parserOptions": {
-        "ecmaVersion": 8,
+        "ecmaVersion": 2021,
         "sourceType": "module"
     },
     "env": {
@@ -10,7 +10,9 @@
         "es2021": true
     },
     "rules": {
-        //"indent": ["error", 2, { "SwitchCase": 1 }],   //Might want this if not letting prettier clean things up
-        "eqeqeq": ["error", "always"]
+        "eqeqeq": [
+            "error",
+            "always"
+        ]
     }
 }
