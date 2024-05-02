@@ -3,5 +3,5 @@
 - npm install
 - setup a project and database cluster at https://cloud.mongodb.com/ and get a connection string
 - Copy/paste dbCredentials.mjs.default to dbCredentials.mjs and edit to use your connection string
-- Do `node addData.js` to add data to your DB
-- Do `node test.js` to run some sample tests of equality operations
+- Do `npm run addData` to add data to your DB
+- Do `npm run testEquality` to run some sample tests of equality operations
