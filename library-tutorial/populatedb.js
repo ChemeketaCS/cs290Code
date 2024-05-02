@@ -326,7 +326,7 @@ clearAllExistingRecords().then((result) => {
         //console.log("BOOK Instances: " + bookinstances);
       }
       // All done, disconnect from database
-      mongoose.connection.close();
+      mongoose.disconnect();
     }
   );
 });

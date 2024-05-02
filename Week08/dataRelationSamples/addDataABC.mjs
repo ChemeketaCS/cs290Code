@@ -94,7 +94,7 @@ async function loadAllRecords() {
   //Now wait for all to finish
   await Promise.all(promises);
 
-  mongoose.connection.close();
+  mongoose.disconnect();
 }
 
 //Make it happen

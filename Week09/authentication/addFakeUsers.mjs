@@ -33,7 +33,7 @@ async function makeUsers() {
   await user1.save();
   await user2.save();
   console.log("Users created");
-  mongoose.connection.close();
+  mongoose.disconnect();
 }
 
 //Make it happen

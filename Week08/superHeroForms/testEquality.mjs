@@ -35,7 +35,7 @@ async function testTeam() {
 async function doAllTests() {
   console.log("Starting tests");
   await testTeam();
-  mongoose.connection.close();
+  mongoose.disconnect();
 }
 
 doAllTests();

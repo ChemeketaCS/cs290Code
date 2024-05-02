@@ -39,7 +39,7 @@ async function testRecords() {
   console.log("C zero's first A's B:", firstCWithAB.relatedAs[0].relatedB.name);
 
   //Done with connection, close so program can exit
-  mongoose.connection.close();
+  mongoose.disconnect();
 }
 
 //Make it happen

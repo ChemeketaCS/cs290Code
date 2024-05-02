@@ -89,7 +89,7 @@ async function sampleSimpleLoad() {
     active: true,
   });
   await teamRecord2.save();
-  mongoose.connection.close();
+  mongoose.disconnect();
 }
 
 //Async function so we can use await to synchronize steps
@@ -134,7 +134,7 @@ async function loadAllRecords() {
   console.log("Done loading data");
 
   //Done with connection, close so program can exit
-  mongoose.connection.close();
+  mongoose.disconnect();
 }
 
 //Make it happen

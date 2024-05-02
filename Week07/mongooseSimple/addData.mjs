@@ -25,5 +25,5 @@ let saveResult = metropolis.save();
 //Wait until done, then disconnect
 saveResult.then((data) => {
   console.log(data);
-  mongoose.connection.close();
+  mongoose.disconnect();
 });

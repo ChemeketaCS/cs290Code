@@ -107,7 +107,7 @@ async function loadAllRecords() {
   console.log("Done loading data");
 
   //Done with connection, close so program can exit
-  mongoose.connection.close();
+  mongoose.disconnect();
 }
 
 //Make it happen
