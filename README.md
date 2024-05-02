@@ -22,8 +22,13 @@ To use eslint while viewing code, make sure to install it and the vscode
 extension for it. Install eslint globally with `npm install -g eslint` and
 then install the vscode extension: https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
 
-To setup eslint for js files you open outside this project, find your home
-directory with `cd ~`. In that folder, add a copy of `.eslintrc.json`.
+To use eslint in your own projects, add a copy of `.eslint.config.mjs` to
+the root directory of the project.
+
+OR...
+
+To setup eslint for js files anywhere, find your home
+directory with `cd ~`. In that folder, add a copy of `.eslint.config.mjs`.
 
 ## Acknowledgements
 
