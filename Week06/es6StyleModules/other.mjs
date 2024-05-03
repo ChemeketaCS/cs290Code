@@ -19,3 +19,5 @@ export default function sayHello() {
 function privateFunction() {
   console.log("Only for local use in this module");
 }
+
+privateFunction();

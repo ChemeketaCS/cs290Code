@@ -15,15 +15,11 @@ app.get("/", (req, res) => {
 });
 
 // Attempt to get other file, try to return that file name from public/
-app.get("/:name", (req, res, next) => {
-  let name = req.params.name; //:name automatically becomes req.params.name
-
+app.get("/other.html", (req, res, next) => {
   // Get the full path to the file
-  let fileName = __dirname + "/public/" + name;
-
+  let fileName = __dirname + "/public/other.html";
   // Check if the file exists
   if (fs.existsSync(fileName)) {
-    let fileName = __dirname + "/public/" + name;
     res.sendFile(fileName);
   } else {
     // If the file does not exist, call the next middleware

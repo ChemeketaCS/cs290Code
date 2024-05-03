@@ -23,4 +23,5 @@ console.log("Using default export from Other");
 OtherDefault();
 
 ////Can't use this, was not exported
-//Other.privateFunction();
+// import {privateFunction } from "./other.mjs";
+// Other.privateFunction();

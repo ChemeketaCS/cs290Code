@@ -5,7 +5,7 @@ const router = express.Router();
 export default router;
 
 // handle / (within /user)
-router.get("/", function (req, res, next) {
+router.get("/", function (req, res) {
   res.send(`This is the users page.<br>
     Try <a href="ascholer">ascholer/</a>`);
 });

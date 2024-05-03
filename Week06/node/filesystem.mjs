@@ -1,6 +1,6 @@
 //.mjs extension identifies the file as an ES module
 
-//Filessystem provides async and synchronous modes
+//"fs" is a built-in Node.js module that provides file system-related functionality
 import fs from "fs";
 
 //Use asynch callback to open file and read it

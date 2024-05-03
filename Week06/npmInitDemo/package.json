@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "random-words": "^1.3.0"
+    "random-words": "^2.0.1"
   }
 }

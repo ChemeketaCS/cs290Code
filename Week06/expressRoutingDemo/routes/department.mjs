@@ -1,12 +1,11 @@
-import {default as express} from 'express';
-
+import { default as express } from 'express';
 
 //Construct a router object and export it
 const router = express.Router();
 export default router;
 
 // handle / (within /department)
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res) {
   res.send(`This is the departments page.<br>
   Try <a href="/department/cs">/department/cs/</a>
   `

@@ -1,7 +1,8 @@
 console.log("Hello world");
 
-let x = 42;
+let x = 40;
 x++;
+console.log(x);
 
 console.log("\nYou called this with arguments:");
 console.log("------------------------------------------------");

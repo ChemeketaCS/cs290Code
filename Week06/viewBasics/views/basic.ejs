@@ -1,6 +1,10 @@
 <% console.log(locals) %>
 
 <p>
+    Scriptlet <% name %>
+    <%# This is a comment. Scriptlets have no output %>
+</p>
+<p>
     Basic insertion, no HTML escaping <%- name %>
     Basic insertion <%- locals.name %> <%# Same as name %>
 </p>
@@ -15,12 +19,10 @@
 </p>
 
 
-<p>
-    Scriptlet <% name %> <%# This is a comment. Scriptlets have no output %>
-</p>
 
 Age???
-<% if (typeof(age) !== 'undefined') { -%> <%# Scriptlet used for flow control %>
+<% if (typeof(age) !== 'undefined') { -%>
+<%# Scriptlet used for flow control %>
 It is: <%- age -%>
 <%  } else { -%>
 Not provided
