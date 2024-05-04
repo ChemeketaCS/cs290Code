@@ -62,6 +62,17 @@ const ruleSettings = Object.freeze({
   "valid-typeof": "error"
 })
 
+const globals = Object.freeze({
+  "document": "false",
+  "console": "false",
+  "fetch": "false",
+  "prompt": "false",
+  "process": "false",
+});
+
 export default [{
   rules: ruleSettings,
+  languageOptions: {
+    globals: globals
+  }
 }];
