@@ -1,6 +1,9 @@
-//Add an event handler to the button
+//Add an event handler to the button for when it is clicked
 const searchBtn = document.querySelector('#go');
 searchBtn.addEventListener('click', doSearch);
+
+//Add an event handler to the textbox - when it is focused
+// and enter is pressed, do a search
 const inputBox = document.querySelector('#inputTextbox');
 inputBox.addEventListener('keypress', function (e) {
   if (e.key === 'Enter') {
