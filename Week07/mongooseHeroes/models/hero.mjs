@@ -2,10 +2,15 @@ import { default as mongoose } from 'mongoose';
 const Schema = mongoose.Schema;
 
 let HeroSchema = new Schema({
+  // name: String,
+  // age: Number,
+  // secretIdentity: String,
+  // powers: [String],
+  // team: { type: Schema.Types.ObjectId, ref: 'Team' },
   name: { type: String, required: true },
   age: { type: Number, required: true },
   secretIdentity: { type: String, required: true },
-  powers: [{ type: String }],
+  powers: [String],   //array of strings
   team: { type: Schema.Types.ObjectId, ref: 'Team' },
 });
 
@@ -21,4 +26,4 @@ HeroSchema.virtual('last_first').get(function () {
 });
 
 // Make a model from the Schema for the type 'Hero' and export that
-export default mongoose.model('Hero', HeroSchema);
+export default mongoose.model('Hero2', HeroSchema);

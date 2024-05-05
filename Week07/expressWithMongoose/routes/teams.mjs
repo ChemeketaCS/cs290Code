@@ -40,7 +40,7 @@ router.get("/delete/:id", async function (req, res) {
   }
 
   //Now delete the team
-  let team = await Team.findByIdAndRemove(req.params.id).exec();
+  let team = await Team.findByIdAndDelete(req.params.id).exec();
 
   //Send the user back to the teams page
   res.redirect("/teams/");

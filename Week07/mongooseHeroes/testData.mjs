@@ -11,17 +11,21 @@ import { default as Team } from './models/team.mjs';
 
 //Async function so we can use await to synchronize steps
 async function testHero() {
-  //Find at most one record where name is == 'Molecule Man'
-  const hero0 = await Hero.findOne().where('name').eq('Molecule Man').exec();
+  //Set up a query, do not execute yet...
+  const heroQuery = Hero.findOne().where('name').eq('Molecule Man');
+  //Execute and wait for response from DB
+  const hero0 = await heroQuery.exec();
+
+  //Create query and immediately exec
+  const heroAlt = await Hero.findOne().where('name').eq('Molecule Man').exec();
+
   console.log('\nPrinting Molecule Man:');
   console.log(hero0);
 
   //Get info about hero0's team
   console.log('\nPrinting hero0\'s team info:');
   let squad = await Team.findById(hero0.team).exec();
-  console.log(hero0.team);
-  hero0.team = squad;
-  console.log(hero0.team);
+  console.log(squad);
 
   //Find record where name matches a regex
   const hero1 = await Hero.findOne()
@@ -71,6 +75,7 @@ async function testTeam() {
   //Modify data
   if (squad.homeTown === 'Salem') squad.homeTown = 'Metro City';
   else squad.homeTown = 'Salem';
+  //Data now changed in JS object, NOT in DB
   console.log('\nThe squad after changes:');
   console.log(squad);
 

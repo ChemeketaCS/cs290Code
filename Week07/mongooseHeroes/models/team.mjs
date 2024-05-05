@@ -1,13 +1,16 @@
 import { default as Hero } from "./hero.mjs";
-
 import { default as mongoose } from "mongoose";
 const Schema = mongoose.Schema;
 
 var TeamSchema = new Schema({
-  squadName: { type: String, required: true },
-  homeTown: { type: String, required: true },
-  formed: { type: Date },
-  active: { type: Boolean, required: true, default: true },
+  squadName: String,
+  homeTown: String,
+  formed: Date,
+  active: Boolean,
+  // squadName: { type: String, required: true },
+  // homeTown: { type: String, required: true },
+  // formed: { type: Date },
+  // active: { type: Boolean, required: true, default: true },
 });
 
 TeamSchema.virtual("url").get(function () {

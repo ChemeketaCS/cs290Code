@@ -10,7 +10,7 @@ import { default as B } from './models/B.mjs';
 import { default as C } from './models/C.mjs';
 
 //Loads the data stored in this data file:
-import { default as dataFile } from './data.js';
+import { default as dataFile } from './data.mjs';
 
 //Async function so we can use await to synchronize steps
 async function loadAllRecords() {
@@ -55,22 +55,18 @@ async function loadAllRecords() {
 
   //Now let's wire up the connections between As and Bs
   for (let connection of dataFile.ABRelations) {
-    //Connection looks like [0, 2] with indexes of A and B records to link
-    //Get the two items
-    let ARec = ARecords[connection[0]];
-    let BRec = BRecords[connection[1]];
+    //Get the two items using the index
+    let ARec = ARecords[connection.AIndex];
+    let BRec = BRecords[connection.BIndex];
 
     ARec.relatedB = BRec._id; //relatedB is a single value in A
   }
 
   //Now let's wire up the connections between As and Cs
   for (let connection of dataFile.CARelations) {
-    //Connection looks like [1, [0, 1]]. Get C record
-    let Cindex = connection[0];
-    let Alist = connection[1];
-    let CRec = CRecords[Cindex];
-    //Loop through all indexes for C
-    for (let AIndex of Alist) {
+    let CRec = CRecords[connection.CIndex];
+    //Loop through all related indexes
+    for (let AIndex of connection.AIndexes) {
       let ARec = ARecords[AIndex];
       //Relationship is normalized - only have to set on A side
       CRec.relatedAs.push(ARec._id);

@@ -43,20 +43,19 @@ let Clist = [
 ];
 
 //Desired initial relationships between A and B
-//Relationship is Many(A) to One(B)
-//Each item is a pair with [AIndex, BIndex]
+//Relationship is Many(A) to One(B) and will be stored in A
+//Store the indexes for desired connections from array above
 let ABRelations = [
-  [0, 0],
-  [1, 0],
-  [2, 1],
+  { AIndex: 0, BIndex: 0 },
+  { AIndex: 1, BIndex: 0 },
+  { AIndex: 2, BIndex: 1 },
 ];
 
 //Desired initial relationships between A and C
-//Relationship is Many(A) to Many(C)
-//Each item is a pair with [CIndex, [Array of AIndexes]]
+//Relationship is Many(A) to Many(C) and stored on C side
 let CARelations = [
-  [0, [0, 1]],
-  [2, [0, 1, 2]],
+  { CIndex: 0, AIndexes: [0, 1] },
+  { CIndex: 2, AIndexes: [0, 1, 2] },
 ];
 
-module.exports = { Alist, Blist, Clist, ABRelations, CARelations };
+export default { Alist, Blist, Clist, ABRelations, CARelations };

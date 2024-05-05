@@ -6,8 +6,8 @@ mongoose.connect(credentials.connection_string);
 
 //Create a schema
 let CitySchema = new mongoose.Schema({
-  name: { type: String },
-  population: { type: Number },
+  name: String,
+  population: Number
 });
 
 //Create a model from the schema
@@ -15,7 +15,7 @@ let City = mongoose.model("City", CitySchema);
 
 //Use the model to make an object
 const metropolis = new City({
-  name: "Gothan City",
+  name: "Gotham City",
   population: 3453245,
 });
 
