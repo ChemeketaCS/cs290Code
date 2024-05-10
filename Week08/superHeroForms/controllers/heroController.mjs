@@ -103,17 +103,16 @@ const update_post = [
           _id: req.body.id,
         });
 
-      console.log(req.body);
+      console.log("req.body:", req.body);
 
       //Process Powers Input - split string into an array
-      let powersList = req.body.powers.split("\n");
-      for (let i = 0; i < powersList.length; i++) {
-        powersList[i] = powersList[i].trim(); //get rid of extra whitespace at begin/end of each
-        if (powersList[i] === "") {
-          //Item is empty, so delete it
-          powersList.splice(i, 1);
-          i--;
-        }
+      let powersStrings = req.body.powers.split("\n");
+      let powersList = [];
+      for (let powerString of powersStrings) {
+        //get rid of extra whitespace at begin/end
+        powerString = powerString.trim(); 
+        if (powerString !== "")
+          powersList.push(powerString);
       }
 
       //Replace existing data
