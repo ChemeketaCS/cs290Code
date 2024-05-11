@@ -95,7 +95,6 @@ async function doAllTests() {
   console.log('Starting tests');
   await testHero();
   await testTeam();
-  await testTeamEquality();
   mongoose.disconnect();
 }
 

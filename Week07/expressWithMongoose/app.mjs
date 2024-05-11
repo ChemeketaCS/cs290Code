@@ -1,6 +1,5 @@
 import { default as express } from "express";
 import { default as path } from "path";
-import { default as cookieParser } from "cookie-parser";
 
 // Create an express app
 const app = express();
@@ -11,10 +10,6 @@ const __dirname = import.meta.dirname;
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 
 //Use database with mongoose
 import { default as credentials } from "./dbCredentials.mjs";
