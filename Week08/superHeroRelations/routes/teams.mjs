@@ -55,10 +55,10 @@ router.get("/update/:id", async function (req, res, next) {
     let allHeroes = await Hero.find().select("name team").exec(); //get name/team/id of all heroes
 
     //Mark all heroes that are on this team by setting an on_team property before handing to view
-    allHeroes.forEach((hero, index, arr) => {
-      if (hero.team && hero.team._id.equals(team._id))
-        arr[index].on_team = true;
-    });
+    for(let i = 0; i < allHeroes.length; i++) {
+      if (allHeroes[i].team && allHeroes[i].team._id.equals(team._id))
+        allHeroes[i].on_team = true;
+    }
 
     res.render("teamForm.ejs", {
       title: "Update Team",
