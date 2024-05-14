@@ -5,3 +5,5 @@
 - Copy/paste dbCredentials.mjs.default to dbCredentials.mjs and edit to use your connection string
 - Do `npm run addData` to add data to your DB
 - Do `npm run testEquality` to run some sample tests of equality operations
+- Do `npm run start` to start the server
+
