@@ -12,22 +12,16 @@ router.get("/", async function (req, res) {
 });
 
 router.get("/id/:id", async function (req, res, next) {
-  let team = await Team.findById(req.params.id)
-    .exec() //do query
-    .catch(
-      //if there is a problem...
-      (except) => {
-        console.log("Error in hero router", except);
-        next(); //pass this on to next handler (404)
-      }
-    );
-
-  //Team doesn't know about heroes that are members
-  //but provides a property to find them
-  let members = await team.members;
-
-  //pass the team and members list to the view
-  res.render("teamSingle.ejs", { team: team, members: members });
+  let team = await Team.findById(req.params.id).exec();
+  if(team) {
+    //Team doesn't know about heroes that are members
+    //  but provides a property to find them
+    let members = await team.members;
+  
+    //pass the team and members list to the view
+    res.render("teamSingle.ejs", { team: team, members: members });
+  } else
+    next();  //could not find, continue to 404
 });
 
 router.get("/delete/:id", async function (req, res) {

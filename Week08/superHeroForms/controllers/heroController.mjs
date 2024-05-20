@@ -43,9 +43,12 @@ async function heroById(req, res, next) {
       .populate("team") //get data of team as well
       .exec();
     //pass the hero itself to the view
-    res.render("superheroSingle.ejs", hero);
+    if(hero)
+      res.render("superheroSingle.ejs", hero);
+    else 
+      next();  //continue to 404
   } catch (err) {
-    next(err);
+    next(err);  //pass error on
   }
 };
 
