@@ -1,0 +1,15 @@
+{
+  "name": "coursedatasamples",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "addData": "node ./addData.mjs",
+    "testData": "node ./testData.mjs"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^8.3.0"
+  }
+}
