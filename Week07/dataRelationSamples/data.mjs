@@ -28,7 +28,6 @@ let Blist = [
 
 let Clist = [
   {
-    //C stores no relationship info
     name: "C zero",
     relatedAs: [], //an array of relations - at least start with an empty list
   },

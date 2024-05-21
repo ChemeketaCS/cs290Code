@@ -28,7 +28,6 @@ let InstructorList = [
 
 let StudentList = [
   {
-    //C stores no relationship info
     name: "Student zero",
     relatedCourses: [], //an array of relations - at least start with an empty list
   },
