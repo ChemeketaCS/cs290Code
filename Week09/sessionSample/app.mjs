@@ -1,12 +1,6 @@
-import { default as createError } from 'http-errors'
-import { default as express } from 'express'
-import { default as session } from 'express-session'
+
 import { default as path } from 'path'
-
-import { default as cookieParser } from 'cookie-parser'
-
-import { default as indexRouter } from './routes/index.mjs'
-import { default as usersRouter } from './routes/users.mjs'
+import { default as express } from 'express'
 
 // Create an express app
 const app = express();
@@ -14,18 +8,34 @@ const app = express();
 // Get the directory name of the current module
 const __dirname = import.meta.dirname;
 
-// //Set up mongodb to store session information
-import { default as credentials } from './dbCredentials.mjs';
-import { default as MongoDBStore } from 'connect-mongodb-session';
-const sessionStore = new MongoDBStore(session)({
-  uri: credentials.connection_string,
-  collection: "mySessions",
-});
+//use middleware to parse the body of the request
+app.use(express.urlencoded({ extended: false }));
 
-sessionStore.on('error', function (error) {
-  console.log(error);
-});
+// Have middleware parse cookies for us
+import { default as cookieParser } from 'cookie-parser';
+app.use(cookieParser());
 
+// Library for sessions
+import { default as session } from 'express-session';
+
+//-----------------------------------------------------------
+// Set up mongodb to store session information
+// This block not needed for memory storage.
+
+// // Make a mongodb connection for use by the session
+// import { default as credentials } from './dbCredentials.mjs';
+// import { default as MongoDBStore } from 'connect-mongodb-session';
+// const sessionStore = new MongoDBStore(session)({
+//   uri: credentials.connection_string,
+//   collection: "mySessions",
+// });
+// // If there is an error with working with the session storage, just log it
+// sessionStore.on('error', function (error) {
+//   console.log(error);
+// });
+//------------------------------------------------------------
+
+// Now tell express to use the express-session middleware to store session info
 app.use(
   session({
     secret: "j243.4xchff982yf807NAYsDF97n6t935r3", //This should not be in code!
@@ -35,27 +45,30 @@ app.use(
     },
     resave: false, //Don't constantly update session if no changes
     saveUninitialized: false, //Don't start session until we write to it
-    ////Uncomment to save in DB
-    store: sessionStore,
+
+    // //Next line uncommented says to use the sessionStore created above
+    // // to store the session info in MongoDB. If using memory, comment it out
+    // store: sessionStore,
   })
 );
 
-// view engine setup
+// View engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+// My routers
+import { default as indexRouter } from './routes/index.mjs'
+import { default as usersRouter } from './routes/users.mjs'
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
+// 404 handler
+app.use(function (req, res) {
+  res.status = 404;
+  res.send("File not found");
 });
 
 // error handler
