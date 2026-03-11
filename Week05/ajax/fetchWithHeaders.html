@@ -10,17 +10,18 @@
     <p>Open the console to see the results...</p>
     <script>
       async function doStuff() {
-        //get data from: https://rapidapi.com/api-sports/api/api-basketball/
-        //NBA is league 12
         const url =
-          "https://api-basketball.p.rapidapi.com/standings?league=12&season=2022-2023";
+          "https://api.thecatapi.com/v1/images/search?limit=10";
+      
+        // Sign up for a free API key at https://thecatapi.com/#pricing and replace the value of key with your API key.
+        const key = "???";
 
+        // Set up headers to include in the request. The catapi specifies that the API key
+        // should be included in the header with the name "x-api-key"
         const options = {
           method: "GET",
           headers: {
-            "X-RapidAPI-Host": "api-basketball.p.rapidapi.com",
-            "X-RapidAPI-Key":
-              "cadc737909mshfc1ce44146d6cb1p16852djsn7698b616faba",
+            "x-api-key": key,
           },
         };
 
@@ -28,6 +29,7 @@
           const response = await fetch(url, options);
 
           console.log(response);
+
           if (response.status != 200)
             throw response.status + " " + response.statusText;
 
@@ -37,28 +39,17 @@
           //Show the results
           console.log(result);
 
-          //Response has an array with one element. It's value is an array of 60 items
-          const records = result.response[0];
-
-          for (let record of records) {
-            //console.log(record)
-            console.log(record.team.name);
-            let modifier = "th";
-            switch (record.position) {
-              case 1:
-                modifier = "st";
-                break;
-              case 2:
-                modifier = "nd";
-                break;
-              case 2:
-                modifier = "rd";
-                break;
+          //Response has an array of objects, loop through them
+          for (let record of result) {
+            console.log(record)
+            // check if there is any breed information, if so print it
+            if (record.breeds.length > 0) {
+              console.log(record.breeds[0]);
+              console.log(`Cat breed: ${record.breeds[0].name}`);
+              console.log(`Breed description: ${record.breeds[0].description}`);
             }
-            console.log(
-              `  ${record.position}${modifier} place in the ${record.group.name}`
-            );
           }
+          console.log("------------------------------");
         } catch (error) {
           console.error(error);
         }
