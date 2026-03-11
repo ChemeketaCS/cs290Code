@@ -5,10 +5,9 @@
     <title>My cookie test page 2</title>
   </head>
   <body>
-    <p>This is a subdirectory.</p>
-    <p id="greeting">
-      Welcome stranger
+    <p>This is a subdirectory. A cookie with your age has been set. It is only available in this subdirectory. In the console after reloading this page you should see the cookie key "age" with value "31".
     </p>
+    
     <a href="../index.html">Go back</a>
 
     <script>
@@ -26,7 +25,8 @@
         }
       }
 
-      //This assumes being served by a server using the cs290Code folder as root
+      // Set a cookie for age that is only available in this subdirectory
+      // Path assumes being served by a server using the cs290Code folder as root
       document.cookie = "age=31; Path=/Week09/cookieBasics/subdir/";
     </script>
   </body>

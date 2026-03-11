@@ -6,9 +6,16 @@
   </head>
   <body>
     <p id="greeting">
-      Welcome stranger
+      Welcome stranger. Press the "Set Cookie" button to set some cookies. Then refresh the page to see the greeting change. (The cookie will expire in one minute.)
     </p>
+
     <a href="subdir/index.html">Go to subdirectory</a>
+    <br/>
+    <br/>
+    <button id="setCookie">Set Cookie</button>
+    <br/>
+    <br/>
+    <button id="logout">Log Out</button>
 
     <script>
       let oldCookie = document.cookie;
@@ -21,17 +28,26 @@
         let value = crumb.substr(eqInd + 1);
         console.log(key)
         if(key === "username") {
-          document.getElementById("greeting").innerText = "Welcome back " + value;
+          document.getElementById("greeting").innerText = "Welcome back " + value + ". Check the console for more details about your cookies.";
         }
       }
 
-      let expire = new Date();
-      expire.setTime(Date.now() + 60 * 1000);  //expire in one minute
-      let expireString = expire.toUTCString();
-      console.log(expireString);
-      document.cookie = "username=John Doe";
-      document.cookie = "fav_number=42";
-      document.cookie = "favorite_color=blue; Expires=" + expireString;
+      document.getElementById("setCookie").addEventListener("click", () => {
+        let expire = new Date();
+        expire.setTime(Date.now() + 60 * 1000);  //expire in one minute
+        let expireString = expire.toUTCString();
+        console.log(expireString);
+        document.cookie = "username=John Doe";
+        document.cookie = "fav_number=42";
+        document.cookie = "favorite_color=blue; Expires=" + expireString;
+      });
+
+      document.getElementById("logout").addEventListener("click", () => {
+        document.cookie = "username=; Expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        document.cookie = "fav_number=; Expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        document.cookie = "favorite_color=; Expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        document.getElementById("greeting").innerText = "Welcome stranger. Press the \"Set Cookie\" button to set some cookies. Then refresh the page to see the greeting change. (The cookie will expire in one minute.)";
+      });
     </script>
   </body>
 </html>
