@@ -7,6 +7,6 @@
     "testData": "node testData.mjs"
   },
   "dependencies": {
-    "mongoose": "^8.3.0"
+    "mongoose": "^9.3.0"
   }
 }

@@ -9,15 +9,16 @@
     "devstart": "cross-env DEBUG=* nodemon app.mjs"
   },
   "dependencies": {
+    "cross-env": "^10.1.0",
     "bcrypt": "^5.0.1",
     "connect-mongodb-session": "^5.0.0",
-    "cookie-parser": "^1.4.6",
-    "debug": "^4.3.4",
+    "cookie-parser": "^1.4.7",
+    "debug": "^4.4.3",
     "ejs": "^2.7.4",
-    "express": "^4.19.2",
+    "express": "^5.2.1",
     "express-session": "^1.18.0",
-    "http-errors": "^2.0.0",
-    "mongoose": "^8.3.0",
+    "http-errors": "^2.0.1",
+    "mongoose": "^9.3.0",
     "passport": "^0.7",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^8.0.0"

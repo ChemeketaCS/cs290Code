@@ -10,10 +10,11 @@
     "testEquality": "node testEquality.mjs"
   },
   "dependencies": {
-    "ejs": "^3.1.10",
-    "express": "^4.19.2",
-    "express-validator": "^6.15.0",
-    "http-errors": "^2.0.0",
-    "mongoose": "^8.3.0"
+    "cross-env": "^10.1.0",
+    "ejs": "^5.0.10",
+    "express": "^5.2.1",
+    "express-validator": "^7.3.1",
+    "http-errors": "^2.0.1",
+    "mongoose": "^9.3.0"
   }
 }

@@ -8,6 +8,7 @@
     "devstart": "cross-env DEBUG=* nodemon app.mjs"
   },
   "dependencies": {
+    "cross-env": "^10.1.0",
     "express": "^5.2.1"
   }
 }
