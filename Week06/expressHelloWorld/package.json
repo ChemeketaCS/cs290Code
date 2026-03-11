@@ -3,12 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./app.mjs",
-    "develop": "nodemon ./app.mjs",
-    "debugmac": "DEBUG=* & npm run develop",
-    "debugwin": "set DEBUG=* & npm run develop"
+    "start": "node app.mjs",
+    "debug": "cross-env DEBUG=* node app.mjs",
+    "devstart": "cross-env DEBUG=* nodemon app.mjs"
   },
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^5.2.1"
   }
 }

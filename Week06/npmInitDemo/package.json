@@ -4,7 +4,9 @@
   "description": "",
   "main": "useFetch.js",
   "scripts": {
-    "start": "node randWords.mjs"
+    "start": "node app.mjs",
+    "debug": "cross-env DEBUG=* node app.mjs",
+    "devstart": "cross-env DEBUG=* nodemon app.mjs"
   },
   "author": "",
   "license": "ISC",

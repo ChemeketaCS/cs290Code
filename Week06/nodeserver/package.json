@@ -4,11 +4,12 @@
   "description": "",
   "main": "nodeserver.js",
   "scripts": {
-    "start": "node nodeserver.mjs"
+    "start": "node app.mjs",
+    "debug": "cross-env DEBUG=* node app.mjs",
+    "devstart": "cross-env DEBUG=* nodemon app.mjs"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "http": "^0.0.1-security"
   }
 }

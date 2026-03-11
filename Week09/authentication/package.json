@@ -3,11 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./app.mjs",
-    "develop": "nodemon ./app.mjs",
-    "debugmac": "DEBUG=* & npm run develop",
-    "debugwin": "set DEBUG=* & npm run develop",
     "addUsers": "node ./addFakeUsers.mjs"
+    "start": "node app.mjs",
+    "debug": "cross-env DEBUG=* node app.mjs",
+    "devstart": "cross-env DEBUG=* nodemon app.mjs"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",

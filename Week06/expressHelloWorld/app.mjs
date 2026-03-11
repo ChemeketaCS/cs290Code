@@ -10,12 +10,14 @@ const __dirname = import.meta.dirname;
 // Listen for get requests
 // On attempt to get site root, return index.html
 app.get("/", (req, res) => {
+  console.log("Received request for /");
   let fileName = __dirname + "/public/index.html";
   res.sendFile(fileName);
 });
 
 // Attempt to get other file, try to return that file name from public/
 app.get("/other.html", (req, res, next) => {
+  console.log("Received request for /other.html");
   // Get the full path to the file
   let fileName = __dirname + "/public/other.html";
   // Check if the file exists
@@ -29,6 +31,7 @@ app.get("/other.html", (req, res, next) => {
 
 // Give up and return a 404 error
 app.use(function (req, res) {
+  console.log("Received request for unknown route");
   res.status(404);
   res.type("txt");
   res.send("Error - file not found. Try /index.html");

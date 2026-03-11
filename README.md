@@ -14,6 +14,8 @@ To browse the examples from a locally run webserver (necessary for some samples)
 `npm install` from the project directory, and then `npm run start`. You can then
 browse to http://localhost:3000.
 
+Note that for samples that set up their own server, you will need to `cd` into that sample's directory and run `npm install` and `npm run start` from there.
+
 ---
 
 ### ESLint
