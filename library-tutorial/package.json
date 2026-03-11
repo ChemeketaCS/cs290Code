@@ -9,7 +9,6 @@
     "start": "node ./bin/www",
     "debug": "cross-env DEBUG=express-locallibrary-tutorial:* node ./bin/www",
     "devstart": "cross-env DEBUG=express-locallibrary-tutorial:* nodemon ./bin/www",
-    "startwithreload": "npm run devstart"
   },
   "dependencies": {
     "cookie-parser": "^1.4.7",
@@ -22,8 +21,5 @@
     "luxon": "^3.7.2",
     "mongoose": "^9.3.0",
     "morgan": "^1.10.1"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.10"
   }
 }
