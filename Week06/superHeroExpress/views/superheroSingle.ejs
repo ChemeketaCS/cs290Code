@@ -1,13 +1,13 @@
-<%- include("super-common-header.ejs", {title:name}) %>
+<%- include("super-common-header.ejs", {title : hero.name}) %>
 
 <div class="hero">
-  <h1>Name: <%- name %></h1>
-  <p><b>Age: </b><%- age %></p>
-  <p><b>Secret Identity: </b><%- secretIdentity %></p>
+  <h1>Name: <%- hero.name %></h1>
+  <p><b>Age: </b><%- hero.age %></p>
+  <p><b>Secret Identity: </b><%- hero.secretIdentity %></p>
   <hr>
   Powers:
   <ul>
-    <% for (let p of powers) { %>
+    <% for (let p of hero.powers) { %>
       <li><%- p %></li>
     <% } %>
   </ul>

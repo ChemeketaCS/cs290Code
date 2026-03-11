@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
   //Automatically render and send the view
   //Assumed view is in views/ folder
 
-  res.render("superheroes.ejs", superSquad);
+  res.render("superheroes.ejs", { squad: superSquad });
 });
 
 //Listing for a hero by name
@@ -45,7 +45,7 @@ router.get("/:name", async (req, res, next) => {
   let hero = superSquad.members[index];
   console.log(hero);
 
-  if (index !== -1) res.render("superheroSingle.ejs", hero);
+  if (index !== -1) res.render("superheroSingle.ejs", { hero: hero });
   else next();
 });
 

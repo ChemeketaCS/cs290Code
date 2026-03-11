@@ -1,23 +1,23 @@
-<%- include("super-common-header.ejs", {title:squadName}) %>
+<%- include("super-common-header.ejs", {title:squad.name}) %>
 
 
-<h1><%- squadName %></h1>
+<h1><%- squad.name %></h1>
 <hr>
-<b>Home town: </b><%- homeTown %>
-<p><b>Formed: </b><%- formed %></p>
-<p><b>Base: </b><%- secretBase %></p>
-<p><b>Active: </b><%- active %></p>
+<b>Home town: </b><%- squad.homeTown %>
+<p><b>Formed: </b><%- squad.formed %></p>
+<p><b>Base: </b><%- squad.secretBase %></p>
+<p><b>Active: </b><%- squad.active %></p>
 <hr>
 <h2>The Team</h2>
 <%# Could do sorting here... but yuck
-  members.sort((a,b) => {
+  squad.members.sort((a,b) => {
     if (a.name < b.name) return -1;
     if (a.name > b.name) return 1;
     return 0;
   });
 %>
 <ul>
-  <% for(let hero of members) {
+  <% for(let hero of squad.members) {
     console.log(hero);  
     -%>
   <li>
