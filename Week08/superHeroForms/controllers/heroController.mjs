@@ -44,7 +44,7 @@ async function heroById(req, res, next) {
       .exec();
     //pass the hero itself to the view
     if(hero)
-      res.render("superheroSingle.ejs", hero);
+      res.render("superheroSingle.ejs", {hero: hero});
     else 
       next();  //continue to 404
   } catch (err) {

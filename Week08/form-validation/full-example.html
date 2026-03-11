@@ -24,12 +24,18 @@
         box-sizing: border-box;
       }
 
+      fieldset:has(input:invalid) {
+        border-color: red;
+        background: #fdd;
+      }
+
       input:invalid {
-        box-shadow: 0 0 5px 1px red;
+        border: 1px solid red;
+        background: #fdd;
       }
 
       input:focus:invalid {
-        box-shadow: none;
+        background: none;
       }
     </style>
 </head>
@@ -48,13 +54,8 @@
     </p>
     <p>
       <label for="n1">How old are you?</label>
-      <!-- The pattern attribute can act as a fallback for browsers which
-           don't implement the number input type but support the pattern attribute.
-           Please note that browsers that support the pattern attribute will make it
-           fail silently when used with a number field.
-           Its usage here acts only as a fallback -->
-      <input type="number" min="12" max="120" step="1" id="n1" name="age"
-             pattern="\d+">
+
+      <input type="number" min="12" max="120" step="1" id="n1" name="age" required>
     </p>
     <p>
       <label for="t1">What's your favorite fruit?<abbr title="This field is mandatory" aria-label="required">*</abbr></label>
@@ -75,7 +76,7 @@
     </p>
     <p>
       <label for="t3">Leave a short message</label>
-      <textarea id="t3" name="msg" maxlength="140" rows="5"></textarea>
+      <textarea id="t3" name="msg" maxlength="140" rows="5" requried></textarea>
     </p>
     <p>
       <button>Submit</button>

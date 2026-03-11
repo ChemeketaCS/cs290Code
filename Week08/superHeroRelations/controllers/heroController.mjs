@@ -43,7 +43,7 @@ async function heroById(req, res, next) {
       .populate("team") //get data of team as well
       .exec();
     //pass the hero itself to the view
-    res.render("superheroSingle.ejs", hero);
+    res.render("superheroSingle.ejs", {hero: hero});
   } catch (err) {
     next(err);
   }

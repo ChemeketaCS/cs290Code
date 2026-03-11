@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "cross-env": "^10.1.0",
-    "ejs": "^5.0.10",
+    "ejs": "^5.0.1",
     "express": "^5.2.1",
     "express-validator": "^7.3.1",
     "http-errors": "^2.0.1",
