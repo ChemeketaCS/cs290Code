@@ -27,12 +27,23 @@ router.get("/byname/:name", async function (req, res) {
 router.get("/id/:id", async function (req, res, next) {
   let hero = await Hero.findById(req.params.id)
     .populate("team") //get data of team as well
-    .exec(); //do query
+    .exec();
 
   // Hero will be undefined if there was no match for the id
-  if (hero)
-    res.render("superheroSingle.ejs", hero);
-  else {
+  if (hero) {
+    // Hero is a Mongoose document. Passing it to the template directly
+    // will not work.
+    // Option 1: Convert it to a plain JavaScript object using toObject() method
+    res.render("superheroSingle.ejs", { hero: hero });
+    // Option 2: Create a new object and copy the properties from the Mongoose document
+    // res.render("superheroSingle.ejs", {
+    //   _id: hero._id,
+    //   name: hero.name,
+    //   secretIdentity: hero.secretIdentity,
+    //   powers: hero.powers,
+    //   team: hero.team ? hero.team.name : "No Team",
+    // });
+  } else {
     next(); //pass this on to next handler (404)
   }
 });
