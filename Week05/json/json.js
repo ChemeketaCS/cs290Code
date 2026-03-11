@@ -54,8 +54,11 @@ let squadString = JSON.stringify(superSquad, " ", 2);
 
 console.log(squadString);
 
+//Original is an object - has properties and functions
 console.log("Squad name is", superSquad.squadName);
-console.log("JSON squad name is", squadString.squadName); //This no longer makes sense - it is just a string
+
+//This no longer makes sense - squadString is a string - has no properties or functions
+console.log("JSON squad name is", squadString.squadName); 
 
 //Turn the string back into an object
 let parsedSquad = JSON.parse(squadString);
@@ -90,18 +93,3 @@ let jsonArray = `[
   }
 ]`;
 
-let parsedArray = JSON.parse(jsonArray);
-console.log(parsedArray);
-console.log(parsedArray[0]);
-
-let foo = {
-  a: 1,
-  b: (x) => 2 * x,
-  c: new Date(),
-};
-console.log(foo);
-let stringFoo = JSON.stringify(foo);
-console.log(stringFoo);
-let foo2 = JSON.parse(stringFoo);
-foo2.c = new Date(foo2.c);
-console.log(foo2);
