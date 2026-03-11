@@ -50,63 +50,65 @@ async function doSearch() {
 //Given an object produce div containing data
 //Returns div to be added into layout
 function createCard(crimeObj) {
+  console.log(crimeObj);
   //Element to contain card and insert in layout
   let container = createElement('div', 'col-md-6');
   // createElement function replaces:
   // let container = document.createElement('div');
   // container.className = 'col-md-6';
 
-  let card = createElement('div', 'card h-100 d-flex justify-content-center align-items-center');
+  let card = createElement('div', 'card h-100');
   container.appendChild(card);
 
-  // row to layout contents of card
-  let rowDiv = createElement('div', 'row g-0 p-2');
-  card.appendChild(rowDiv);
+  // Content of card will be two rows - one for title/description and one for image and other data
+  let row1 = createElement('div', 'row p-2');
+  card.appendChild(row1);
 
-  // Make a left column in row
-  let leftCol = createElement('div', 'col-6 d-flex justify-content-center align-items-center');
-  rowDiv.appendChild(leftCol);
+  const cardTitle = createElement('h2', 'card-title', crimeObj.title);
+  //Could/should style with CSS, just an example of directly setting style
+  cardTitle.style.color = '#b13434';
+  row1.appendChild(cardTitle);
+
+  row1.appendChild(createElement('p', '', crimeObj.description));
+
+  let row2 = createElement('div', 'row p-2');
+  card.appendChild(row2);
+
+  // Second row will have two columns - one for image and one for other data
+  let leftCol = createElement('div', 'col-6');
+  row2.appendChild(leftCol);
 
   //Images is an array. Each element has caption/thumb/large/original.
   // Try to grab from first image
   if (crimeObj.images.length > 0) {
     let img = createElement('img', 'img-fluid crimeImage');
-    //Add an alt to the image
-    img.setAttribute('alt', crimeObj.images[0].caption);
-    img.src = crimeObj.images[0].large;
+    //Add an empty alt so screen readers don't read the file name of the image
+    //Description is already in the text, no need to add it here
+    img.setAttribute('alt', '');
+    img.src = crimeObj.images[0].original;
     //Add image to left column
     leftCol.appendChild(img);
   }
 
   let rightCol = createElement('div', 'col-6');
-  rowDiv.appendChild(rightCol);
-  let cardBody = createElement('div', 'card-body');
-  rightCol.appendChild(cardBody);
-
-  const cardTitle = createElement('h2', 'card-title', crimeObj.title);
-  //Could/should style with CSS, just an example of directly setting style
-  cardTitle.style.color = '#b13434';
-  cardBody.appendChild(cardTitle);
-
-  //Assume description field exist...
-  cardBody.appendChild(createElement('p', '', crimeObj.description));
+  row2.appendChild(rightCol);
 
   //Check to see if there actually is a period field
   if (crimeObj.period) {
-    cardBody.appendChild(createElement('h3', '', 'Period:'));
-    cardBody.appendChild(createElement('p', '', crimeObj.period));
+    rightCol.appendChild(createElement('h3', '', 'Period:'));
+    rightCol.appendChild(createElement('p', '', crimeObj.period));
   }
 
   //Assume crimeCategory field exist...
-  cardBody.appendChild(createElement('h3', '', 'Type:'));
-  cardBody.appendChild(createElement('p', '', crimeObj.crimeCategory));
+  rightCol.appendChild(createElement('h3', '', 'Type:'));
+  rightCol.appendChild(createElement('p', '', crimeObj.crimeCategory));
 
   if (crimeObj.additionalData) {
     let keywords = crimeObj.additionalData.split('; ');
     if (keywords.length > 0) {
-      cardBody.appendChild(createElement('h3', '', 'Keywords:'));
+      rightCol.appendChild(createElement('h3', '', 'Keywords:'));
       let keywordList = createElement('ul', '');
-      cardBody.appendChild(keywordList);
+      rightCol.appendChild(keywordList);
       for (let k of keywords) {
         keywordList.appendChild(createElement('li', '', k));
       }
