@@ -8,7 +8,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "debug": "cross-env DEBUG=express-locallibrary-tutorial:* node ./bin/www",
-    "devstart": "cross-env DEBUG=express-locallibrary-tutorial:* nodemon ./bin/www",
+    "devstart": "cross-env DEBUG=express-locallibrary-tutorial:* nodemon ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "^1.4.7",
